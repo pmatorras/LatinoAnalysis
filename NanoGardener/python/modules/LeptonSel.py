@@ -5,7 +5,7 @@ import math
 ROOT.PyConfig.IgnoreCommandLineOptions = True
 
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
-from LatinoAnalysis.NanoGardener.data.LeptonSel_cfg import ElectronWP, MuonWP, LepFilter_dict 
+from LatinoAnalysis.NanoGardener.data.LeptonSelSUSY_cfg import ElectronWP, MuonWP, LepFilter_dict 
 from LatinoAnalysis.NanoGardener.data.LeptonMaker_cfg import Lepton_br, Lepton_var 
 from LatinoAnalysis.NanoGardener.data.LeptonMaker_cfg import VetoLepton_br, VetoLepton_var 
 from LatinoAnalysis.NanoGardener.data.LeptonMaker_cfg import CleanJet_br, CleanJet_var 
