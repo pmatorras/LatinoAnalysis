@@ -84,6 +84,22 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.SusyGenVarsProducer' ,
                   'module'     : 'SusyGenVarsProducer()' ,
+               },  
+
+   'susyMT2': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer()' ,
+               },  
+
+   'susyMT2SS': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer("SS")' ,
                }, 
 
 ## ------- MODULES: MC Weights

@@ -39,6 +39,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
+                        'electron_col[LF_idx]["pt"]             >  15.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=   4' ,
                         'electron_col[LF_idx]["lostHits"]       <    1' ,
@@ -57,6 +58,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
+                        'electron_col[LF_idx]["pt"]             >  15.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=   4' ,
                         'electron_col[LF_idx]["lostHits"]       <    1' ,
@@ -118,6 +120,7 @@ MuonWP = {
                 'cuts' : { 
                     'True' :
                         [
+                        'muon_col[LF_idx]["pt"]             >  15.' ,
                         'abs(muon_col[LF_idx]["eta"])       <  2.4' ,  
                         'muon_col[LF_idx]["mediumId"]       ==   1' ,
                         'abs(muon_col[LF_idx]["sip3d"])     <   4.' ,
@@ -134,6 +137,7 @@ MuonWP = {
                 'cuts' : { 
                     'True' :
                         [
+                        'muon_col[LF_idx]["pt"]             >  15.' ,
                         'abs(muon_col[LF_idx]["eta"])       <  2.4' ,  
                         'muon_col[LF_idx]["mediumId"]       ==   1' ,
                         'abs(muon_col[LF_idx]["sip3d"])     <   4.' ,
