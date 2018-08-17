@@ -94,12 +94,12 @@ Steps = {
                   'module'     : 'mt2Producer()' ,
                },  
 
-   'susyMT2SS': {
+   'susyMT2SameSign': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("SS")' ,
+                  'module'     : 'mt2Producer("SameSign")' ,
                }, 
 
 ## ------- MODULES: MC Weights

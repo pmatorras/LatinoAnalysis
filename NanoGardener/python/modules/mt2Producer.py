@@ -129,7 +129,7 @@ class mt2Producer(Module):
             if nLeptons>2 or nVetoLeptons>2: return False
             if leptons[0].pdgId*leptons[1].pdgId>0 : return False
         
-        elif 'SS' in self.analysisRegion :
+        elif 'SameSign' in self.analysisRegion :
 
             if nLeptons>2 or nVetoLeptons>2: return False
             if leptons[0].pdgId*leptons[1].pdgId<0 : return False
