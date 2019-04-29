@@ -180,6 +180,15 @@ Productions = {
                        'YRver'   : ['YR4','13TeV'] ,
                    }, 
 
+ # -------- 2016 Susy 102X nAODv4
+ 'Summer16FS_102X_nAODv4_Full2016v4': {
+                       'isData'  : False ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16FS_102X_nAODv4.py' ,
+                       'cmssw'   : 'Full2016v4' ,
+                       'year'    : '2016' ,
+                       'YRver'   : ['YR4','13TeV'] ,
+                   }, 
+
  # -------- 2016 Embedding 102X nAODv4
  'Embedding2016_102X_nAODv4_Full2016v4': {
                        'isData'  : True ,
