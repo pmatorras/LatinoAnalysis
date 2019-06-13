@@ -172,7 +172,7 @@ Productions = {
  # -------- 2016 MC 102X nAODv4
  'Summer16_102X_nAODv4_Full2016v4': {
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16_102X_nAODv4.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16_short_102X_nAODv4.py' ,
                        'cmssw'   : 'Full2016v4' ,
                        'year'    : '2016' ,
                        # ???????? 'JESGT'   : 'Summer16_23Sep2016V4_MC' ,

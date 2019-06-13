@@ -9,9 +9,10 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 class mt2Producer(Module):
 
     ###
-    def __init__(self, analysisRegion = ''):
+    def __init__(self, analysisRegion = '',  isData = False):
 
         self.analysisRegion = analysisRegion
+        self.isData = isData
 
         self.Zmass = 91.1876
 
@@ -38,7 +39,7 @@ class mt2Producer(Module):
         self.out.branch("mt2ll",           "F")
         self.out.branch("channel",         "I")
 
-        if self.analysisRegion=='' :
+        if self.analysisRegion=='' and not self.isData:
             self.out.branch("ptmissgen",       "F")
             self.out.branch("mt2llgen",        "F")
 
@@ -251,7 +252,7 @@ class mt2Producer(Module):
         self.out.fillBranch("mt2ll",      mt2ll)
         self.out.fillBranch("channel",    channel)
 
-        if self.analysisRegion=='' :
+        if self.analysisRegion=='' and not self.isData:
 
             ptmissgenvec = ROOT.TLorentzVector()
             ptmissgenvec.SetPtEtaPhiM(event.GenMET_pt, 0., event.GenMET_phi, 0.)
