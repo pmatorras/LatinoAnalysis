@@ -583,10 +583,20 @@ Steps = {
   'btagPerEvent': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False  ,
+                  'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer()',
+                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2016M", False)',
+        
+                },
+
+  'btagPerEventData': {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
+                  'declare'    : '',
+                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2016M", True)',
         
                 },
 
