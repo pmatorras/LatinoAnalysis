@@ -5,7 +5,7 @@ import math
 ROOT.PyConfig.IgnoreCommandLineOptions = True
 
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
-from LatinoAnalysis.NanoGardener.data.LeptonSel_cfg import ElectronWP, MuonWP, LepFilter_dict
+from LatinoAnalysis.NanoGardener.data.LeptonSel_cfg import LepFilter_dict 
 from LatinoAnalysis.NanoGardener.data.LeptonMaker_cfg import Lepton_br, Lepton_var 
 from LatinoAnalysis.NanoGardener.data.LeptonMaker_cfg import VetoLepton_br, VetoLepton_var 
 from LatinoAnalysis.NanoGardener.data.LeptonMaker_cfg import CleanJet_br, CleanJet_var 
@@ -48,11 +48,11 @@ class LeptonSel(Module):
         self.LepFilter = LepFilter
         self.nLF = nLF
         self.Lep_minPt = [8.0]*self.nLF
-        self.JC_maxdR = 0.3
+        self.JC_maxdR = 0.3 
         if 'SUSY' in WP_path:
             self.JC_maxdR = 0.4
         self.JC_minPtLep = 10.
-        self.JC_absEta   = 5.0 
+        self.JC_absEta   = 5.0
 
         print('LeptonSel: keeping only '+ self.LepFilter + ' lepton(s), and saving only events with at least ' + str(self.nLF) + ' ' + self.LepFilter + ' lepton(s)')
 
@@ -263,8 +263,7 @@ class LeptonSel(Module):
 
            if isVeto_lep:
               good_vetlep_idx.append(iLep)
-            
-
+ 
            if not isClean_lep: continue
 
            if isVeto_lep:
