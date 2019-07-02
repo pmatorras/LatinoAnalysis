@@ -40,8 +40,19 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'selection'  : '"((nElectron+nMuon)>0)"' ,
-                  'subTargets' : ['leptonMaker','lepSel','jetSel',##SUSY 'CleanJetCut',
-                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch', ##SUSY 'HiggsGenVars', 'TopGenVars', 'wwNLL','WGammaStar', 'ggHTheoryUncertainty', 'DressedLeptons'
+                  'subTargets' : ['leptonMaker','lepSel','jetSel','CleanJetCut',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch', 'HiggsGenVars', 'TopGenVars', 'wwNLL','WGammaStar', 'ggHTheoryUncertainty', 'DressedLeptons'
+                                  ],
+                },
+
+
+  'MCSusy2016' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSel',#'CleanJetCut',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch',# 'HiggsGenVars', 'TopGenVars', 'wwNLL','WGammaStar', 'ggHTheoryUncertainty', 'DressedLeptons'
                                   ],
                 },
 
@@ -174,8 +185,18 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>0)"' ,
-                  'subTargets' : ['leptonMaker','lepSel','jetSel','CleanJetCut', 'rochesterDATA' , ### SUSY 'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData' ### SUSY, 'formulasDATA'
+                  'subTargets' : ['leptonMaker','lepSel','jetSel','CleanJetCut', 'rochesterDATA' , 'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2016': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', ###'formulasDATA'
                                   ],
                 },
 
@@ -408,6 +429,15 @@ Steps = {
                   'module'     : 'leptonSel()' ,
                },
 
+   'lepSelSusy': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True  ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.LeptonSel' ,
+                  'declare'    : 'leptonSel = lambda : LeptonSel("RPLME_CMSSW", "Loose", 2, "LatinoAnalysis/NanoGardener/python/data/LeptonSelSUSY_cfg.py")' ,
+                  'module'     : 'leptonSel()' ,
+               },
+
    'WgSSel' : {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
@@ -424,7 +454,7 @@ Steps = {
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.JetSel' ,
                   # jetid=2,pujetid='loose',minpt=15.0,maxeta=4.7,jetColl="CleanJet"
                   ##SUSY 'declare'    : 'jetSel = lambda : JetSel(2,"medium",15.0,4.7,"CleanJet")' ,
-                  'declare'    : 'jetSel = lambda : JetSel(2,"loose",10.0,2.5,"CleanJet")' ,
+                  'declare'    : 'jetSel = lambda : JetSel(2,"loose",20.0,2.5,"CleanJet")' ,
                   'module'     : 'jetSel()' ,
                },
 
