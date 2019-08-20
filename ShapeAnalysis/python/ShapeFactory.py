@@ -1065,6 +1065,10 @@ class ShapeFactory:
             raise RuntimeError('bin must be an ntuple or an arrays')
 
         l = len(bins)
+        print l, bins
+        if l==2 and len(bins[1])==1:
+            l = 1
+
         # 1D variable binning
         if l == 1 and isinstance(bins[0],list):
             ndim=1
