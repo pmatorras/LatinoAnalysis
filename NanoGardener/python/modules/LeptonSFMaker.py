@@ -247,8 +247,11 @@ class LeptonSFMaker(Module):
                             fs_file.Close()
 
             if not self.SF_dict['muon'][wp]['hasSFreco']: 
-                self.SF_dict['muon'][wp]['tkSF']['beginRP'] = self.SF_dict['muon'][wp]['idSF']['beginRP']                
-                self.SF_dict['muon'][wp]['tkSF']['endRP'] = self.SF_dict['muon'][wp]['idSF']['endRP']                
+                # FIXME!!!
+                #self.SF_dict['muon'][wp]['tkSF']['beginRP'] = self.SF_dict['muon'][wp]['idSF']['beginRP']                
+                #self.SF_dict['muon'][wp]['tkSF']['endRP'] = self.SF_dict['muon'][wp]['idSF']['endRP']
+                self.SF_dict['muon'][wp]['tkSF']['beginRP'] = self.SF_dict['muon'][wp]['susySF']['beginRP']                
+                self.SF_dict['muon'][wp]['tkSF']['endRP'] = self.SF_dict['muon'][wp]['susySF']['endRP']                
 
     #_____Help functions
     def open_root(self, path, option=''):
@@ -592,9 +595,9 @@ class LeptonSFMaker(Module):
                       el_wp_var[wp + '_FastSimSF_Down'].append(fastsim_sf - fastsim_sf_dwn)
               for wp in self.MuonWP[self.cmssw]['TightObjWP']:
                   mu_wp_var[wp + '_IdIsoSF'].append(1.0)
-                  mu_wp_var[wp + '_IdIsoSF_Up'].append(0.0)
-                  mu_wp_var[wp + '_IdIsoSF_Down'].append(0.0)
-                  mu_wp_var[wp + '_IdIsoSF_Syst'].append(0.0)
+                  mu_wp_var[wp + '_IdIsoSF_Up'].append(1.0)
+                  mu_wp_var[wp + '_IdIsoSF_Down'].append(1.0)
+                  mu_wp_var[wp + '_IdIsoSF_Syst'].append(1.0)
                   mu_wp_var[wp + '_TotSF'].append(reco_sf)
                   mu_wp_var[wp + '_TotSF_Up'].append(reco_sf + reco_sf_up)
                   mu_wp_var[wp + '_TotSF_Down'].append(reco_sf - reco_sf_dwn)
@@ -625,9 +628,9 @@ class LeptonSFMaker(Module):
                       mu_wp_var[wp + '_FastSimSF_Down'].append(fastsim_sf - fastsim_sf_dwn)
               for wp in self.ElectronWP[self.cmssw]['TightObjWP']:
                   el_wp_var[wp + '_IdIsoSF'].append(1.0)
-                  el_wp_var[wp + '_IdIsoSF_Up'].append(0.0)
-                  el_wp_var[wp + '_IdIsoSF_Down'].append(0.0)
-                  el_wp_var[wp + '_IdIsoSF_Syst'].append(0.0)
+                  el_wp_var[wp + '_IdIsoSF_Up'].append(1.0)
+                  el_wp_var[wp + '_IdIsoSF_Down'].append(1.0)
+                  el_wp_var[wp + '_IdIsoSF_Syst'].append(1.0)
                   el_wp_var[wp + '_TotSF'].append(reco_sf)
                   el_wp_var[wp + '_TotSF_Up'].append(reco_sf + reco_sf_up)
                   el_wp_var[wp + '_TotSF_Down'].append(reco_sf - reco_sf_dwn)
