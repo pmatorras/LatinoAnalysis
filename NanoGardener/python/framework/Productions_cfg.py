@@ -234,7 +234,7 @@ Productions = {
                        'YRver'   : ['YR4','13TeV'] ,
                    },  
 
- # -------- 2016 Susy 102X nAODv4
+ # -------- 2016 MC SUSY 102X nAODv4
  'Summer16FS_102X_nAODv4_Full2016v4': {
                        'isData'  : False ,
                        'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16FS_102X_nAODv4.py' ,
@@ -265,7 +265,18 @@ Productions = {
  # -------- 2017 MC 102X nAODv4
  'Fall2017_102X_nAODv4_Full2017v4' : {
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17_102X_nAODv4.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17_short_102X_nAODv4.py' ,
+                       'cmssw'   : 'Full2017v4',
+                       'year'    : '2017' ,
+                       'JESGT'   : 'Fall17_17Nov2017_V32_MC' ,
+                       'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2017.py' ,
+                       'YRver'   : ['YR4','13TeV'] ,
+                   }, 
+
+ # -------- 2017 MC SUSY 102X nAODv4
+ 'Fall2017FS_102X_nAODv4_Full2017v4' : {
+                       'isData'  : False ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17FS_102X_nAODv4.py' ,
                        'cmssw'   : 'Full2017v4',
                        'year'    : '2017' ,
                        'JESGT'   : 'Fall17_17Nov2017_V32_MC' ,
@@ -344,7 +355,18 @@ Productions = {
  # -------- 2018 MC 102X nAODv4 
  'Autumn18_102X_nAODv4_GTv16_Full2018v4': {
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_102X_nAODv4_v16.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_short_102X_nAODv4_v16.py' ,
+                       'cmssw'   : 'Full2018v4' ,
+                       'year'    : '2018' ,
+                       'JESGT'   : 'Autumn18_V8_MC' ,
+                       'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2018.py' ,
+                       'YRver'   : ['YR4','13TeV'] ,
+                   },
+
+ # -------- 2018 MC SUSY 102X nAODv4
+ 'Autumn18FS_102X_nAODv4_GTv16_Full2018v4': {
+                       'isData'  : False ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18FS_102X_nAODv4_v16.py' ,
                        'cmssw'   : 'Full2018v4' ,
                        'year'    : '2018' ,
                        'JESGT'   : 'Autumn18_V8_MC' ,

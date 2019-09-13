@@ -9,10 +9,10 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 class mt2Producer(Module):
 
     ###
-    def __init__(self, analysisRegion = '',  isData = False):
+    def __init__(self, analysisRegion = '',  dataType = 'mc'):
 
         self.analysisRegion = analysisRegion
-        self.isData = isData
+        self.dataType = dataType
 
         self.Zmass = 91.1876
 
@@ -34,14 +34,21 @@ class mt2Producer(Module):
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         self.out = wrappedOutputTree
 
+        self.out.branch("channel",         "I")
         self.out.branch("mll",             "F")
+
         self.out.branch("ptmiss",          "F")
         self.out.branch("mt2ll",           "F")
-        self.out.branch("channel",         "I")
 
-        if self.analysisRegion=='' and not self.isData:
-            self.out.branch("ptmissgen",       "F")
-            self.out.branch("mt2llgen",        "F")
+        if self.analysisRegion=='':
+
+            self.out.branch("ptmiss_reco",          "F")
+            self.out.branch("mt2ll_reco",           "F")
+
+            if self.dataType!='data':
+
+                self.out.branch("ptmiss_gen",       "F")
+                self.out.branch("mt2ll_gen",        "F")
 
     ###    
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
@@ -241,26 +248,40 @@ class mt2Producer(Module):
         ptmissvec = ROOT.TLorentzVector()  
         ptmissvec.SetPtEtaPhiM(ptmissvec3.Pt(), 0., ptmissvec3.Phi(), 0.)
             
+        ptmiss = ptmissvec.Pt()
         mt2ll = self.computeMT2(lepVect[W0], lepVect[W1], ptmissvec)
 
         channel = 0
         if abs(leptons[W0].pdgId)==13 : channel += 1
         if abs(leptons[W1].pdgId)==13 : channel += 1
 
-        self.out.fillBranch("mll",        mll)
-        self.out.fillBranch("ptmiss",     ptmissvec.Pt())
-        self.out.fillBranch("mt2ll",      mt2ll)
         self.out.fillBranch("channel",    channel)
+        self.out.fillBranch("mll",        mll)
 
-        if self.analysisRegion=='' and not self.isData:
+        if self.analysisRegion=='':
 
-            ptmissgenvec = ROOT.TLorentzVector()
-            ptmissgenvec.SetPtEtaPhiM(event.GenMET_pt, 0., event.GenMET_phi, 0.)
+            self.out.fillBranch("ptmiss_reco",   ptmiss)
+            self.out.fillBranch("mt2ll_reco",    mt2ll)
+
+            if self.dataType!='data':
+
+                ptmissgenvec = ROOT.TLorentzVector()
+                ptmissgenvec.SetPtEtaPhiM(event.GenMET_pt, 0., event.GenMET_phi, 0.)
             
-            mt2llgen = self.computeMT2(lepVect[0], lepVect[1], ptmissgenvec)
-            
-            self.out.fillBranch("ptmissgen",   event.GenMET_pt)
-            self.out.fillBranch("mt2llgen",    mt2llgen)
-            
+                ptmiss_gen = ptmissgenvec.Pt()
+                mt2ll_gen = self.computeMT2(lepVect[0], lepVect[1], ptmissgenvec)
+
+                self.out.fillBranch("ptmiss_gen",   ptmiss_gen)
+                self.out.fillBranch("mt2ll_gen",    mt2ll_gen)
+
+                if self.dataType=='fastsim':
+           
+                    ptmiss = (ptmiss + ptmiss_gen)/2.
+                    mt2ll = (mt2ll + mt2ll_gen)/2.
+ 
+
+        self.out.fillBranch("ptmiss",     ptmiss)
+        self.out.fillBranch("mt2ll",      mt2ll)
+
         return True
  

@@ -9,7 +9,7 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collect
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 
 class BTagEventWeightProducer(Module):
-    def __init__(self, collection="Lepton", bTagAlgo="", bTagWP="", dataType='mc', bTagEff_path='LatinoAnalysis/NanoGardener/python/data/btagging/plots_btagefficiencies_Backgrounds_2016.root'):
+    def __init__(self, collection="Lepton", bTagAlgo="", bTagWP="", dataType='mc', bTagEff_path=''):
         self.collection = collection
         self.bTagAlgo = bTagAlgo
         if bTagAlgo!="":

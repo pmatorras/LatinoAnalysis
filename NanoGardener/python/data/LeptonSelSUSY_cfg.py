@@ -595,7 +595,7 @@ ElectronWP = {
                     '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/egammaEffi.txt_EGM2D_updatedAll.root',
                     } ,
                 'susySF':  {
-                    '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/ElectronScaleFactors_Run2018_SUSY.root#Run2018_CutBasedTightNoIso94XV2#Run2018_Mini' ,  
+                    '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/ElectronScaleFactors_Run2018_SUSY.root#Run2018_CutBasedTightNoIso94XV2#Run2018_Mini' ,  
                     } ,
                 'fsSF': {
                     '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/detailed_ele_full_fast_sf_18.root#CutBasedTightNoIso94XV2_sf#MVAVLooseTightIP2DMini_sf' , 
