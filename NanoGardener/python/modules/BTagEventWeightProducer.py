@@ -46,6 +46,8 @@ class BTagEventWeightProducer(Module):
             self.out.branch('trailingPtTagged','F')  
 
         if self.dataType=='data':
+            if self.bTagAlgo!="" and self.bTagEff_path=="":
+                self.out.branch('btagWeight_1tag','F') 
             return
 
         self.systs_shape_corr = []
@@ -159,18 +161,21 @@ class BTagEventWeightProducer(Module):
         leadingPtTaggedValue = -999.     
         trailingPtTaggedValue = -999.
         for i in range(event.nCleanJet):
-            idx = event.CleanJet_jetIdx[i]
-            jet_discriminant = getattr(event, "Jet_%s" % self.bTagAlgo)[idx]
-            if jet_discriminant>=self.bTagCut :
-                if event.CleanJet_pt[i]>leadingPtTaggedValue :
-                    trailingPtTaggedValue = leadingPtTaggedValue 
-                    leadingPtTaggedValue = event.CleanJet_pt[i]
-                elif event.CleanJet_pt[i]>trailingPtTaggedValue :
-                    trailingPtTaggedValue = event.CleanJet_pt[i]
+            if abs(event.CleanJet_eta[i])<self.bTagEtaMax:
+                idx = event.CleanJet_jetIdx[i]
+                jet_discriminant = getattr(event, "Jet_%s" % self.bTagAlgo)[idx]
+                if jet_discriminant>=self.bTagCut :
+                    if event.CleanJet_pt[i]>leadingPtTaggedValue :
+                        trailingPtTaggedValue = leadingPtTaggedValue 
+                        leadingPtTaggedValue = event.CleanJet_pt[i]
+                    elif event.CleanJet_pt[i]>trailingPtTaggedValue :
+                        trailingPtTaggedValue = event.CleanJet_pt[i]
         self.out.fillBranch('leadingPtTagged',  leadingPtTaggedValue)  
         self.out.fillBranch('trailingPtTagged', trailingPtTaggedValue)  
 
         if self.dataType=='data':
+            if self.bTagAlgo!="" and self.bTagEff_path=="":
+                self.out.fillBranch('btagWeight_1tag', (leadingPtTaggedValue>20.))
             return True
                             
         for central_or_syst in self.central_and_systs_shape_corr:
