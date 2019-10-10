@@ -175,7 +175,7 @@ class BTagEventWeightProducer(Module):
 
         if self.dataType=='data':
             if self.bTagAlgo!="" and self.bTagEff_path=="":
-                self.out.fillBranch('btagWeight_1tag', (leadingPtTaggedValue>20.))
+                self.out.fillBranch('btagWeight_1tag', (leadingPtTaggedValue>=20.))
             return True
                             
         for central_or_syst in self.central_and_systs_shape_corr:
