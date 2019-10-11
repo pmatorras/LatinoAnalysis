@@ -16,11 +16,12 @@ class TrigMaker(Module):
     Trigger Maker module MC,
     ''' 
 
-    def __init__(self, cmssw = 'Full2016', isData = False, keepRunP = False, cfg_path = 'LatinoAnalysis/NanoGardener/python/data/TrigMaker_cfg.py', seeded = False):
+    def __init__(self, cmssw = 'Full2016', isData = False, keepRunP = False, cfg_path = 'LatinoAnalysis/NanoGardener/python/data/TrigMaker_cfg.py', seeded = False, isFastSim = False):
         self.cmssw = cmssw
         self.isData = isData
         self.keepRunP = keepRunP
         self.seeded = seeded
+        self.isFastSim = isFastSim
         self.firstEvent = True
  
         self.mu_maxPt = 200
@@ -461,10 +462,13 @@ class TrigMaker(Module):
     def _get_trigDec(self, run_p, event):
         dec = {}
         for Tname in self.TM_trig[run_p]:
-           temp_dec = 0
-           for bit in self.TM_trig[run_p][Tname]:
-              if eval(bit) == 1: temp_dec = 1
-           dec[Tname] = temp_dec
+           if self.isFastSim:
+               dec[Tname] = 1
+           else:
+               temp_dec = 0
+               for bit in self.TM_trig[run_p][Tname]:
+                   if eval(bit) == 1: temp_dec = 1
+               dec[Tname] = temp_dec
         return dec
 
     def _dPhi(self,phi1,phi2):
