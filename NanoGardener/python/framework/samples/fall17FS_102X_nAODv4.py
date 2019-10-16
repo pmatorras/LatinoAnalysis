@@ -15,7 +15,7 @@ Samples['T2bW']                       = {'nanoAOD' : '/SMS-T2bW_TuneCP2_13TeV-ma
 #### Chipm
 
 Samples['TChipmSlepSnu']              = {'nanoAOD' : '/SMS-TChipmSlepSnu_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
-Samples['TChipmSlepSnu_mC1_825_1500'] = {'nanoAOD' : 'SMS-TChipmSlepSnu_mC1_825_1500_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
+Samples['TChipmSlepSnu_mC1_825_1500'] = {'nanoAOD' : '/SMS-TChipmSlepSnu_mC1_825_1500_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
 Samples['TChipmWW']                   = {'nanoAOD' : '/SMS-TChipmWW_WWTo2LNu_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
 
 
