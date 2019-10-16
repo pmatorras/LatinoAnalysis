@@ -6,7 +6,7 @@ Samples = {}
 
 #Samples['T2tt__mStop-150to250']       = {'nanoAOD' : ''}
 Samples['T2tt__mStop-250to350']       = {'nanoAOD' : '/SMS-T2tt_mStop-250to350_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6_ext1-v1/NANOAODSIM'}
-Samples['T2tt__mStop-350to400']       = {'nanoAOD' : 'Dataset: /SMS-T2tt_mStop-350to400_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6_ext1-v1/NANOAODSIM'}
+Samples['T2tt__mStop-350to400']       = {'nanoAOD' : '/SMS-T2tt_mStop-350to400_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6_ext1-v1/NANOAODSIM'}
 Samples['T2tt__mStop-400to1200']       = {'nanoAOD' : '/SMS-T2tt_mStop-400to1200_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6_ext1-v1/NANOAODSIM'}
 Samples['T2tt__mStop-1200to2000']      = {'nanoAOD' : '/SMS-T2tt_mStop-1200to2000_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6_ext1-v1/NANOAODSIM'}
 
