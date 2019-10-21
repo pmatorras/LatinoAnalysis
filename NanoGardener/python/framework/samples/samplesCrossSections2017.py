@@ -972,9 +972,24 @@ samples['WLNuJJ_EWK'].extend (['xsec=20.44', 'kfact=1.000', 'ref=SMP-17-161'])
 # HH bblnu
 samples['GluGluToHHTo2B2WToLNu2J'].extend(['xsec=1.97', 'kfact=1.000', 'ref=?'])
 
+#VBS Semileptonic aQGC samples
+samples['ZTo2L_ZTo2J_aQGC']        .extend( ['xsec=3.361',    'kfact=1.000',   'ref=W' ])
+samples['WmTo2L_WmTo2J_aQGC']      .extend( ['xsec=0.5065',    'kfact=1.000',   'ref=W' ])
+samples['WmTo2J_ZTo2L_aQGC']       .extend( ['xsec=0.2222',    'kfact=1.000',   'ref=W' ])
+samples['WpTo2L_ZTo2J_aQGC']       .extend( ['xsec=1.896',    'kfact=1.000',   'ref=W' ])
+samples['WpTo2L_WpTo2J_aQGC']      .extend( ['xsec=3.453',    'kfact=1.000',   'ref=W' ])
+samples['WpTo2L_WmTo2J_aQGC']      .extend( ['xsec=17.99',    'kfact=1.000',   'ref=W' ])
+samples['WpTo2J_ZTo2L_aQGC']       .extend( ['xsec=0.569',    'kfact=1.000',   'ref=W' ])
+samples['WpTo2J_WmTo2L_aQGC']      .extend( ['xsec=17.91',    'kfact=1.000',   'ref=W' ])
+samples['WmTo2L_ZTo2J_aQGC']       .extend( ['xsec=0.7416',    'kfact=1.000',   'ref=W' ])
+
 # Dummies for Susy samples
 samples['T2tt__mStop-150to250']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
 samples['T2tt__mStop-250to350']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
 samples['T2tt__mStop-350to400']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
 samples['T2tt__mStop-400to1200']    .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
 samples['T2tt__mStop-1200to2000']   .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['T2bW']                     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['TChipmSlepSnu']            .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['TChipmSlepSnu_mC1_825_1500'].extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['TChipmWW']                 .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])

@@ -894,14 +894,6 @@ samples['ZTo2L_ZTo2J']      .extend(['xsec=0.0159',     'kfact=1.000',   'ref=Z'
 # FIXME: insert reference
 samples['HH_bblnjj']        .extend(['xsec=1.97', 'kfact=1.000', 'ref=??'])
 
-# Dummies for Susy samples
-samples['T2tt__mStop-150to250']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
-samples['T2tt__mStop-250to350']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
-samples['T2tt__mStop-350to400']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
-samples['T2tt__mStop-400to1200']    .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
-samples['T2tt__mStop-1200to2000']   .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
-
-
 #PrivateNanoSamples
 samples['GluGluHToWWTo2L2Nu_M125_PrivateNano']      .extend( ['xsec=1.0315',    'kfact=1.000',          'ref=Y'] ) # 45.20*0.215*0.1086*0.1086*9
 samples['GluGluHToWWTo2L2Nu_M125_herwigpp_PrivateNano']  .extend( ['xsec=0.9913',       'kfact=1.000',          'ref=CF'] ) # 43.92*0.215*0.108*0.108*9 Higgs LHC value
@@ -917,3 +909,14 @@ samples['HWminusJ_HToTauTau_M125_PrivateNano']  .extend( ['xsec=0.0341',        
 samples['HWplusJ_HToTauTau_M125_PrivateNano']   .extend( ['xsec=0.0532',        'kfact=1.000',          'ref=EF'] ) # 0.842*0.0632
 samples['HZJ_HToWW_M125_PrivateNano']           .extend( ['xsec=0.187',         'kfact=1.000',          'ref=EF'] ) # 0.8696*0.215
 samples['bbHToWWTo2L2Nu_M125_ybyt_PrivateNano']     .extend( ['xsec=0.000743225',    'kfact=1.000',         'ref=N'] ) # 0.000743225 = -0.03293*0.215*0.108*0.108*9
+
+# Dummies for Susy samples
+samples['T2tt__mStop-150to250']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['T2tt__mStop-250to350']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['T2tt__mStop-350to400']     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['T2tt__mStop-400to1200']    .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['T2tt__mStop-1200to2000']   .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['T2bW']                     .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['TChipmSlepSnu']            .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['TChipmSlepSnu_mC1_825_1500'].extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+samples['TChipmWW']                 .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
