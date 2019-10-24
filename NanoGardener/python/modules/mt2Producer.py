@@ -132,7 +132,7 @@ class mt2Producer(Module):
         Lost = []
         Skip = []
 
-        if self.analysisRegion=='' :
+        if self.analysisRegion=='' or self.analysisRegion=='gen' or self.analysisRegion=='reco':
 
             if nLeptons>2 or nVetoLeptons>2: return False
             if leptons[0].pdgId*leptons[1].pdgId>0 : return False
