@@ -258,10 +258,11 @@ class mt2Producer(Module):
         self.out.fillBranch("channel",    channel)
         self.out.fillBranch("mll",        mll)
 
-        if self.analysisRegion=='':
+        if self.analysisRegion=='' or self.analysisRegion=='gen' or self.analysisRegion=='reco':
 
-            self.out.fillBranch("ptmiss_reco",   ptmiss)
-            self.out.fillBranch("mt2ll_reco",    mt2ll)
+            if self.analysisRegion=='':
+                self.out.fillBranch("ptmiss_reco",   ptmiss)
+                self.out.fillBranch("mt2ll_reco",    mt2ll)
 
             if self.dataType!='data':
 
@@ -271,13 +272,18 @@ class mt2Producer(Module):
                 ptmiss_gen = ptmissgenvec.Pt()
                 mt2ll_gen = self.computeMT2(lepVect[0], lepVect[1], ptmissgenvec)
 
-                self.out.fillBranch("ptmiss_gen",   ptmiss_gen)
-                self.out.fillBranch("mt2ll_gen",    mt2ll_gen)
+                if self.analysisRegion=='':
+                    self.out.fillBranch("ptmiss_gen",   ptmiss_gen)
+                    self.out.fillBranch("mt2ll_gen",    mt2ll_gen)
 
                 if self.dataType=='fastsim':
            
-                    ptmiss = (ptmiss + ptmiss_gen)/2.
-                    mt2ll = (mt2ll + mt2ll_gen)/2.
+                    if self.analysisRegion=='':
+                        ptmiss = (ptmiss + ptmiss_gen)/2.
+                        mt2ll = (mt2ll + mt2ll_gen)/2.
+                    elif self.analysisRegion=='gen':
+                        ptmiss = ptmiss_gen
+                        mt2ll = mt2ll_gen
  
 
         self.out.fillBranch("ptmiss",     ptmiss)
