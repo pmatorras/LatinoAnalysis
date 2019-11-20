@@ -435,7 +435,8 @@ Steps = {
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
                      'subTargets' : ['baseW','btagPerJet2018','CorrFatJetMass',
-                                     'rochesterMC','trigMC','LeptonSF','puW','l2Kin', 'l3Kin', 'l4Kin','formulasMC','EmbeddingVeto',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSF','puW','l2Kin', 'l3Kin', 'l4Kin','formulasMC','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK',  
                                      'MHTrigMC','MHSwitch','formulasMCMH' ],
                 },
 
@@ -448,6 +449,13 @@ Steps = {
                                   'baseW'],
                   'outputbranchsel': os.getenv('CMSSW_BASE') + '/src/LatinoAnalysis/NanoGardener/python/data/MCGenOnly_outputbranches.txt'
                },
+
+  'l23Kin': {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True ,
+                  'subTargets' : ['l2Kin', 'l3Kin'],
+            },
 
 ## ------- WgStar MC:
 
@@ -1372,7 +1380,15 @@ Steps = {
                  'declare'    : 'trigMC = lambda : TrigMaker("RPLME_CMSSW",False,False,"LatinoAnalysis/NanoGardener/python/data/TrigMaker_cfg.py",False,True)',
                  'module'     : 'trigMC()',
              },
- 
+
+  'trigMC_Cut'   : { 'isChain'    : False ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'import'     : 'LatinoAnalysis.NanoGardener.modules.TrigMaker' ,
+                 'declare'    : 'CBtrigMC = lambda : TrigMaker("RPLME_CMSSW",isData=False,keepRunP=True,cfg_path="LatinoAnalysis/NanoGardener/python/data/TrigMaker_CutBased_cfg.py")',
+                 'module'     : 'CBtrigMC()',
+               },
+
  'TrigMC_hmumu'   : { 
                   'isChain'  : False ,
                   'do4MC'    : True  ,
@@ -1856,6 +1872,15 @@ Steps = {
                   'module'     : 'l2KinProducer()' ,
                },  
 
+  'l2Kin_ElepTup' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True  ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.l2KinProducer' ,
+                  'declare'    : '',
+                  'module'     : 'l2KinProducer(branch_map="ElepTup")' ,
+               },
+
   'l3Kin'    : {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
@@ -2124,6 +2149,15 @@ Steps = {
                   'module'     : 'ElepTup()',
                 },
 
+  'do_ElepTup_withsuffix': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False  ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.LepPtScaleUncertainty',
+                  'declare'    : 'ElepTup = lambda : LeppTScalerTreeMaker(kind="Up", lepFlavor="ele", version="RPLME_CMSSW" , metCollections = ["MET", "PuppiMET", "RawMET", "TkMET"], suffix="_ElepTup")',
+                  'module'     : 'ElepTup()',
+                },
+
   'do_ElepTdo' : {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
@@ -2138,6 +2172,13 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False  ,
                   'subTargets' : ['do_ElepTup','trigMCKeepRun','LeptonSF','l2Kin', 'l3Kin', 'l4Kin','DYMVA','MonoHiggsMVA','formulasMC'],
+               },
+
+  'ElepTup_withsuffix' :   {
+                  'isChain'    : True ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False  ,
+                  'subTargets' : ['do_ElepTup_withsuffix','l2Kin_ElepTup'],
                },
 
   'ElepTdo' :   {

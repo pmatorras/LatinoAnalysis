@@ -601,6 +601,9 @@ samples['GluGluZH_HToWWTo2L2Nu_M120']  .extend( ['xsec=0.00191591',  'kfact=1.00
 samples['GluGluZH_HToWWTo2L2Nu_M125']  .extend( ['xsec=0.00275257',  'kfact=1.000', 'ref=FT'] ) #=1.227*0.1*0.2137*0.108*0.108*9
 samples['GluGluZH_HToWWTo2L2Nu_M130']  .extend( ['xsec=0.00369142',  'kfact=1.000', 'ref=FT'] ) #=1.164*0.1*0.3021*0.108*0.108*9
 
+# ggZH, H->tautau
+samples['GluGluZH_HToTauTau_ZTo2L_M125']  .extend( ['xsec=0.075',  'kfact=1.000', 'ref=N'] )
+
 
 ## ZH tautau
 samples['HZJ_HToTauTau_M120']		.extend( ['xsec=1.0000',	'kfact=1.000',		'ref=X'] )
@@ -628,7 +631,7 @@ samples['Wg500']          .extend( ['xsec=1.00000',  'kfact=1.000',  'ref=X'] )
 samples['WgStarLNuMuMu']  .extend( ['xsec=2.793',    'kfact=1.000',  'ref=X'] )
 samples['WgStarLNuEE']    .extend( ['xsec=3.526',    'kfact=1.000',  'ref=X'] )
 samples['Zg']             .extend( ['xsec=131.300',  'kfact=1.000',  'ref=Rafael'] )  # NNLO
-samples['ZGToLLG']        .extend( ['xsec=131.300',  'kfact=1.000',  'ref=Rafael'] )  # NNLO
+samples['ZGToLLG']        .extend( ['xsec=58.83',  'kfact=1.000',  'ref=Rafael'] )  # 55.5*1.06
 samples['ZgStar']         .extend( ['xsec=1.00000',  'kfact=1.000',  'ref=X'] )
 
 
@@ -640,12 +643,26 @@ samples['QCD_Pt-50to80_MuEnrichedPt5']          .extend( ['xsec=376600.0', 	'kfa
 samples['QCD_Pt-80to120_MuEnrichedPt5']         .extend( ['xsec=88930.0', 	'kfact=1.000',	'ref=W'] )      #totxs 2758420    ref=EN
 samples['QCD_Pt-120to170_MuEnrichedPt5']        .extend( ['xsec=21230.0',  	'kfact=1.000',	'ref=W'] )      #totxs 469797   ref=EN
 samples['QCD_Pt-170to300_MuEnrichedPt5']        .extend( ['xsec=7055.0',  	'kfact=1.000',	'ref=W'] )      #totxs 117989    ref=EN
+samples['QCD_Pt-300to470_MuEnrichedPt5']        .extend( ['xsec=797.4',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-470to600_MuEnrichedPt5']        .extend( ['xsec=56.30',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-600to800_MuEnrichedPt5']        .extend( ['xsec=25.10',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-800to1000_MuEnrichedPt5']        .extend( ['xsec=4.707',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-1000toInf_MuEnrichedPt5']        .extend( ['xsec=1.621',  	'kfact=1.000',	'ref=I'] )
+
 samples['QCD_Pt-20toInf_MuEnrichedPt15']  	    .extend( ['xsec=269900.0', 	'kfact=1.000',	'ref=W'] )      #totxs 720648000    ref=EN
+
+
 samples['QCD_Pt-15to20_EMEnriched']       	.extend( ['xsec=1327000.0',	'kfact=1.000',	'ref=W'] )       #totxs 1273000000 ref=N It is 1279000000 in ref E
 samples['QCD_Pt-20to30_EMEnriched']       	.extend( ['xsec=4908000.0', 'kfact=1.000',	'ref=W'] )      #totxs 557600000  ref=EN
 samples['QCD_Pt-30to50_EMEnriched']       	.extend( ['xsec=6396000.0', 	'kfact=1.000',	'ref=W'] )      #totxs 136000000  ref=EN
 samples['QCD_Pt-50to80_EMEnriched']       	.extend( ['xsec=1989000.0',  	'kfact=1.000',	'ref=W'] )      #totxs 19800000   ref=EN
 #samples['QCD_Pt-50to80_EMEnriched_ext1']       	.extend( ['xsec=',  	'kfact=1.000',	'ref=W'] )  #totxs 19800000   ref=EN
+samples['QCD_Pt-80to120_EMEnriched']       	.extend( ['xsec=380500.0',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-120to170_EMEnriched']       	.extend( ['xsec=66630.0',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-170to300_EMEnriched']       	.extend( ['xsec=20860.0',  	'kfact=1.000',	'ref=I'] )
+samples['QCD_Pt-300toInf_EMEnriched']       	.extend( ['xsec=1350.0',  	'kfact=1.000',	'ref=I'] )
+
+
 samples['QCD_Pt-30toInf_DoubleEMEnriched']	.extend( ['xsec=162060000', 	'kfact=1.000',	'ref=EN'] )
 samples['QCD_Pt_15to20_bcToE']    		.extend( ['xsec=232900',	'kfact=1.000',	'ref=I'] )
 samples['QCD_Pt_20to30_bcToE']    		.extend( ['xsec=362400',	'kfact=1.000',	'ref=I'] )
