@@ -1299,14 +1299,14 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
                   'module'     : 'mt2Producer("ZZ")' , 
+               }, 
 
    'susyMT2ZZdata': {
                   'isChain'    : False ,
                   'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ZZ","data")' ,
-               }, 
+                  'module'     : 'mt2Producer("ZZ","data")' , 
                }, 
     
     ##--High Mass SemiLeptonic channel
