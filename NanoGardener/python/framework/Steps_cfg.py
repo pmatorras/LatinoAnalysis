@@ -243,7 +243,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','lepSelSusy','jetSel',#'CleanJetCut',
+                  'subTargets' : ['leptonMaker','METFixEEMC2017','lepSelSusy','jetSel',#'CleanJetCut',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
                 },
@@ -253,7 +253,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','lepSelSusy','jetSel',#'CleanJetCut',
+                  'subTargets' : ['leptonMaker','METFixEEFS2017','lepSelSusy','jetSel',#'CleanJetCut',
                                   #'leptonMaker','lepSelSusy','JECupdate2017FS','jetSel',#'CleanJetCut',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
@@ -628,6 +628,61 @@ Steps = {
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : [#'leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'leptonMaker','lepSelSusy','jetSel','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2017B': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'leptonMaker','METFixEEDATA2017B','lepSelSusy','jetSel','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2017C': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'leptonMaker','METFixEEDATA2017C','lepSelSusy','jetSel','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2017D': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'leptonMaker','METFixEEDATA2017D','lepSelSusy','jetSel','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2017E': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'leptonMaker','METFixEEDATA2017E','lepSelSusy','jetSel','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2017F': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSel','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'leptonMaker','METFixEEDATA2017F','lepSelSusy','jetSel','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
                                   ],
                 },
@@ -1445,6 +1500,69 @@ Steps = {
                   'declare'    : 'jetRecalib2016FS = lambda : jetRecalib(globalTag="Spring16_FastSimV1_MC", archive="Spring16_25nsFastSimV1_MC")',
                   'module'     : 'jetRecalib2016FS()',
                  }, 
+
+  'METFixEEMC2017' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEMC2017 = createJMECorrector(isMC=True, dataYear=2017, runPeriod="", metBranchName="METFixEE2017")',
+                  'module'     : 'jetmetCorrectorEEMC2017()',
+                 }, 
+
+  'METFixEEFS2017' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEFS2017 = createJMECorrector(isMC=True, dataYear=2017, runPeriod="", metBranchName="METFixEE2017", isFastSim=True)',
+                  'module'     : 'jetmetCorrectorEEFS2017()',
+                 }, 
+
+  'METFixEEDATA2017B' : {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEDATA2017B = createJMECorrector(isMC=False, dataYear=2017, runPeriod="B", metBranchName="METFixEE2017")',
+                  'module'     : 'jetmetCorrectorEEDATA2017B()',
+                 }, 
+
+  'METFixEEDATA2017C' : {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEDATA2017C = createJMECorrector(isMC=False, dataYear=2017, runPeriod="C", metBranchName="METFixEE2017")',
+                  'module'     : 'jetmetCorrectorEEDATA2017C()',
+                 }, 
+
+  'METFixEEDATA2017D' : {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEDATA2017D = createJMECorrector(isMC=False, dataYear=2017, runPeriod="D", metBranchName="METFixEE2017")',
+                  'module'     : 'jetmetCorrectorEEDATA2017D()',
+                 }, 
+
+  'METFixEEDATA2017E' : {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEDATA2017E = createJMECorrector(isMC=False, dataYear=2017, runPeriod="E", metBranchName="METFixEE2017")',
+                  'module'     : 'jetmetCorrectorEEDATA2017E()',
+                 }, 
+
+  'METFixEEDATA2017F' : {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorEEDATA2017F = createJMECorrector(isMC=False, dataYear=2017, runPeriod="F", metBranchName="METFixEE2017")',
+                  'module'     : 'jetmetCorrectorEEDATA2017F()',
+                 },  
 
   'JECupdateDATA2017': {
                   'isChain'    : False ,
