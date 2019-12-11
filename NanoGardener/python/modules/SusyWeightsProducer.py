@@ -31,21 +31,21 @@ class SusyWeightsProducer(Module):
         self.out.branch("baseW",         "F")
         self.out.branch("isrW",          "F")
 
-    if self.massScanIsFilled==False :
+        if self.massScanIsFilled==False :
 
-        inputFileName = inputFile.GetName()
-        
-        chain = ROOT.TChain('Events');
-          
-        if '__part' in inputFileName :
-            inputFileName = inputFileName[:inputFileName.index('__part')] + '__part*.root'
+            inputFileName = inputFile.GetName()
+            
+            chain = ROOT.TChain('Events');
+              
+            if '__part' in inputFileName :
+                inputFileName = inputFileName[:inputFileName.index('__part')] + '__part*.root'
 
-        # Patch to make it work on ifca gridui cluster (should be improved...)
-        if 'ifca' in os.uname()[1] or 'cloud' in os.uname()[1]:
+            # Patch to make it work on ifca gridui cluster (should be improved...)
+            if 'ifca' in os.uname()[1] or 'cloud' in os.uname()[1]:
 
-            inputDirectory = os.getenv('PWD').split('/')[-1].replace('NanoGardening__', '') + '/nanoProd__hadd__susyGen/'
-            inputDirectory = '/gpfs/projects/tier3data/LatinosSkims/RunII/Nano/' + inputDirectory + '/'
-            inputFileName = inputDirectory + inputFileName
+                inputDirectory = os.getenv('PWD').split('/')[-1].replace('NanoGardening__', '') + '/nanoProd__hadd__susyGen/'
+                inputDirectory = '/gpfs/projects/tier3data/LatinosSkims/RunII/Nano/' + inputDirectory + '/'
+                inputFileName = inputDirectory + inputFileName
 
             chain.Add(inputFileName)
 
