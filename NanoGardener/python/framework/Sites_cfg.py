@@ -39,6 +39,14 @@ Sites = {
               'xrootdPath'  : '' ,
               'srmPrefix'   : 'srm://srm01.ifca.es' ,
               'treeBaseDir' : '/gpfs/projects/tier3data/LatinosSkims/RunII/Nano/' ,
+             },
+
+  'cloud' : {
+              'lsCmd'       : 'ls' ,
+              'mkDir'       : True ,
+              'xrootdPath'  : '' ,
+              'srmPrefix'   : 'srm://srm01.ifca.es' ,
+              'treeBaseDir' : '/gpfs/projects/tier3data/LatinosSkims/RunII/Nano/' ,
              }
 
 }
