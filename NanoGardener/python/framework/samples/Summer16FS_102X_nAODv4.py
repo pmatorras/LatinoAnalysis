@@ -14,8 +14,10 @@ Samples['T2bW']                       = {'nanoAOD' : '/SMS-T2bW_TuneCUETP8M1_13T
 
 #### Chipm
 
+
+
 Samples['TChipmSlepSnu']              = {'nanoAOD' : 'user'}
-Samples['TChipmSlepSnu_mC1_825_1500'] = {'nanoAOD' : ''}
+Samples['TChipmSlepSnu_mC1_825_1500'] = {'srmPrefix': 'srm://srm01.ifca.es//gpfs/gaes/cms/','paths': ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Summer16FS_102X_nAODv4_Full2016v4/TChipmSlepSnu_mC1_825_1500/']}
 #Samples['TChipmWW']                   = {'nanoAOD' : ''}
 
 
