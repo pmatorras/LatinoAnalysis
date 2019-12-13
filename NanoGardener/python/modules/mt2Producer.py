@@ -162,6 +162,9 @@ class mt2Producer(Module):
     
             if nLeptons!=3 or nVetoLeptons>3: return False
 
+            ptmissvec4 = ROOT.TLorentzVector()  
+            ptmissvec4.SetPtEtaPhiM(ptmissvec3.Pt(), 0., ptmissvec3.Phi(), 0.)
+
             for lref in range (nLeptons) :
 
                 mt2ll_ref = 0.
@@ -172,7 +175,7 @@ class mt2Producer(Module):
                             if l1!=lref and lepVect[l1].Pt()>=20.:
                                 if l0!=lref and l1!=lref :
 
-                                    mt2ll_ref = self.computeMT2(lepVect[l0], lepVect[l1], ptmissvec)
+                                    mt2ll_ref = self.computeMT2(lepVect[l0], lepVect[l1], ptmissvec4)
 
                 self.out.fillBranch("mt2llfake"+str(lref), mt2ll_ref)
 
