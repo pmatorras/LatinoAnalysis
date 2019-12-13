@@ -1418,81 +1418,49 @@ Steps = {
    'susyMT2SameSign': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("SameSign")' ,
-               },  
-
-   'susyMT2SameSigndata': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("SameSign","data")' ,
+                  'module'     : 'mt2Producer("SameSign")' ,
                }, 
+
+   'susyMT2Fake': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer("Fake")' ,
+               },  
 
    'susyMT2WZ': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("WZ")' ,
-               },   
-
-   'susyMT2WZdata': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("WZ","data")' ,
+                  'module'     : 'mt2Producer("WZ")' ,
                }, 
 
    'susyMT2WZtoWW': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("WZtoWW")' ,
-               },   
-
-   'susyMT2WZtoWWdata': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("WZtoWW","data")' ,
-               }, 
+                  'module'     : 'mt2Producer("WZtoWW")' ,
+               },
 
    'susyMT2ZZ': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ZZ")' , 
-               }, 
-
-   'susyMT2ZZdata': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ZZ","data")' , 
-               }, 
+                  'module'     : 'mt2Producer("ZZ")' , 
+               },
 
    'susyMT2ttZ': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ttZ")' , 
-               }, 
-
-   'susyMT2ttZdata': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ttZ","data")' , 
+                  'module'     : 'mt2Producer("ttZ")' , 
                }, 
     
     ##--High Mass SemiLeptonic channel

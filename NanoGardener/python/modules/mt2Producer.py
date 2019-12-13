@@ -38,7 +38,17 @@ class mt2Producer(Module):
         self.out.branch("mll",             "F")
 
         self.out.branch("ptmiss",          "F")
-        self.out.branch("mt2ll",           "F")
+
+        if self.analysisRegion!='Fake':
+
+
+            self.out.branch("mt2ll",           "F")
+
+        else:
+
+            self.out.branch("mt2llfake0",      "F")
+            self.out.branch("mt2llfake1",      "F")
+            self.out.branch("mt2llfake2",      "F")
 
         if self.analysisRegion=='':
 
@@ -127,6 +137,12 @@ class mt2Producer(Module):
             lepton = ROOT.TLorentzVector()
             lepton.SetPtEtaPhiM(leptons[iLep].pt, leptons[iLep].eta, leptons[iLep].phi, self.getLeptonMass(leptons[iLep].pdgId))
             lepVect.push_back(lepton)
+            
+        ptmissvec3 = ROOT.TVector3()
+        if hasattr(event, 'METFixEE2017_pt_nom'):
+            ptmissvec3.SetPtEtaPhi(event.METFixEE2017_pt_nom, 0., event.METFixEE2017_phi_nom) 
+        else:
+            ptmissvec3.SetPtEtaPhi(event.MET_pt, 0., event.MET_phi)
         
         # Looking for the leptons to turn into neutrinos
         Lost = []
@@ -142,12 +158,38 @@ class mt2Producer(Module):
             if nLeptons>2 or nVetoLeptons>2: return False
             if leptons[0].pdgId*leptons[1].pdgId<0 : return False
 
+        elif 'Fake' in self.analysisRegion :
+    
+            if nLeptons!=3 or nVetoLeptons>3: return False
+
+            for lref in range (nLeptons) :
+
+                mt2ll_ref = 0.
+
+                for l0 in range (nLeptons) :
+                    if l0!=lref and lepVect[l0].Pt()>=25.:
+                        for l1 in range (l0+1, nLeptons) :
+                            if l1!=lref and lepVect[l1].Pt()>=20.:
+                                if l0!=lref and l1!=lref :
+
+                                    mt2ll_ref = self.computeMT2(lepVect[l0], lepVect[l1], ptmissvec)
+
+                self.out.fillBranch("mt2llfake"+str(lref), mt2ll_ref)
+
+            return True
+
         elif 'WZ' in self.analysisRegion :
                 
-            if nLeptons!=3 or nVetoLeptons>=4:
+            if nLeptons<3 :
                 return False
 
-            minDZM = 10.
+            minDZM = 999.
+
+            if 'WZtoWW' in self.analysisRegion:
+                minDZM = 10.
+                if nLeptons!=3 or nVetoLeptons>=4:
+                    return False
+
             lost = -1
             
             for l0 in range (nLeptons) :
@@ -226,12 +268,6 @@ class mt2Producer(Module):
 
         # Computing variables to be added to the tree
         W0, W1 = -1, -1
-            
-        ptmissvec3 = ROOT.TVector3()
-        if hasattr(event, 'METFixEE2017_pt_nom'):
-            ptmissvec3.SetPtEtaPhi(event.METFixEE2017_pt_nom, 0., event.METFixEE2017_phi_nom) 
-        else:
-            ptmissvec3.SetPtEtaPhi(event.MET_pt, 0., event.MET_phi)
 
         for iLep in range(nLeptons) :
 
