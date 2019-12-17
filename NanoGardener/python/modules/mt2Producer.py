@@ -34,21 +34,23 @@ class mt2Producer(Module):
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         self.out = wrappedOutputTree
 
-        self.out.branch("channel",         "I")
-        self.out.branch("mll",             "F")
-
         self.out.branch("ptmiss",          "F")
 
-        if self.analysisRegion!='Fake':
-
-
-            self.out.branch("mt2ll",           "F")
-
-        else:
+        if 'Fake' in self.analysisRegion:
 
             self.out.branch("mt2llfake0",      "F")
             self.out.branch("mt2llfake1",      "F")
             self.out.branch("mt2llfake2",      "F")
+
+        else:
+
+            self.out.branch("channel",         "I")
+            self.out.branch("mll",             "F")
+            self.out.branch("mt2ll",           "F")
+
+            if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
+                
+                self.out.branch("mZ",          "F")
 
         if self.analysisRegion=='':
 
@@ -125,6 +127,7 @@ class mt2Producer(Module):
         mll       = -1.
         ptmiss    = -1.
         mt2ll     = -1.
+        mZ        = -1.
 
         nVetoLeptons = event.nVetoLepton
         
@@ -165,6 +168,8 @@ class mt2Producer(Module):
             ptmissvec4 = ROOT.TLorentzVector()  
             ptmissvec4.SetPtEtaPhiM(ptmissvec3.Pt(), 0., ptmissvec3.Phi(), 0.)
 
+            mt2llfakes = [ ] 
+
             for lref in range (nLeptons) :
 
                 mt2ll_ref = 0.
@@ -173,13 +178,23 @@ class mt2Producer(Module):
                     if l0!=lref and lepVect[l0].Pt()>=25.:
                         for l1 in range (l0+1, nLeptons) :
                             if l1!=lref and lepVect[l1].Pt()>=20.:
-                                if l0!=lref and l1!=lref :
+                                if (lepVect[l0] + lepVect[l1]).M()>=20.:
+                                    if leptons[l0].pdgId*leptons[l1].pdgId<0:
 
-                                    mt2ll_ref = self.computeMT2(lepVect[l0], lepVect[l1], ptmissvec4)
+                                        mt2ll_ref = self.computeMT2(lepVect[l0], lepVect[l1], ptmissvec4)
+                                        
+                mt2llfakes.append(mt2ll_ref)
 
-                self.out.fillBranch("mt2llfake"+str(lref), mt2ll_ref)
+            if sum(mt2llfakes)>0.:
 
-            return True
+                for lref in range (nLeptons):
+                    self.out.fillBranch("mt2llfake"+str(lref), mt2llfakes[lref])
+
+                self.out.fillBranch("ptmiss", ptmissvec3.Pt())
+
+                return True
+            
+            return False
 
         elif 'WZ' in self.analysisRegion :
                 
@@ -189,7 +204,7 @@ class mt2Producer(Module):
             minDZM = 999.
 
             if 'WZtoWW' in self.analysisRegion:
-                minDZM = 10.
+                minDZM = 15.
                 if nLeptons!=3 or nVetoLeptons>=4:
                     return False
 
@@ -214,6 +229,8 @@ class mt2Producer(Module):
                               
             if lost==-1 :
                 return False
+
+            mZ = minDZM
 
             if 'WZtoWW' in self.analysisRegion :
                 Lost.append(lost)
@@ -246,7 +263,7 @@ class mt2Producer(Module):
 
                                                         lost0, lost1 = l0, l1
                                                         cutDZM1 = DZM1
-                    
+
                                                     elif 'ZZ' in self.analysisRegion :
 
                                                         if abs(leptons[l2].pdgId)==abs(leptons[l3].pdgId) :
@@ -265,6 +282,8 @@ class mt2Producer(Module):
                                                                     
             if lost0==-1 or lost1==-1 :
                 return False
+                
+            mZ = cutDZM1
             
             Lost.append(lost0)
             Lost.append(lost1)
@@ -299,6 +318,9 @@ class mt2Producer(Module):
 
         self.out.fillBranch("channel",    channel)
         self.out.fillBranch("mll",        mll)
+
+        if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
+            self.out.fillBranch("mZ",        mZ)
 
         if self.analysisRegion=='' or self.analysisRegion=='gen' or self.analysisRegion=='reco':
 
