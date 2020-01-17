@@ -676,10 +676,12 @@ class PostProcMaker():
            f = ROOT.TFile.Open(self._aaaXrootd+iFile, "READ")
          Runs = f.Get("Runs")
          for iRun in Runs :
-           if DEBUG : print '---> genEventSumw = ', iRun.genEventSumw
-           genEventCount += iRun.genEventCount
-           genEventSumw  += iRun.genEventSumw
-           genEventSumw2 += iRun.genEventSumw2
+           trailer = ""
+           if hasattr(iRun, "genEventSumw_"): trailer = "_" 
+           if DEBUG : print '---> genEventSumw = ', getattr(iRun , "genEventSumw"+trailer)
+           genEventCount += getattr(iRun, "genEventCount"+trailer)
+           genEventSumw  += getattr(iRun, "genEventSumw"+trailer)
+           genEventSumw2 += getattr(iRun, "genEventSumw2"+trailer)
          f.Close()
        # get the X-section and baseW
        nEvt = genEventSumw
@@ -713,6 +715,10 @@ class PostProcMaker():
      # YEAR
      if 'RPLME_YEAR' in module :
        module = module.replace('RPLME_YEAR',self._prodYear)
+
+     # SOURCEDIR
+     if 'RPLME_SOURCEDIR' in module :
+       module = module.replace('RPLME_SOURCEDIR',self._sourceDir)
 
      return module
 
