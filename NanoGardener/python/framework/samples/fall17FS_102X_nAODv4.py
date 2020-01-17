@@ -16,7 +16,7 @@ Samples['T2tt__mStop-400to1200']       = {'nanoAOD' : '/SMS-T2tt_mStop-400to1200
 
 Samples['TChipmSlepSnu']              = {'nanoAOD' : '/SMS-TChipmSlepSnu_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
 Samples['TChipmSlepSnu_mC1_825_1500'] = {'nanoAOD' : '/SMS-TChipmSlepSnu_mC1_825_1500_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
-#Samples['TChipmWW']                   = {'nanoAOD' : '/SMS-TChipmWW_WWTo2LNu_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17NanoAODv4-PUFall17Fast_Nano14Dec2018_102X_mc2017_realistic_v6-v1/NANOAODSIM'}
+Samples['TChipmWW']                   = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Fall17FS_102X_nAODv4_Full2017v4/TChipmWW/']}
 
 
 

@@ -439,6 +439,8 @@ class PostProcMaker():
         return self._Sites[self._LocalSite]['xrootdPath']+File
       elif self._LocalSite == 'sdfarm' :
 	return File.replace('/xrootd', self._Sites[self._LocalSite]['xrootdPath']+'//xrd')
+      elif (self._LocalSite == 'ifca' or self._LocalSite == 'cloud') and self._Sites[self._LocalSite]['treeBaseDir'] not in File :
+        return self._Sites[self._LocalSite]['treeProdDir'] + File
       else:
         return File
 
@@ -781,7 +783,7 @@ class PostProcMaker():
              exit()
 
          # Now Build the HADD dictionnary according to target size
-         HaddDic = self.buildHadd(iSample, cutby='size')
+         HaddDic = self.buildHadd(iSample, FileInList, cutby='size')
 
          if len(HaddDic) > 0:
            self._HaddDic[iSample] = HaddDic
