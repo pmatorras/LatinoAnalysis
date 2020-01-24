@@ -9,7 +9,7 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collect
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 
 class BTagEventWeightProducer(Module):
-    def __init__(self, collection="Lepton", bTagAlgo="", bTagWP="", dataType='mc', bTagMethod = '1d', bTagPtCut = '20', TagEff_path=''):
+    def __init__(self, collection="Lepton", bTagAlgo="", bTagWP="", dataType='mc', bTagMethod = '1d', bTagPtCut = '20', bTagEff_path=''):
         self.collection = collection
         self.bTagAlgo = bTagAlgo
         self.random = ROOT.TRandom3(0)
