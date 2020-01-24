@@ -437,7 +437,7 @@ class ShapeFactory:
           #
           for nuisanceName, nuisance in nuisances.iteritems():
             if ('cuts' not in nuisance) or ( ('cuts' in nuisance) and (cutName in nuisance['cuts']) ) :
-              print "nuisanceName = ", nuisanceName, " ---> ", nuisance
+              print "nuisanceName = ", nuisanceName, " ---> ", ##WW nuisance
               if 'kind' in nuisance :
                 if nuisance['kind'] == 'tree' :
                   for sampleName, sample in self._samples.iteritems():

@@ -253,7 +253,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['baseW','PrefCorr2016','btagPerJet2016','btagPerEvent2016',#'EmbeddingVeto', 
+                     'subTargets' : ['baseW','PrefCorr2016','btagPerJet2016','btagPerEvent2016',
                                      'rochesterMC','trigMC','LeptonSFSusy','puW',#'l2Kin', 'l3Kin', 'l4Kin','formulasMC'
                                      ],
                 },
@@ -265,6 +265,24 @@ Steps = {
                      'subTargets' : ['PrefCorr2016','btagPerJet2016FS','btagPerEvent2016FS',#'EmbeddingVeto',  
                                      'rochesterMC','trigFS','LeptonSFSusyFS','puW',#'l2Kin', 'l3Kin', 'l4Kin','formulasMC'
                                      ],
+                },
+
+  'MCCorr2016Susyv6' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2016','btagPerJet2016','btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'],
+                },
+
+  'MCCorr2016SusyFSv6' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2016','btagPerJet2016FS','btagPerEvent2016FS','btagPerEvent2016FSPt25','btagPerEvent2016FSPt30',
+                                     'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'],
                 },
 
   'MCCorr2016_hmumu' : {
@@ -411,23 +429,6 @@ Steps = {
                                      'MHTrigMC','MHSwitch','formulasMCMH' ],
                 },
 
-  'MCCorr2017Susy' : {
-                     'isChain'    : True  ,
-                     'do4MC'      : True  ,
-                     'do4Data'    : False ,
-                     'subTargets' : ['baseW','PrefCorr2017','btagPerJet2017','btagPerEvent2017',#'EmbeddingVeto', 
-                                     'rochesterMC','trigMC','LeptonSFSusy','puW',#'l2Kin', 'l3Kin', 'l4Kin','formulasMC'
-                                     ],
-                },
-
-  'MCCorr2017SusyFS' : {
-                     'isChain'    : True  ,
-                     'do4MC'      : True  ,
-                     'do4Data'    : False ,
-                     'subTargets' : ['PrefCorr2017','btagPerJet2017FS','btagPerEvent2017FS',#'EmbeddingVeto',  
-                                     'rochesterMC','trigFS','LeptonSFSusyFS','puW',#'l2Kin', 'l3Kin', 'l4Kin','formulasMC'
-                                     ],
-                },
 
   'MCCorr2017Susy' : {
                      'isChain'    : True  ,
@@ -445,6 +446,24 @@ Steps = {
                      'subTargets' : ['PrefCorr2017','btagPerJet2017FS','btagPerEvent2017FS',#'EmbeddingVeto',  
                                      'rochesterMC','trigFS','LeptonSFSusyFS','puW',#'l2Kin', 'l3Kin', 'l4Kin','formulasMC'
                                      ],
+                },
+
+  'MCCorr2017Susyv6' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2017','btagPerJet2017','btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
+                },
+
+  'MCCorr2017SusyFSv6' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2017','btagPerJet2017FS','btagPerEvent2017FS','btagPerEvent2017FSPt25','btagPerEvent2017FSPt30',
+                                     'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
                 },
 
 
@@ -562,6 +581,24 @@ Steps = {
                      'subTargets' : ['btagPerJet2018FS','btagPerEvent2018FS',#'EmbeddingVeto',  
                                      'rochesterMC','trigFS','LeptonSFSusyFS','puW',#'l2Kin', 'l3Kin', 'l4Kin','formulasMC'
                                      ],
+                },
+
+  'MCCorr2018Susyv6' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','btagPerJet2018','btagPerEvent2018','btagPerEvent2018Pt25','btagPerEvent2018Pt30',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK', 'wNLOEWK' ],
+                },
+
+  'MCCorr2018SusyFSv6' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','btagPerJet2018FS','btagPerEvent2018FS','btagPerEvent2018FSPt25','btagPerEvent2018FSPt30',
+                                     'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK', 'wNLOEWK' ],
                 },
 
 
@@ -730,9 +767,18 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEvent2016Data' ###,'formulasDATA'
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2016Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2016v6': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2016Data','btagPerEvent2016DataPt25','btagPerEvent2016DataPt30' ###,'formulasDATA'
                                   ],
                 },
 
@@ -774,9 +820,18 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
+                                  ],
+                },
+    
+  'DATASusy2017v6': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
                                   ],
                 },
     
@@ -785,8 +840,7 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','METFixEEDATA2017B','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','METFixEEDATA2017B','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
                                   ],
                 },
@@ -796,8 +850,7 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','METFixEEDATA2017C','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','METFixEEDATA2017C','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
                                   ],
                 },
@@ -807,8 +860,7 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','METFixEEDATA2017D','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','METFixEEDATA2017D','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
                                   ],
                 },
@@ -818,8 +870,7 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','METFixEEDATA2017E','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','METFixEEDATA2017E','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
                                   ],
                 },
@@ -829,8 +880,7 @@ Steps = {
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','METFixEEDATA2017F','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','METFixEEDATA2017F','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
                                   ],
                 },
@@ -884,15 +934,24 @@ Steps = {
                   'subTargets' : ['leptonMaker','lepSel','jetSelCustom','CleanFatJet', 'rochesterDATA' , 'l2Kin', 'l3Kin', 'l4Kin','trigData','MHTrigData','MHSwitch', 'formulasDATA'],
                 },
 
-    
+                                
   'DATASusy2018': {
                   'isChain'    : True  ,
                   'do4MC'      : False ,
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : [#'leptonMaker','lepSelSusy','jetSelSusy','CleanJetCut', 'rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData', 'btagPerEvent2018Data' ###,'formulasDATA'
+                                  ],
+                },
+                                
+  'DATASusy2018v6': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2018Data','btagPerEvent2018DataPt25','btagPerEvent2018DataPt30' ###,'formulasDATA'
                                   ],
                 },
 
@@ -1745,6 +1804,14 @@ Steps = {
                  'declare'    : 'trigMC = lambda : TrigMaker("RPLME_CMSSW",isData=False,keepRunP=False)',
                  'module'     : 'trigMC()',
                },
+
+  'trigMC_Cut'   : { 'isChain'    : False ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'import'     : 'LatinoAnalysis.NanoGardener.modules.TrigMaker' ,
+                 'declare'    : 'CBtrigMC = lambda : TrigMaker("RPLME_CMSSW",isData=False,keepRunP=True,cfg_path="LatinoAnalysis/NanoGardener/python/data/TrigMaker_CutBased_cfg.py")',
+                 'module'     : 'CBtrigMC()',
+               },
  
   'trigFS'   : { 'isChain'    : False ,
                  'do4MC'      : True  ,
@@ -1754,11 +1821,11 @@ Steps = {
                  'module'     : 'trigMC()',
              },
 
-  'trigMC_Cut'   : { 'isChain'    : False ,
+  'trigFS_Cut'   : { 'isChain'    : False ,
                  'do4MC'      : True  ,
                  'do4Data'    : False ,
                  'import'     : 'LatinoAnalysis.NanoGardener.modules.TrigMaker' ,
-                 'declare'    : 'CBtrigMC = lambda : TrigMaker("RPLME_CMSSW",isData=False,keepRunP=True,cfg_path="LatinoAnalysis/NanoGardener/python/data/TrigMaker_CutBased_cfg.py")',
+                 'declare'    : 'CBtrigMC = lambda : TrigMaker("RPLME_CMSSW",isData=False,keepRunP=True,cfg_path="LatinoAnalysis/NanoGardener/python/data/TrigMaker_CutBased_cfg.py",isFastSim=True)',
                  'module'     : 'CBtrigMC()',
                },
 
@@ -1977,7 +2044,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2016M")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2016M", bTagMethod="1c", bTagPtCut="20")',
                 },
 
   'btagPerEvent2016FS': {
@@ -1986,7 +2053,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2016M", "fastsim")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2016M", bTagMethod="1c", bTagPtCut="20", dataType="fastsim")',
                 },
 
   'btagPerEvent2016Data': {
@@ -1995,7 +2062,7 @@ Steps = {
                   'do4Data'    : True  ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2016M", "data")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2016M", bTagMethod="1c", bTagPtCut="20", dataType="data")',
         
                 },
 
@@ -2005,7 +2072,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2017M")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2017M", bTagMethod="1c", bTagPtCut="20")',
                 },
 
   'btagPerEvent2017FS': {
@@ -2014,7 +2081,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2017M", "fastsim")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2017M", bTagMethod="1c", bTagPtCut="20", dataType="fastsim")',
                 },
 
   'btagPerEvent2017Data': {
@@ -2023,7 +2090,7 @@ Steps = {
                   'do4Data'    : True  ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2017M", "data")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2017M", bTagMethod="1c", bTagPtCut="20", dataType="data")',
         
                 },
 
@@ -2033,7 +2100,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2018M")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2018M", bTagMethod="1c", bTagPtCut="20")',
                 },
 
   'btagPerEvent2018FS': {
@@ -2042,7 +2109,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2018M", "fastsim")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2018M", bTagMethod="1c", bTagPtCut="20", dataType="fastsim")',
                 },
 
   'btagPerEvent2018Data': {
@@ -2051,8 +2118,7 @@ Steps = {
                   'do4Data'    : True  ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer("Lepton", "btagDeepB", "2018M", "data")',
-        
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2018M", bTagMethod="1c", bTagPtCut="20", dataType="data")',
                 },
 
 
@@ -3961,18 +4027,91 @@ Steps = {
 
 
 }
+
 Steps['MCSusy2016v6']    = Steps['MCSusy2016']
 Steps['MCSusy2016FSv6']  = Steps['MCSusy2016FS']
 Steps['MCSusy2017v6']    = Steps['MCSusy2017']
 Steps['MCSusy2017FSv6']  = Steps['MCSusy2017FS']
 Steps['MCSusy2018v6']    = Steps['MCSusy2018']
 Steps['MCSusy2018FSv6']  = Steps['MCSusy2018FS']
-Steps['DATASusy2016v6']  = Steps['DATASusy2016']
-Steps['DATASusy2017v6']  = Steps['DATASusy2017']
-Steps['DATASusy2017Bv6'] = Steps['DATASusy2017B']
-Steps['DATASusy2017Cv6'] = Steps['DATASusy2017C']
-Steps['DATASusy2017Dv6'] = Steps['DATASusy2017D']
-Steps['DATASusy2017Ev6'] = Steps['DATASusy2017E']
-Steps['DATASusy2017Fv6'] = Steps['DATASusy2017F']
-Steps['DATASusy2018v6']  = Steps['DATASusy2018']
+
+Steps['DATASusy2017B'] = Steps['DATASusy2017']
+Steps['DATASusy2017B']['subTargets'] = Steps['DATASusy2017B']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017B')
+Steps['DATASusy2017C'] = Steps['DATASusy2017']
+Steps['DATASusy2017C']['subTargets'] = Steps['DATASusy2017C']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017C')
+Steps['DATASusy2017D'] = Steps['DATASusy2017']
+Steps['DATASusy2017D']['subTargets'] = Steps['DATASusy2017D']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017D')
+Steps['DATASusy2017E'] = Steps['DATASusy2017']
+Steps['DATASusy2017E']['subTargets'] = Steps['DATASusy2017E']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017E')
+Steps['DATASusy2017F'] = Steps['DATASusy2017']
+Steps['DATASusy2017F']['subTargets'] = Steps['DATASusy2017F']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017F')
+
+Steps['DATASusy2017Bv6'] = Steps['DATASusy2017v6']
+Steps['DATASusy2017Bv6']['subTargets'] = Steps['DATASusy2017Bv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017B')
+Steps['DATASusy2017Cv6'] = Steps['DATASusy2017v6']
+Steps['DATASusy2017Cv6']['subTargets'] = Steps['DATASusy2017Cv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017C')
+Steps['DATASusy2017Dv6'] = Steps['DATASusy2017v6']
+Steps['DATASusy2017Dv6']['subTargets'] = Steps['DATASusy2017Dv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017D')
+Steps['DATASusy2017Ev6'] = Steps['DATASusy2017v6']
+Steps['DATASusy2017Ev6']['subTargets'] = Steps['DATASusy2017Ev6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017E')
+Steps['DATASusy2017Fv6'] = Steps['DATASusy2017v6']
+Steps['DATASusy2017Fv7']['subTargets'] = Steps['DATASusy2017Fv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017F')
+
+Steps['btagPerEvent2016Pt25'] = Steps['btagPerEvent2016'] 
+Steps['btagPerEvent2016Pt25']['module'] =  Steps['btagPerEvent2016Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2016Pt30'] = Steps['btagPerEvent2016'] 
+Steps['btagPerEvent2016Pt30']['module'] =  Steps['btagPerEvent2016Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent20162a']   = Steps['btagPerEvent2016'] 
+Steps['btagPerEvent20162a']['module']   =  Steps['btagPerEvent20162a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+Steps['btagPerEvent2016FSPt25'] = Steps['btagPerEvent2016FS'] 
+Steps['btagPerEvent2016FSPt25']['module'] =  Steps['btagPerEvent2016FSPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2016FSPt30'] = Steps['btagPerEvent2016FS'] 
+Steps['btagPerEvent2016FSPt30']['module'] =  Steps['btagPerEvent2016FSPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent2016FS2a']   = Steps['btagPerEvent2016FS'] 
+Steps['btagPerEvent2016FS2a']['module']   =  Steps['btagPerEvent2016FS2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+Steps['btagPerEvent2016DataPt25'] = Steps['btagPerEvent2016Data'] 
+Steps['btagPerEvent2016DataPt25']['module'] =  Steps['btagPerEvent2016DataPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2016DataPt30'] = Steps['btagPerEvent2016Data'] 
+Steps['btagPerEvent2016DataPt30']['module'] =  Steps['btagPerEvent2016DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent2016Data2a']   = Steps['btagPerEvent2016Data'] 
+Steps['btagPerEvent2016Data2a']['module']   =  Steps['btagPerEvent2016Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+
+Steps['btagPerEvent2017Pt25'] = Steps['btagPerEvent2017'] 
+Steps['btagPerEvent2017Pt25']['module'] =  Steps['btagPerEvent2017Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2017Pt30'] = Steps['btagPerEvent2017'] 
+Steps['btagPerEvent2017Pt30']['module'] =  Steps['btagPerEvent2017Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent20172a']   = Steps['btagPerEvent2017'] 
+Steps['btagPerEvent20172a']['module']   =  Steps['btagPerEvent20172a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+Steps['btagPerEvent2017FSPt25'] = Steps['btagPerEvent2017FS'] 
+Steps['btagPerEvent2017FSPt25']['module'] =  Steps['btagPerEvent2017FSPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2017FSPt30'] = Steps['btagPerEvent2017FS'] 
+Steps['btagPerEvent2017FSPt30']['module'] =  Steps['btagPerEvent2017FSPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent2017FS2a']   = Steps['btagPerEvent2017FS'] 
+Steps['btagPerEvent2017FS2a']['module']   =  Steps['btagPerEvent2017FS2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+Steps['btagPerEvent2017DataPt25'] = Steps['btagPerEvent2017Data'] 
+Steps['btagPerEvent2017DataPt25']['module'] =  Steps['btagPerEvent2017DataPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2017DataPt30'] = Steps['btagPerEvent2017Data'] 
+Steps['btagPerEvent2017DataPt30']['module'] =  Steps['btagPerEvent2017DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent2017Data2a']   = Steps['btagPerEvent2017Data'] 
+Steps['btagPerEvent2017Data2a']['module']   =  Steps['btagPerEvent2017Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+
+Steps['btagPerEvent2018Pt25'] = Steps['btagPerEvent2018'] 
+Steps['btagPerEvent2018Pt25']['module'] =  Steps['btagPerEvent2018Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2018Pt30'] = Steps['btagPerEvent2018'] 
+Steps['btagPerEvent2018Pt30']['module'] =  Steps['btagPerEvent2018Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent20182a']   = Steps['btagPerEvent2018'] 
+Steps['btagPerEvent20182a']['module']   =  Steps['btagPerEvent20182a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+Steps['btagPerEvent2018FSPt25'] = Steps['btagPerEvent2018FS'] 
+Steps['btagPerEvent2018FSPt25']['module'] =  Steps['btagPerEvent2018FSPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2018FSPt30'] = Steps['btagPerEvent2018FS'] 
+Steps['btagPerEvent2018FSPt30']['module'] =  Steps['btagPerEvent2018FSPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent2018FS2a']   = Steps['btagPerEvent2018FS'] 
+Steps['btagPerEvent2018FS2a']['module']   =  Steps['btagPerEvent2018FS2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+Steps['btagPerEvent2018DataPt25'] = Steps['btagPerEvent2018Data'] 
+Steps['btagPerEvent2018DataPt25']['module'] =  Steps['btagPerEvent2018DataPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+Steps['btagPerEvent2018DataPt30'] = Steps['btagPerEvent2018Data'] 
+Steps['btagPerEvent2018DataPt30']['module'] =  Steps['btagPerEvent2018DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
+Steps['btagPerEvent2018Data2a']   = Steps['btagPerEvent2018Data'] 
+Steps['btagPerEvent2018Data2a']['module']   =  Steps['btagPerEvent2018Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
+
 Steps.update(addJESchainMembers())
