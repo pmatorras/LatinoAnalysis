@@ -3989,26 +3989,26 @@ Steps['MCSusy2018v6']    = Steps['MCSusy2018']
 Steps['MCSusy2018FSv6']  = Steps['MCSusy2018FS']
 
 Steps['DATASusy2017B'] = Steps['DATASusy2017']
-Steps['DATASusy2017B']['subTargets'] = Steps['DATASusy2017B']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017B')
+Steps['DATASusy2017B']['subTargets'] = Steps['DATASusy2017B']['subTargets'].insert(1, 'METFixEEDATA2017B')
 Steps['DATASusy2017C'] = Steps['DATASusy2017']
-Steps['DATASusy2017C']['subTargets'] = Steps['DATASusy2017C']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017C')
+Steps['DATASusy2017C']['subTargets'] = Steps['DATASusy2017C']['subTargets'].insert(1, 'METFixEEDATA2017C')
 Steps['DATASusy2017D'] = Steps['DATASusy2017']
-Steps['DATASusy2017D']['subTargets'] = Steps['DATASusy2017D']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017D')
+Steps['DATASusy2017D']['subTargets'] = Steps['DATASusy2017D']['subTargets'].insert(1, 'METFixEEDATA2017D')
 Steps['DATASusy2017E'] = Steps['DATASusy2017']
-Steps['DATASusy2017E']['subTargets'] = Steps['DATASusy2017E']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017E')
+Steps['DATASusy2017E']['subTargets'] = Steps['DATASusy2017E']['subTargets'].insert(1, 'METFixEEDATA2017E')
 Steps['DATASusy2017F'] = Steps['DATASusy2017']
-Steps['DATASusy2017F']['subTargets'] = Steps['DATASusy2017F']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017F')
+Steps['DATASusy2017F']['subTargets'] = Steps['DATASusy2017F']['subTargets'].insert(1, 'METFixEEDATA2017F')
 
 Steps['DATASusy2017Bv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Bv6']['subTargets'] = Steps['DATASusy2017Bv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017B')
+Steps['DATASusy2017Bv6']['subTargets'] = Steps['DATASusy2017Bv6']['subTargets'].insert(1, 'METFixEEDATA2017B')
 Steps['DATASusy2017Cv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Cv6']['subTargets'] = Steps['DATASusy2017Cv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017C')
+Steps['DATASusy2017Cv6']['subTargets'] = Steps['DATASusy2017Cv6']['subTargets'].insert(1, 'METFixEEDATA2017C')
 Steps['DATASusy2017Dv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Dv6']['subTargets'] = Steps['DATASusy2017Dv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017D')
+Steps['DATASusy2017Dv6']['subTargets'] = Steps['DATASusy2017Dv6']['subTargets'].insert(1, 'METFixEEDATA2017D')
 Steps['DATASusy2017Ev6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Ev6']['subTargets'] = Steps['DATASusy2017Ev6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017E')
+Steps['DATASusy2017Ev6']['subTargets'] = Steps['DATASusy2017Ev6']['subTargets'].insert(1, 'METFixEEDATA2017E')
 Steps['DATASusy2017Fv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Fv7']['subTargets'] = Steps['DATASusy2017Fv6']['subTargets'].replace('leptonMaker', 'leptonMaker','METFixEEDATA2017F')
+Steps['DATASusy2017Fv7']['subTargets'] = Steps['DATASusy2017Fv6']['subTargets'].insert(1, 'METFixEEDATA2017F')
 
 Steps['btagPerEvent2016Pt25'] = Steps['btagPerEvent2016'] 
 Steps['btagPerEvent2016Pt25']['module'] =  Steps['btagPerEvent2016Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
