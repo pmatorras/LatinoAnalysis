@@ -834,56 +834,6 @@ Steps = {
                                   'trigData','btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
                                   ],
                 },
-    
-  'DATASusy2017B': {
-                  'isChain'    : True  ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
-                  'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','METFixEEDATA2017B','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
-                                  ],
-                },
-    
-  'DATASusy2017C': {
-                  'isChain'    : True  ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
-                  'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','METFixEEDATA2017C','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
-                                  ],
-                },
-    
-  'DATASusy2017D': {
-                  'isChain'    : True  ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
-                  'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','METFixEEDATA2017D','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
-                                  ],
-                },
-    
-  'DATASusy2017E': {
-                  'isChain'    : True  ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
-                  'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','METFixEEDATA2017E','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
-                                  ],
-                },
-    
-  'DATASusy2017F': {
-                  'isChain'    : True  ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
-                  'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker','METFixEEDATA2017F','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEvent2017Data' ###,'formulasDATA'
-                                  ],
-                },
 
 # 'DATAl1loose2017': {
 #                 'isChain'    : True  ,
