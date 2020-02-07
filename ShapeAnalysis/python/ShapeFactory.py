@@ -621,6 +621,11 @@ class ShapeFactory:
                             # fix negative bins not consistent
                             self._fixNegativeBin(outputsHistoUp, outputsHisto)
                             self._fixNegativeBin(outputsHistoDo, outputsHisto)
+
+                          if 'suppressZeroTreeNuisances' in sample.keys() and ( cutName in sample['suppressZeroTreeNuisances'] or 'all' in sample['suppressZeroTreeNuisances']) :        
+                            # fix zero tree nuisances
+                            self._fixZeroTreeNuisances(outputsHistoUp, outputsHisto)
+                            self._fixZeroTreeNuisances(outputsHistoDo, outputsHisto)
             
                           # now save to the root file
                           outputsHistoUp.Write()
@@ -997,6 +1002,13 @@ class ShapeFactory:
           if histogram_to_be_fixed.GetBinContent(ibin) - histogram_to_be_fixed.GetBinErrorLow(ibin)  < 0 :
             histogram_to_be_fixed.SetBinError(ibin, histogram_to_be_fixed.GetBinContent(ibin))   
 
+    # _____________________________________________________________________________
+    def _fixZeroTreeNuisances(self, histoNew, histoReference):
+
+        if histoNew.Integral()==0. and not histoReference.Integral()==0.:
+            for ibin in range(1, histoNew.GetNbinsX()+1) :
+                if not histoReference.GetBinContent(ibin) == 0 :
+                    histoNew.SetBinContent(ibin, histoReference.GetBinContent(ibin) * 0.0001)
 
     # _____________________________________________________________________________
     def _getBaseW(self, histo):
