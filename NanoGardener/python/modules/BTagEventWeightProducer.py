@@ -75,7 +75,7 @@ class BTagEventWeightProducer(Module):
             return True
 
         self.systs_shape_corr = []
-        if bTagMethod=='1d' :
+        if self.bTagMethod=='1d' :
             for syst in [ 'jes',
                           'lf', 'hf',
                           'hfstats1', 'hfstats2',
@@ -227,27 +227,28 @@ class BTagEventWeightProducer(Module):
                                                       jfl)
 
                 for central_or_syst in self.central_and_systs_shape_corr:
-                
-                    bTagConfirm = bTagPass
+                    if central_or_syst=='central' or self.bTagMethod=='2a':
+
+                        bTagConfirm = bTagPass
                     
-                    if self.dataType!='data' and self.bTagMethod=='2a':
+                        if self.dataType!='data' and self.bTagMethod=='2a':
 
-                        jet_weight = getbTagSF(self, event, idx, jfl, central_or_syst)
+                            jet_weight = self.getbTagSF(event, idx, jfl, central_or_syst)
 
-                        if jet_weight<1. and bTagPass==True:
-                            if bTagDice<(1.-jet_weight):
-                                bTagConfirm = False
-                        elif jet_weight>1. and bTagPass==False:
-                            if bTagDice<((1.-jet_weight)/(1.-(1./jet_bTagEff))):
-                                bTagConfirm = True
+                            if jet_weight<1. and bTagPass==True:
+                                if bTagDice<(1.-jet_weight):
+                                    bTagConfirm = False
+                            elif jet_weight>1. and bTagPass==False:
+                                if bTagDice<((1.-jet_weight)/(1.-(1./jet_bTagEff))):
+                                    bTagConfirm = True
 
-                    if bTagConfirm==True:
-
-                        if event.CleanJet_pt[i]>leadingPtTaggedValue[central_or_syst] :
-                            trailingPtTaggedValue[central_or_syst] = leadingPtTaggedValue[central_or_syst]
-                            leadingPtTaggedValue[central_or_syst] = event.CleanJet_pt[i]
-                        elif event.CleanJet_pt[i]>trailingPtTaggedValue[central_or_syst] :
-                            trailingPtTaggedValue[central_or_syst] = event.CleanJet_pt[i]
+                        if bTagConfirm==True:
+                            
+                            if event.CleanJet_pt[i]>leadingPtTaggedValue[central_or_syst] :
+                                trailingPtTaggedValue[central_or_syst] = leadingPtTaggedValue[central_or_syst]
+                                leadingPtTaggedValue[central_or_syst] = event.CleanJet_pt[i]
+                            elif event.CleanJet_pt[i]>trailingPtTaggedValue[central_or_syst] :
+                                trailingPtTaggedValue[central_or_syst] = event.CleanJet_pt[i]
 
         for central_or_syst in self.central_and_systs_shape_corr:
             if central_or_syst=='central':
@@ -265,7 +266,7 @@ class BTagEventWeightProducer(Module):
 
         if self.bTagMethod[0]!='1':
             return True
-                            
+
         for central_or_syst in self.central_and_systs_shape_corr:
             weight = 1.
             if self.bTagMethod=='1d' :
@@ -292,7 +293,7 @@ class BTagEventWeightProducer(Module):
                         idx = event.CleanJet_jetIdx[i]
                         jfl = event.Jet_hadronFlavour[idx]
                         jet_discriminant = getattr(event, "Jet_%s" % self.bTagAlgo)[idx]
-                        jet_weight = getbTagSF(self, event, idx, jfl, central_or_syst)
+                        jet_weight = self.getbTagSF(event, idx, jfl, central_or_syst)
                         if self.bTagMethod=='1a':
                             if jet_discriminant>=self.bTagCut:
                                 weight *= jet_weight
