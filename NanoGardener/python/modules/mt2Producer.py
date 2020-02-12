@@ -35,6 +35,7 @@ class mt2Producer(Module):
         self.out = wrappedOutputTree
 
         self.out.branch("ptmiss",          "F")
+        self.out.branch("ptmiss_phi",      "F")
 
         if 'Fake' in self.analysisRegion:
 
@@ -55,11 +56,13 @@ class mt2Producer(Module):
         if self.analysisRegion=='':
 
             self.out.branch("ptmiss_reco",          "F")
+            self.out.branch("ptmiss_reco_phi",      "F")
             self.out.branch("mt2ll_reco",           "F")
 
             if self.dataType!='data':
 
                 self.out.branch("ptmiss_gen",       "F")
+                self.out.branch("ptmiss_gen_phi",   "F")
                 self.out.branch("mt2ll_gen",        "F")
 
     ###    
@@ -191,6 +194,7 @@ class mt2Producer(Module):
                     self.out.fillBranch("mt2llfake"+str(lref), mt2llfakes[lref])
 
                 self.out.fillBranch("ptmiss", ptmissvec3.Pt())
+                self.out.fillBranch("ptmiss_phi", ptmissvec3.Phi())
 
                 return True
             
@@ -310,6 +314,7 @@ class mt2Producer(Module):
         ptmissvec.SetPtEtaPhiM(ptmissvec3.Pt(), 0., ptmissvec3.Phi(), 0.)
             
         ptmiss = ptmissvec.Pt()
+        ptmiss_phi = ptmissvec.Phi()
         mt2ll = self.computeMT2(lepVect[W0], lepVect[W1], ptmissvec)
 
         channel = 0
@@ -325,8 +330,9 @@ class mt2Producer(Module):
         if self.analysisRegion=='' or self.analysisRegion=='gen' or self.analysisRegion=='reco':
 
             if self.analysisRegion=='':
-                self.out.fillBranch("ptmiss_reco",   ptmiss)
-                self.out.fillBranch("mt2ll_reco",    mt2ll)
+                self.out.fillBranch("ptmiss_reco",     ptmiss)
+                self.out.fillBranch("ptmiss_reco_phi", ptmiss_phi)
+                self.out.fillBranch("mt2ll_reco",      mt2ll)
 
             if self.dataType!='data':
 
@@ -334,11 +340,13 @@ class mt2Producer(Module):
                 ptmissgenvec.SetPtEtaPhiM(event.GenMET_pt, 0., event.GenMET_phi, 0.)
             
                 ptmiss_gen = ptmissgenvec.Pt()
+                ptmiss_gen_phi = ptmissgenvec.Phi()
                 mt2ll_gen = self.computeMT2(lepVect[0], lepVect[1], ptmissgenvec)
 
                 if self.analysisRegion=='':
-                    self.out.fillBranch("ptmiss_gen",   ptmiss_gen)
-                    self.out.fillBranch("mt2ll_gen",    mt2ll_gen)
+                    self.out.fillBranch("ptmiss_gen",     ptmiss_gen)
+                    self.out.fillBranch("ptmiss_gen_phi", ptmiss_gen_phi)
+                    self.out.fillBranch("mt2ll_gen",      mt2ll_gen)
 
                 if self.dataType=='fastsim':
            
@@ -351,6 +359,7 @@ class mt2Producer(Module):
  
 
         self.out.fillBranch("ptmiss",     ptmiss)
+        self.out.fillBranch("ptmiss_phi", ptmiss_phi)
         self.out.fillBranch("mt2ll",      mt2ll)
 
         return True
