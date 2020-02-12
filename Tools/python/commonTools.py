@@ -191,7 +191,10 @@ def getSampleFiles(inputDir,Sample,absPath=False,rooFilePrefix='latino_',FromPos
         #    xrootdPath='root://eoscms.cern.ch/'
         # elif '/eos/user/' in inputDir:
         # #   lsCmd='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine.user/eos.select ls '
-        #    xrootdPath='root://eosuser.cern.ch/'     
+        #    xrootdPath='root://eosuser.cern.ch/'
+        elif '/eos/user/' in inputDir:
+           absPath=True
+           #xrootdPath='root://eosuser.cern.ch/'     
         lsCmd='ls ' 
       
       # ... IFCA   
