@@ -550,7 +550,7 @@ Productions = {
  # -------- 2018 MC 102X nAODv5
  'Autumn18_102X_nAODv6_Full2018v6':{
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_102X_nAODv6.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_short_102X_nAODv6.py' ,
                        'cmssw'   : 'Full2018v6' ,
                        'year'    : '2018' ,
                        'JESGT'   : 'Autumn18_V19_MC',

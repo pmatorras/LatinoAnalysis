@@ -12,8 +12,9 @@ from LatinoAnalysis.NanoGardener.data.SusyISRCorrections import SUSYISRCorrectio
 class SusyWeightsProducer(Module):
 
     ###
-    def __init__(self, cmssw):
+    def __init__(self, cmssw, sourcedir):
         self.cmssw = cmssw
+        self.sourcedir = sourcedir[:sourcedir.index('__susyGen')] + '__susyGen'
         pass
 
     ###
@@ -39,15 +40,8 @@ class SusyWeightsProducer(Module):
               
             if '__part' in inputFileName :
                 inputFileName = inputFileName[:inputFileName.index('__part')] + '__part*.root'
-
-            # Patch to make it work on ifca gridui cluster (should be improved...)
-            if 'ifca' in os.uname()[1] or 'cloud' in os.uname()[1]:
-
-                inputDirectory = os.getenv('PWD').split('/')[-1].replace('NanoGardening__', '') + '/nanoProd__hadd__susyGen/'
-                inputDirectory = '/gpfs/projects/tier3data/LatinosSkims/RunII/Nano/' + inputDirectory + '/'
-                inputFileName = inputDirectory + inputFileName
-
-            chain.Add(inputFileName)
+            
+            chain.Add(self.sourcedir + '/' + inputFileName)
 
             self.massScan = ROOT.TH2D("massScan", "", 3000, 0., 3000., 3000, 0., 3000.)
             chain.Project(self.massScan.GetName(), "susyMLSP:susyMprompt", "genWeight", "")

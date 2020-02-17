@@ -439,6 +439,8 @@ class PostProcMaker():
         return self._Sites[self._LocalSite]['xrootdPath']+File
       elif self._LocalSite == 'sdfarm' :
 	return File.replace('/xrootd', self._Sites[self._LocalSite]['xrootdPath']+'//xrd')
+      elif (self._LocalSite == 'ifca' or self._LocalSite == 'cloud') and self._iniStep == 'Prod' and 'root://' not in File:
+        return self._Sites[self._LocalSite]['treeProdDir'] + File
       else:
         return File
 
@@ -674,10 +676,12 @@ class PostProcMaker():
            f = ROOT.TFile.Open(self._aaaXrootd+iFile, "READ")
          Runs = f.Get("Runs")
          for iRun in Runs :
-           if DEBUG : print '---> genEventSumw = ', iRun.genEventSumw
-           genEventCount += iRun.genEventCount
-           genEventSumw  += iRun.genEventSumw
-           genEventSumw2 += iRun.genEventSumw2
+           trailer = ""
+           if hasattr(iRun, "genEventSumw_"): trailer = "_" 
+           if DEBUG : print '---> genEventSumw = ', getattr(iRun , "genEventSumw"+trailer)
+           genEventCount += getattr(iRun, "genEventCount"+trailer)
+           genEventSumw  += getattr(iRun, "genEventSumw"+trailer)
+           genEventSumw2 += getattr(iRun, "genEventSumw2"+trailer)
          f.Close()
        # get the X-section and baseW
        nEvt = genEventSumw
@@ -711,6 +715,10 @@ class PostProcMaker():
      # YEAR
      if 'RPLME_YEAR' in module :
        module = module.replace('RPLME_YEAR',self._prodYear)
+
+     # SOURCEDIR
+     if 'RPLME_SOURCEDIR' in module :
+       module = module.replace('RPLME_SOURCEDIR',self._sourceDir)
 
      return module
 
@@ -781,7 +789,7 @@ class PostProcMaker():
              exit()
 
          # Now Build the HADD dictionnary according to target size
-         HaddDic = self.buildHadd(iSample, cutby='size')
+         HaddDic = self.buildHadd(iSample, FileInList, cutby='size')
 
          if len(HaddDic) > 0:
            self._HaddDic[iSample] = HaddDic
@@ -984,7 +992,7 @@ class PostProcMaker():
                    pass
 
                  sourceName = (self._targetDir+self._treeFilePrefix+tSample+'__part0.root').replace('//','/')
-                 source = ROOT.TFile.Open(source)
+                 source = ROOT.TFile.Open(sourceName)
 
                  target = ROOT.TFile.Open(ftmp.name, 'recreate')
                  for key in source.GetListOfKeys():

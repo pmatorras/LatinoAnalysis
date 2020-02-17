@@ -16,7 +16,7 @@ Samples['T2tt__mStop-400to1200']       = {'nanoAOD' : '/SMS-T2tt_mStop-400to1200
 
 Samples['TChipmSlepSnu']              = {'nanoAOD' : ''}
 Samples['TChipmSlepSnu_mC1_825_1500'] = {'nanoAOD' : ''}
-#Samples['TChipmWW']                   = {'nanoAOD' : ''}
+Samples['TChipmWW']                   = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Autumn18FS_102X_nAODv4_GTv16_Full2018v4/TChipmWW/']}
 
 
 
