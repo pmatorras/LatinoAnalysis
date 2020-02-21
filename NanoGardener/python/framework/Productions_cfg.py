@@ -565,6 +565,28 @@ Productions = {
 
 #################################### nAODv6 MC ##############################################
 
+ # -------- 2016 MC 102X nAODv6 + Full2016v6
+ 'Summer16_102X_nAODv6_Full2016v6': {
+                       'isData'  : False ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16_susy_102X_nAODv6.py' ,
+                       'cmssw'   : 'Full2016v6' ,
+                       'year'    : '2016' ,
+                       'JESGT'   : 'Summer16_07Aug2017_V11_MC' ,
+                       'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2016.py' ,
+                       'YRver'   : ['YR4','13TeV'] ,
+                   },
+
+ # -------- 2017 MC 102X nAODv6 : Full2017v6 
+ 'Fall2017_102X_nAODv6_Full2017v6' : {
+                       'isData'  : False ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17_susy_102X_nAODv6.py' ,
+                       'cmssw'   : 'Full2017v6',
+                       'year'    : '2017' ,
+                       'JESGT'   : 'Fall17_17Nov2017_V32_MC' ,
+                       'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2017.py' ,
+                       'YRver'   : ['YR4','13TeV'] ,
+                   },
+
  # -------- 2018 MC 102X nAODv5
  'Autumn18_102X_nAODv6_Full2018v6':{
                        'isData'  : False ,

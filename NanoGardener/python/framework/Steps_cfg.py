@@ -1911,6 +1911,15 @@ Steps = {
                   'module'     : 'jetmetCorrectorEEFS2017()',
                  }, 
 
+  #'METFixEEDATA2017' : {
+  #                'isChain'    : False ,
+  #                'do4MC'      : False ,
+  #                'do4Data'    : True ,
+  #                'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+  #                'declare'    : 'jetmetCorrectorEEDATA2017 = createJMECorrector(isMC=False, dataYear=2017, runPeriod="RPLME_PERIOD", metBranchName="METFixEE2017")',
+  #                'module'     : 'jetmetCorrectorEEDATA2017()',
+  #               }, 
+
   'METFixEEDATA2017B' : {
                   'isChain'    : False ,
                   'do4MC'      : False ,
