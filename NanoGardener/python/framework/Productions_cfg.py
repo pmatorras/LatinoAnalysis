@@ -213,7 +213,7 @@ Productions = {
  # -------- 2016 MC 102X nAODv4
  'Summer16_102X_nAODv4_Full2016v4': {
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16_short_102X_nAODv4.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Summer16_susy_102X_nAODv4.py' ,
                        'cmssw'   : 'Full2016v4' ,
                        'year'    : '2016' ,
                        'JESGT'   : 'Summer16_07Aug2017_V11_MC' ,
@@ -287,7 +287,7 @@ Productions = {
  # -------- 2017 MC 102X nAODv4
  'Fall2017_102X_nAODv4_Full2017v4' : {
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17_short_102X_nAODv4.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17_susy_102X_nAODv4.py' ,
                        'cmssw'   : 'Full2017v4',
                        'year'    : '2017' ,
                        'JESGT'   : 'Fall17_17Nov2017_V32_MC' ,
@@ -368,7 +368,7 @@ Productions = {
  # -------- 2018 MC 102X nAODv4 
  'Autumn18_102X_nAODv4_GTv16_Full2018v4': {
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_short_102X_nAODv4_v16.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_susy_102X_nAODv4_v16.py' ,
                        'cmssw'   : 'Full2018v4' ,
                        'year'    : '2018' ,
                        'JESGT'   : 'Autumn18_V8_MC' ,
@@ -550,7 +550,7 @@ Productions = {
  # -------- 2018 MC 102X nAODv5
  'Autumn18_102X_nAODv6_Full2018v6':{
                        'isData'  : False ,
-                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_short_102X_nAODv6.py' ,
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_susy_102X_nAODv6.py' ,
                        'cmssw'   : 'Full2018v6' ,
                        'year'    : '2018' ,
                        'JESGT'   : 'Autumn18_V19_MC',
