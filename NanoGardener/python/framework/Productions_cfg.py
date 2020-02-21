@@ -536,6 +536,24 @@ Productions = {
 
 #################################### nAODv6 DATA  ##############################################
 
+ # -------- 2016 DATA 102X nAODv6 : Full2016v6
+ 'Run2016_102X_nAODv6_Full2016v6': {
+                       'isData'  : True ,
+                       'jsonFile'   : '"%s/src/LatinoAnalysis/NanoGardener/python/data/certification/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"  % os.environ["CMSSW_BASE"]',
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Run2016_102X_nAODv6.py' ,
+                       'cmssw'   : 'Full2016v6',
+                       'year'    : '2016' ,
+                   },
+
+ # -------- 2017 DATA 102X nAODv6: Full2017v6 
+ 'Run2017_102X_nAODv6_Full2017v6': {
+                       'isData'  : True ,
+                       'jsonFile'   : '"%s/src/LatinoAnalysis/NanoGardener/python/data/certification/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON.txt"  % os.environ["CMSSW_BASE"]',
+                       'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Run2017_102X_nAODv6.py' ,
+                       'cmssw'   : 'Full2017v6',
+                       'year'    : '2017' ,
+                   },
+
  # -------- 2018 DATA 102X nAODv6: Full2018v6
 'Run2018_102X_nAODv6_Full2018v6' : {
                        'isData'  : True ,
