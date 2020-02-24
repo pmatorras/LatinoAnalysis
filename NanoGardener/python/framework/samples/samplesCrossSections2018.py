@@ -582,6 +582,8 @@ samples['VBFHToMuMu_M125_EEC5_powheg']           .extend( ['xsec=0.00082296',   
 samples['VBFHToMuMu_M125_EEC5_amcatnlo']         .extend( ['xsec=0.00082296',   'kfact=1.000',          'ref=FT'] ) # 3.782*2.176*10^{-4}
 samples['VBFHToMuMu_M125_CP5_powheg']            .extend( ['xsec=0.00082296',   'kfact=1.000',          'ref=FT'] ) # 3.782*2.176*10^{-4}
 
+samples['VBFHToZZTo4L_M125']	         .extend( ['xsec=0.0010179925',	'kfact=1.000',		'ref=FT'] ) # 3.782*0.0264*0.033658*0.033658*9
+
 # ggZH
 samples['ggZH_HToWW_M120']		.extend( ['xsec=1.0000',	'kfact=1.000',		'ref=X'] )
 samples['ggZH_HToWW_M125']		.extend( ['xsec=1.0000',	'kfact=1.000',		'ref=X'] )

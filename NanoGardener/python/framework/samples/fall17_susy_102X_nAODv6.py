@@ -212,5 +212,5 @@ Samples['ggZZ2e2n'] = {'nanoAOD' :'/GluGluToContinToZZTo2e2nu_13TeV_MCFM701_pyth
 
 Samples['ggZZ2m2n'] = {'nanoAOD' :'/GluGluToContinToZZTo2mu2nu_13TeV_MCFM701_pythia8/RunIIFall17NanoAODv6-PU2017_12Apr2018_Nano25Oct2019_102X_mc2017_realistic_v7_ext1-v2/NANOAODSIM'}
 
-Samples['qqHToZZTo4L_M125'] = {'nanoAOD' :'/VBF_HToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8/RunIIFall17NanoAODv6-PU2017_12Apr2018_Nano25Oct2019_102X_mc2017_realistic_v7_ext2-v1/NANOAODSIM'}
+Samples['VBFHToZZTo4L_M125'] = {'nanoAOD' :'/VBF_HToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8/RunIIFall17NanoAODv6-PU2017_12Apr2018_Nano25Oct2019_102X_mc2017_realistic_v7_ext2-v1/NANOAODSIM'}
 Samples['GluGluHToZZTo4L_M125'] = {'nanoAOD' :'/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8/RunIIFall17NanoAODv6-PU2017_12Apr2018_Nano25Oct2019_102X_mc2017_realistic_v7_ext3-v1/NANOAODSIM'}
