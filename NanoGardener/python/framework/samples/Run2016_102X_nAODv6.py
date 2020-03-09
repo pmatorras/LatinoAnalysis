@@ -28,7 +28,6 @@ Samples["MuonEG_Run2016F-Nano25Oct2019-v1"]      = {'nanoAOD': '/MuonEG/Run2016F
 Samples["MuonEG_Run2016G-Nano25Oct2019-v1"]      = {'nanoAOD': '/MuonEG/Run2016G-Nano25Oct2019-v1/NANOAOD' }
 Samples["MuonEG_Run2016H-Nano25Oct2019-v1"]      = {'nanoAOD': '/MuonEG/Run2016H-Nano25Oct2019-v1/NANOAOD' }
 
-
 #Samples["SingleElectron_Run2016B-Nano25Oct2019_ver1-v1"] = {'nanoAOD': '/SingleElectron/Run2016B_ver1-Nano25Oct2019_ver1-v1/NANOAOD' }
 Samples["SingleElectron_Run2016B-Nano25Oct2019_ver2-v1"] = {'nanoAOD': '/SingleElectron/Run2016B_ver2-Nano25Oct2019_ver2-v1/NANOAOD' }
 Samples["SingleElectron_Run2016C-Nano25Oct2019-v1"]      = {'nanoAOD': '/SingleElectron/Run2016C-Nano25Oct2019-v1/NANOAOD' }

@@ -20,8 +20,9 @@ class BTagEventWeightProducer(Module):
         self.bTagEtaMax = 2.4 if ('2016' in bTagWP) else 2.5
         self.bTagFlag = ''
         if bTagMethod!='1d':
-            self.bTagFlag = '_' + bTagMethod + '-' + bTagAlgo + bTagWP[-1] + '_' + bTagMethod
-            if bTagPtCut!='20': self.bTagFlag += '_' + bTagPtCut
+            self.bTagFlag = '_' + bTagAlgo + bTagWP[-1] + '_' + bTagMethod
+            if bTagPtCut!='20': self.bTagFlag += '_Pt' + bTagPtCut
+        print self.bTagFlag
         self.bTagWP = bTagWP
         if bTagAlgo=='btagDeepB':
             if '2016' in bTagWP: 
@@ -212,7 +213,7 @@ class BTagEventWeightProducer(Module):
                 trailingPtTaggedValue[central_or_syst] = -1.
 
         for i in range(event.nCleanJet):
-            if abs(event.CleanJet_eta[i])<self.bTagEtaMax:
+            if abs(event.CleanJet_eta[i])<self.bTagEtaMax and event.CleanJet_pt[i]>=float(self.bTagPtCut):
 
                 idx = event.CleanJet_jetIdx[i]
                 jet_discriminant = getattr(event, "Jet_%s" % self.bTagAlgo)[idx]
@@ -282,12 +283,16 @@ class BTagEventWeightProducer(Module):
                     for i in range(event.nCleanJet):
                         weight = weight*getattr(event, "Jet_btagSF_shape_%s" % central_or_syst)[event.CleanJet_jetIdx[i]]
             else :
-                weight1idx = [ ]
-                weight1jet = [ ]
-                for j in range(event.nCleanJet):
-                    if event.CleanJet_pt[j]>=float(self.bTagPtCut) and abs(event.CleanJet_eta[j])<self.bTagEtaMax:
-                        weight1idx.append(j)
-                        weight1jet.append(1.)
+                if central_or_syst=='central':
+                    weight1idx = [ ]
+                    weight1jet = [ ]
+		    weightjjet = [ ]
+                    for j in range(event.nCleanJet):	
+                        if event.CleanJet_pt[j]>=float(self.bTagPtCut) and abs(event.CleanJet_eta[j])<self.bTagEtaMax:
+                            if getattr(event, "Jet_%s" % self.bTagAlgo)[event.CleanJet_jetIdx[j]]>=self.bTagCut:
+                                weight1idx.append(j)
+                                weight1jet.append(1.)
+                                weightjjet.append(self.getbTagSF(event, event.CleanJet_jetIdx[j], event.Jet_hadronFlavour[j], central_or_syst))
                 for i in range(event.nCleanJet):
                     if event.CleanJet_pt[i]>=float(self.bTagPtCut) and abs(event.CleanJet_eta[i])<self.bTagEtaMax:
                         idx = event.CleanJet_jetIdx[i]
@@ -305,17 +310,18 @@ class BTagEventWeightProducer(Module):
                         elif self.bTagMethod=='1c':
                             if jet_discriminant>=self.bTagCut:
                                 weight *= (1. - jet_weight)
-                                for j in range(len(weight1jet)):
-                                    if weight1idx[j]==i:
-                                        weight1jet[j] *= jet_weight
-                                    else:
-                                        weight1jet[j] *= (1. - jet_weight)
+                                if central_or_syst=='central':       
+                                    for j in range(len(weight1jet)):
+                                        if weight1idx[j]==i:
+                                            weight1jet[j] *= jet_weight
+                                        else:
+                                            weight1jet[j] *= (1. - weightjjet[j])
                 if self.bTagMethod=='1c':
                     weight = 1. - weight
-                    weight2tag = weight
-                    for j in range(len(weight1jet)):
-                        weight2tag -= weight1jet[j]
-                    if central_or_syst=='central':
+                    if central_or_syst=='central':   
+                        weight2tag = weight
+                        for j in range(len(weight1jet)):
+                            weight2tag -= weight1jet[j]
                         self.out.fillBranch(self.branchNames_central_and_systs_shape_corr[central_or_syst].replace("Weight_1tag", "Weight_2tag"), weight2tag)  
             self.out.fillBranch(self.branchNames_central_and_systs_shape_corr[central_or_syst], weight)   
             

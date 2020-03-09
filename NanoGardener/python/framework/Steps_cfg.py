@@ -288,9 +288,11 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['baseW','PrefCorr2016','btagPerJet2016','btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30',
+                     'subTargets' : ['baseW',
+                                     'PrefCorr2016','btagPerJet2016','btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30',
                                      'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
-                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'],
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'
+                                   ],
                 },
 
   'MCCorr2016SusyFSv6' : {
@@ -1730,7 +1732,25 @@ Steps = {
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
                   'module'     : 'mt2Producer("ttZ")' , 
                }, 
-    
+   
+    'susyMT2rec' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30','susyMT2'],
+                     #'subTargets' : ['btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30','susyMT2'],
+                     'subTargets' : ['btagPerEvent2018','btagPerEvent2018Pt25','btagPerEvent2018Pt30','susyMT2'],
+                },
+ 
+    'susyMT2WZtoWWrec' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     #'subTargets' : ['btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30','susyMT2WZtoWW'],
+                     #'subTargets' : ['btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30','susyMT2WZtoWW'],
+                     'subTargets' : ['btagPerEvent2018','btagPerEvent2018Pt25','btagPerEvent2018Pt30','susyMT2WZtoWW'],
+                },
+
     ##--High Mass SemiLeptonic channel
   'wlepMaker' : {
                   'isChain'   : False ,
@@ -4172,7 +4192,7 @@ Steps = {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
                   'do4Data'    : True  ,
-                  'SizeMax'    : 5e9 ,
+                  'SizeMax'    : 1e9 ,
                  #'bigSamples' : ['DYJetsToLL_M-50','DY2JetsToLL','ZZTo2L2Q','DYJetsToLL_M-50-LO',
                  #                'DYJetsToLL_M-50-LO-ext1',
                  #                'WZTo2L2Q','TTToSemiLepton','TTToSemiLeptonic','TTTo2L2Nu_ext1','TTJetsDiLep-LO-ext1','TTTo2L2Nu',
@@ -4237,30 +4257,34 @@ Steps['MCSusy2017FSv6']  = Steps['MCSusy2017FS']
 Steps['MCSusy2018v6']    = Steps['MCSusy2018']
 Steps['MCSusy2018FSv6']  = Steps['MCSusy2018FS']
 
-Steps['DATASusy2017B'] = Steps['DATASusy2017']
-Steps['DATASusy2017B']['subTargets'].insert(1, 'METFixEEDATA2017B')
-Steps['DATASusy2017C'] = Steps['DATASusy2017']
-Steps['DATASusy2017C']['subTargets'].insert(1, 'METFixEEDATA2017C')
-Steps['DATASusy2017D'] = Steps['DATASusy2017']
-Steps['DATASusy2017D']['subTargets'].insert(1, 'METFixEEDATA2017D')
-Steps['DATASusy2017E'] = Steps['DATASusy2017']
-Steps['DATASusy2017E']['subTargets'].insert(1, 'METFixEEDATA2017E')
-Steps['DATASusy2017F'] = Steps['DATASusy2017']
-Steps['DATASusy2017F']['subTargets'].insert(1, 'METFixEEDATA2017F')
+for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
+    Steps['DATASusy2017'+dataperiod+'v6'] = { }
+    for key in Steps['DATASusy2017v6']:
+        if key!='subTargets':
+            Steps['DATASusy2017'+dataperiod+'v6'][key] = Steps['DATASusy2017v6'][key]
+        else:
+            Steps['DATASusy2017'+dataperiod+'v6']['subTargets'] = [ ]
+            for subtarget in Steps['DATASusy2017v6']['subTargets']:
+                Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].append(subtarget)
+            Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].insert(1, 'METFixEEDATA2017'+dataperiod)
 
-Steps['DATASusy2017Bv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Bv6']['subTargets'].insert(1, 'METFixEEDATA2017B')
-Steps['DATASusy2017Cv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Cv6']['subTargets'].insert(1, 'METFixEEDATA2017C')
-Steps['DATASusy2017Dv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Dv6']['subTargets'].insert(1, 'METFixEEDATA2017D')
-Steps['DATASusy2017Ev6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Ev6']['subTargets'].insert(1, 'METFixEEDATA2017E')
-Steps['DATASusy2017Fv6'] = Steps['DATASusy2017v6']
-Steps['DATASusy2017Fv6']['subTargets'].insert(1, 'METFixEEDATA2017F')
+for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
+    print dataperiod, Steps['DATASusy2017'+dataperiod+'v6']['subTargets']
 
-Steps['btagPerEvent2016Pt25'] = Steps['btagPerEvent2016'] 
-Steps['btagPerEvent2016Pt25']['module'] =  Steps['btagPerEvent2016Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
+print Steps['btagPerEvent2016']['module']
+
+for datatype in [ '', 'FS', 'Data' ] :
+    for year in [ '2016', '2017', '2018' ] : 
+        for ptcut in [ '25', '30' ] :
+	    Steps['btagPerEvent'+year+datatype+'Pt'+ptcut] = { }
+            for key in Steps['btagPerEvent'+year+datatype]: 
+                Steps['btagPerEvent'+year+datatype+'Pt'+ptcut][key] = Steps['btagPerEvent'+year+datatype][key]
+            Steps['btagPerEvent'+year+datatype+'Pt'+ptcut]['module'] = Steps['btagPerEvent'+year+datatype]['module'].replace('bTagPtCut="20"', 'bTagPtCut="'+ptcut+'"') 
+
+print Steps['btagPerEvent2016']['module'], Steps['btagPerEvent2016Pt25']['module']
+print Steps['btagPerEvent2016']['module'], Steps['btagPerEvent2016Pt30']['module']
+
+"""
 Steps['btagPerEvent2016Pt30'] = Steps['btagPerEvent2016'] 
 Steps['btagPerEvent2016Pt30']['module'] =  Steps['btagPerEvent2016Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
 #Steps['btagPerEvent20162a']   = Steps['btagPerEvent2016'] 
@@ -4315,7 +4339,7 @@ Steps['btagPerEvent2018DataPt30'] = Steps['btagPerEvent2018Data']
 Steps['btagPerEvent2018DataPt30']['module'] =  Steps['btagPerEvent2018DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
 #Steps['btagPerEvent2018Data2a']   = Steps['btagPerEvent2018Data'] 
 #Steps['btagPerEvent2018Data2a']['module']   =  Steps['btagPerEvent2018Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-
+"""
 Steps.update(addJESchainMembers())
 
 ## ADD systematics for VBSjjlnu analysis
