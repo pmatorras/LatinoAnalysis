@@ -3231,7 +3231,7 @@ Steps = {
                   'declare'    : 'DYMVA = lambda : TMVAfiller(\'data/DYMVA_RPLME_YEAR_v5_cfg.py\')' ,
                   'module'     : 'DYMVA()',
             } ,
-   
+
   'DYMVA_ElepTup' : {
             #     'prebash'    : ['source /cvmfs/sft.cern.ch/lcg/views/LCG_92/x86_64-centos7-gcc62-opt/setup.sh'] ,
                   'isChain'    : False ,
@@ -3318,6 +3318,17 @@ Steps = {
 #                 'declare'    : 'DYMVA = lambda : TMVAfiller(\'data/DYMVA_RPLME_YEAR_v5_cfg.py\')' ,
 #                 'module'     : 'DYMVA()',
 #           } ,
+
+  'DYMVA_alt' : {
+            #     'prebash'    : ['source /cvmfs/sft.cern.ch/lcg/views/LCG_92/x86_64-centos7-gcc62-opt/setup.sh'] ,
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True  ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.TMVAfiller' ,
+                  'declare'    : 'DYMVA = lambda : TMVAfiller(\'data/DYMVA_RPLME_YEAR_alt_cfg.py\')' ,
+                  'module'     : 'DYMVA()',
+            } ,
+
 
 
 # ------------------------------------ SYSTEMATICS ----------------------------------------------------------------
