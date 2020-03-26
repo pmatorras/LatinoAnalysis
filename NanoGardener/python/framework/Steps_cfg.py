@@ -4676,11 +4676,6 @@ for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
                 Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].append(subtarget)
             Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].insert(1, 'METFixEEDATA2017'+dataperiod)
 
-for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
-    print dataperiod, Steps['DATASusy2017'+dataperiod+'v6']['subTargets']
-
-print Steps['btagPerEvent2016']['module']
-
 for datatype in [ '', 'FS', 'Data' ] :
     for year in [ '2016', '2017', '2018' ] : 
         for ptcut in [ '25', '30' ] :
@@ -4689,65 +4684,6 @@ for datatype in [ '', 'FS', 'Data' ] :
                 Steps['btagPerEvent'+year+datatype+'Pt'+ptcut][key] = Steps['btagPerEvent'+year+datatype][key]
             Steps['btagPerEvent'+year+datatype+'Pt'+ptcut]['module'] = Steps['btagPerEvent'+year+datatype]['module'].replace('bTagPtCut="20"', 'bTagPtCut="'+ptcut+'"') 
 
-print Steps['btagPerEvent2016']['module'], Steps['btagPerEvent2016Pt25']['module']
-print Steps['btagPerEvent2016']['module'], Steps['btagPerEvent2016Pt30']['module']
-
-"""
-Steps['btagPerEvent2016Pt30'] = Steps['btagPerEvent2016'] 
-Steps['btagPerEvent2016Pt30']['module'] =  Steps['btagPerEvent2016Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent20162a']   = Steps['btagPerEvent2016'] 
-#Steps['btagPerEvent20162a']['module']   =  Steps['btagPerEvent20162a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-Steps['btagPerEvent2016FSPt25'] = Steps['btagPerEvent2016FS'] 
-Steps['btagPerEvent2016FSPt25']['module'] =  Steps['btagPerEvent2016FSPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2016FSPt30'] = Steps['btagPerEvent2016FS'] 
-Steps['btagPerEvent2016FSPt30']['module'] =  Steps['btagPerEvent2016FSPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent2016FS2a']   = Steps['btagPerEvent2016FS'] 
-#Steps['btagPerEvent2016FS2a']['module']   =  Steps['btagPerEvent2016FS2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-Steps['btagPerEvent2016DataPt25'] = Steps['btagPerEvent2016Data'] 
-Steps['btagPerEvent2016DataPt25']['module'] =  Steps['btagPerEvent2016DataPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2016DataPt30'] = Steps['btagPerEvent2016Data'] 
-Steps['btagPerEvent2016DataPt30']['module'] =  Steps['btagPerEvent2016DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent2016Data2a']   = Steps['btagPerEvent2016Data'] 
-#Steps['btagPerEvent2016Data2a']['module']   =  Steps['btagPerEvent2016Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-
-Steps['btagPerEvent2017Pt25'] = Steps['btagPerEvent2017'] 
-Steps['btagPerEvent2017Pt25']['module'] =  Steps['btagPerEvent2017Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2017Pt30'] = Steps['btagPerEvent2017'] 
-Steps['btagPerEvent2017Pt30']['module'] =  Steps['btagPerEvent2017Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent20172a']   = Steps['btagPerEvent2017'] 
-#Steps['btagPerEvent20172a']['module']   =  Steps['btagPerEvent20172a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-Steps['btagPerEvent2017FSPt25'] = Steps['btagPerEvent2017FS'] 
-Steps['btagPerEvent2017FSPt25']['module'] =  Steps['btagPerEvent2017FSPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2017FSPt30'] = Steps['btagPerEvent2017FS'] 
-Steps['btagPerEvent2017FSPt30']['module'] =  Steps['btagPerEvent2017FSPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent2017FS2a']   = Steps['btagPerEvent2017FS'] 
-#Steps['btagPerEvent2017FS2a']['module']   =  Steps['btagPerEvent2017FS2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-Steps['btagPerEvent2017DataPt25'] = Steps['btagPerEvent2017Data'] 
-Steps['btagPerEvent2017DataPt25']['module'] =  Steps['btagPerEvent2017DataPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2017DataPt30'] = Steps['btagPerEvent2017Data'] 
-Steps['btagPerEvent2017DataPt30']['module'] =  Steps['btagPerEvent2017DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent2017Data2a']   = Steps['btagPerEvent2017Data'] 
-#Steps['btagPerEvent2017Data2a']['module']   =  Steps['btagPerEvent2017Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-
-Steps['btagPerEvent2018Pt25'] = Steps['btagPerEvent2018'] 
-Steps['btagPerEvent2018Pt25']['module'] =  Steps['btagPerEvent2018Pt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2018Pt30'] = Steps['btagPerEvent2018'] 
-Steps['btagPerEvent2018Pt30']['module'] =  Steps['btagPerEvent2018Pt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent20182a']   = Steps['btagPerEvent2018'] 
-#Steps['btagPerEvent20182a']['module']   =  Steps['btagPerEvent20182a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-Steps['btagPerEvent2018FSPt25'] = Steps['btagPerEvent2018FS'] 
-Steps['btagPerEvent2018FSPt25']['module'] =  Steps['btagPerEvent2018FSPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2018FSPt30'] = Steps['btagPerEvent2018FS'] 
-Steps['btagPerEvent2018FSPt30']['module'] =  Steps['btagPerEvent2018FSPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent2018FS2a']   = Steps['btagPerEvent2018FS'] 
-#Steps['btagPerEvent2018FS2a']['module']   =  Steps['btagPerEvent2018FS2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-Steps['btagPerEvent2018DataPt25'] = Steps['btagPerEvent2018Data'] 
-Steps['btagPerEvent2018DataPt25']['module'] =  Steps['btagPerEvent2018DataPt25']['module'].replace('bTagPtCut="20"', 'bTagPtCut="25"')
-Steps['btagPerEvent2018DataPt30'] = Steps['btagPerEvent2018Data'] 
-Steps['btagPerEvent2018DataPt30']['module'] =  Steps['btagPerEvent2018DataPt30']['module'].replace('bTagPtCut="20"', 'bTagPtCut="30"')
-#Steps['btagPerEvent2018Data2a']   = Steps['btagPerEvent2018Data'] 
-#Steps['btagPerEvent2018Data2a']['module']   =  Steps['btagPerEvent2018Data2a']['module'].replace('bTagMethod="1c"', 'bTagMethod="2a"')
-"""
 Steps.update(addJESchainMembers())
 Steps.update(addSystChainMembers_CombJJLNu())
 
