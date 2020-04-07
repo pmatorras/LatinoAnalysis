@@ -1184,8 +1184,8 @@ class PlotFactory:
               frameRatio.GetXaxis().SetTitle(variableName)
             frameRatio.GetYaxis().SetTitle("Data/Expected")
             #frameRatio.GetYaxis().SetTitle("Data/MC")
-            #frameRatio.GetYaxis().SetRangeUser( 0.0, 2.0 )
-            frameRatio.GetYaxis().SetRangeUser( 0.5, 1.5 )
+            frameRatio.GetYaxis().SetRangeUser( 0.0, 2.0 )
+            #frameRatio.GetYaxis().SetRangeUser( 0.5, 1.5 )
             self.Pad2TAxis(frameRatio)
             if (len(mynuisances.keys())!=0):
               tgrMCOverMC.Draw("2") 
