@@ -2233,6 +2233,7 @@ Steps = {
                     'do4MC'      : True  ,
                     'do4Data'    : True  ,
                     'import'     : 'LatinoAnalysis.NanoGardener.modules.JJH_EFTVars' ,
+                 },
     
   'DATAl1loose2018v7': {
                   'isChain'    : True  ,
@@ -2466,18 +2467,6 @@ Steps = {
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.jetRecalib' ,
                   'declare'    : 'jetRecalib2017MC = lambda : jetRecalib(globalTag="Fall17_17Nov2017_V32_MC", jetCollections=["CleanJet"], metCollections=["MET"])',
                   'module'     : 'jetRecalib2017MC()',
-                 },    
-  
-  'JECupdate2016FS': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : False  ,
-                  #'import'     : 'LatinoAnalysis.NanoGardener.modules.jetRecalib' ,
-                  #'declare'    : 'jetRecalib2016FS = lambda : jetRecalib(globalTag="Spring16_FastSimV1_MC", jetCollections=["CleanJet"], metCollections=["MET"])',
-      
-                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetRecalib' ,
-                  'declare'    : 'jetRecalib2016FS = lambda : jetRecalib(globalTag="Spring16_FastSimV1_MC", archive="Spring16_25nsFastSimV1_MC")',
-                  'module'     : 'jetRecalib2016FS()',
                  }, 
 
   'METFixEEMC2017' : {
@@ -2649,7 +2638,6 @@ Steps = {
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
                   'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagWP="2016M", bTagMethod="1c", bTagPtCut="20", dataType="data")',
-        
                 },
 
   'btagPerEvent2017': {
@@ -4953,9 +4941,6 @@ Steps = {
                                        },
                             },
                },
-
-
-
 }
 
 Steps['MCSusy2016v6']    = Steps['MCSusy2016']
