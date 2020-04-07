@@ -51,7 +51,7 @@ class mt2Producer(Module):
 
             if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
                 
-                self.out.branch("mZ",          "F")
+                self.out.branch("deltaMassZ",  "F")
 
         if self.analysisRegion=='':
 
@@ -122,15 +122,19 @@ class mt2Producer(Module):
     def analyze(self, event):
         """process event, return True (go to next module) or False (fail, go to next event)"""
 
+        if math.isnan(event.MET_pt): 
+            print 'mt2Producer warning: MET_pt is nan'
+            return False
+
         nLeptons = event.nLepton
 
         if nLeptons<2 :
             return False
 
-        mll       = -1.
-        ptmiss    = -1.
-        mt2ll     = -1.
-        mZ        = -1.
+        mll        = -1.
+        ptmiss     = -1.
+        mt2ll      = -1.
+        deltaMassZ = -1.
 
         nVetoLeptons = event.nVetoLepton
         
@@ -234,7 +238,7 @@ class mt2Producer(Module):
             if lost==-1 :
                 return False
 
-            mZ = minDZM
+            deltaMassZ = minDZM
 
             if 'WZtoWW' in self.analysisRegion :
                 Lost.append(lost)
@@ -287,7 +291,7 @@ class mt2Producer(Module):
             if lost0==-1 or lost1==-1 :
                 return False
                 
-            mZ = cutDZM1
+            deltaMassZ = cutDZM1
             
             Lost.append(lost0)
             Lost.append(lost1)
@@ -325,7 +329,7 @@ class mt2Producer(Module):
         self.out.fillBranch("mll",        mll)
 
         if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
-            self.out.fillBranch("mZ",        mZ)
+            self.out.fillBranch("deltaMassZ",        deltaMassZ)
 
         if self.analysisRegion=='' or self.analysisRegion=='gen' or self.analysisRegion=='reco':
 

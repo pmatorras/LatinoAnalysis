@@ -4,10 +4,13 @@ Sites = {
   'iihe' : { 
               'lsCmd'       : 'ls' ,
               'mkDir'       : False , 
-              'xrootdPath'  : 'dcap://maite.iihe.ac.be/' ,
+              #'xrootdPath'  : 'dcap://maite.iihe.ac.be/' ,
+              'xrootdPath'  : '',
               'srmPrefix'   : 'srm://maite.iihe.ac.be:8443' ,
-              'treeBaseDir' : '/pnfs/iihe/cms/store/user/xjanssen/HWWNano/' ,
-              'batchQueues' : ['localgrid@cream02']
+              #'treeBaseDir' : '/pnfs/iihe/cms/store/user/xjanssen/HWWNano/' ,
+              'treeBaseDir' : '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/' ,
+              'batchQueues' : ['localgrid@cream02'],
+              'slc_ver'     : 6
            } ,
 
   'cern' : {
@@ -17,8 +20,9 @@ Sites = {
               #'treeBaseDir' : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/' ,
               'treeBaseDir' : '/eos/cms/store/user/scodella/SUSY/Nano/' ,
               #'treeBaseDir' : '/eos/cms/store/caf/user/scodella/BTV/Nano/' ,
-
-              'batchQueues' : ['8nh','1nd','2nd','1nw']
+              'batchQueues' : ['8nh','1nd','2nd','1nw'],
+              #'slc_ver'     : 7
+              'slc_ver'     : 6
            } ,
 
   'sdfarm' : {
@@ -41,6 +45,7 @@ Sites = {
               'srmPrefix'   : 'srm://srm01.ifca.es' ,
               'treeProdDir' : '/gpfs/gaes/cms/',
               'treeBaseDir' : '/gpfs/projects/tier3data/LatinosSkims/RunII/Nano/' ,
+              'slc_ver'     : 6
              },
 
 }
