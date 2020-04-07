@@ -17,6 +17,7 @@ Sites = {
               #'treeBaseDir' : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/' ,
               'treeBaseDir' : '/eos/cms/store/user/scodella/SUSY/Nano/' ,
               #'treeBaseDir' : '/eos/cms/store/caf/user/scodella/BTV/Nano/' ,
+
               'batchQueues' : ['8nh','1nd','2nd','1nw']
            } ,
 
