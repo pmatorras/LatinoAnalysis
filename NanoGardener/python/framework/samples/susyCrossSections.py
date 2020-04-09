@@ -687,7 +687,8 @@ SUSYCrossSections = {
     ##    https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SUSYCrossSections13TeVslepslep#NLO_NLL_any_single_generation_of
     ##    NLO-NLL (2019-11-20)
    
-    'SleptonLH'   : { 'susyModels' : {   'TSelectronSelectronLH' : '1.',
+    'SleptonLH'   : { 'susyModels' : {   'TSlepSlep'             : '1.',
+          				 'TSelectronSelectronLH' : '1.',
                                          'TSmuonSmuonLH'         : '1.',
                                        },
                       'massPoints' : { '50'  : { 'value' :  '3.991'	, 'uncertaintyDown' : '3.9%' , 'uncertaintyUp' : '2.2%' },
@@ -728,7 +729,8 @@ SUSYCrossSections = {
     ##    https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SUSYCrossSections13TeVslepslep#NLO_NLL_any_single_generatio_AN1
     ##    NLO-NLL (2019-11-20)
    
-    'SleptonRH'   : { 'susyModels' : {   'TSelectronSelectronRH' : '1.',
+    'SleptonRH'   : { 'susyModels' : {   'TSlepSlep'             : '1.',
+					 'TSelectronSelectronRH' : '1.',
                                          'TSmuonSmuonRH'         : '1.',
                                        },
                       'massPoints' : { '50'  : { 'value' :   '1.377' ,   'uncertaintyDown' :  '3.9%' , 'uncertaintyUp' : '2.3%' },  
