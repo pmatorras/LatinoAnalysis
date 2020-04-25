@@ -397,7 +397,7 @@ class LeptonSFMaker(Module):
         elif biny>histoSF.GetNbinsY():
             biny = histoSF.GetNbinsY()
                 
-        return histoSF.GetBinContent(binx, biny)
+        return [ histoSF.GetBinContent(binx, biny), histoSF.GetBinError(binx, biny) ]
 
     def get_idIso_SF(self, pdgId, lep_pt, lep_eta, nvtx, wp, run_period):
         pt, eta = self.trunc_kin(pdgId, lep_pt, lep_eta)
@@ -416,14 +416,17 @@ class LeptonSFMaker(Module):
 
         if 'susySF' in self.SF_dict[kin_str][wp].keys():
 
-            idisoSF = 1.
+            idisoSF, idisoSFup, idisoSFdown = 1., 1., 1.
 
             susyHistos = self.SF_dict[kin_str][wp]['susySF']['data'][run_idx]
             for susy_histo in susyHistos:
 
-                idisoSF *= self.get_SF_fromHisto(lep_pt, lep_eta, susy_histo)
+                thisSF, thisSFerr = self.get_SF_fromHisto(lep_pt, lep_eta, susy_histo)
+                idisoSF *= thisSF
+                idisoSFup *= (thisSF + thisSFerr)
+                idisoSFdown *= (thisSF - thisSFerr)
 
-            idisoSF_err = idisoSF*0.03
+            idisoSF_err = abs(idisoSFup - idisoSF) 
 
             return idisoSF, idisoSF_err, idisoSF_err, 0.
 
@@ -525,14 +528,17 @@ class LeptonSFMaker(Module):
             if run_period >= self.SF_dict[kin_str][wp]['fsSF']['beginRP'][idx] and run_period <= self.SF_dict[kin_str][wp]['fsSF']['endRP'][idx]:
                 run_idx = idx
 
-        fsSF = 1.
+        fsSF, fsSFup, fsSFdown = 1., 1., 1.
 
         fsHistos = self.SF_dict[kin_str][wp]['fsSF']['data'][run_idx]
         for fs_histo in fsHistos:
 
-            fsSF *= self.get_SF_fromHisto(lep_pt, lep_eta, fs_histo)
-
-        fsSF_err = fsSF*0.02
+            thisSF, thisSFerr = self.get_SF_fromHisto(lep_pt, lep_eta, fs_histo)
+            fsSF *= thisSF
+            fsSFup *= (thisSF + thisSFerr)
+            fsSFdown *= (thisSF - thisSFerr)
+            
+        fsSF_err = abs(fsSFup - fsSF)
 
         return fsSF, fsSF_err, fsSF_err
 
