@@ -54,9 +54,15 @@ class mt2Producer(Module):
             self.out.branch("mll",             "F")
             self.out.branch("mt2ll",           "F")
 
-            if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
-                
-                self.out.branch("deltaMassZ",  "F")
+            if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion or 'ZZ' in self.analysisRegion:
+
+                self.out.branch("lep2idx",     "I")
+
+                if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
+                    self.out.branch("deltaMassZ",  "F")
+            
+                if 'ttZ' in self.analysisRegion or self.analysisRegion or 'ZZ' in self.analysisRegion:
+                    self.out.branch("lep3idx",     "I")
 
         if self.analysisRegion=='':
 
@@ -194,7 +200,7 @@ class mt2Producer(Module):
             ptmissvec4 = ROOT.TLorentzVector()  
             ptmissvec4.SetPtEtaPhiM(ptmissvec3.Pt(), 0., ptmissvec3.Phi(), 0.)
 
-            mt2llfakes = [ ] 
+            mt2llfakes = [ ]
 
             for lref in range(nLooseLeptons) :
 
@@ -314,13 +320,16 @@ class mt2Producer(Module):
             Lost.append(lost1)
 
         # Computing variables to be added to the tree
-        W0, W1 = -1, -1
+        W0, W1, W2, W3 = -1, -1, -1, -1
 
         for iLep in range(nLooseLeptons) :
 
-            if iLep in Lost :
-                ptmissvec3 += lepVect[iLep].Vect()
-            elif iLep not in Skip :
+            if iLep in Lost or iLep in Skip:
+                if W2==-1 : W2 = iLep
+                elif W3==-1 : W3 = iLep
+                if iLep in Lost:
+                    ptmissvec3 += lepVect[iLep].Vect()
+            else:
                 if W0==-1 : W0 = iLep
                 elif W1==-1 : W1 = iLep
 
@@ -348,6 +357,11 @@ class mt2Producer(Module):
         self.out.fillBranch("mll",        mll)
         self.out.fillBranch("lep0idx",    lepLoose[W0])
         self.out.fillBranch("lep1idx",    lepLoose[W1])
+
+        if W2>=0:
+            self.out.fillBranch("lep2idx", lepLoose[W2])
+            if W3>=0:
+                self.out.fillBranch("lep3idx", lepLoose[W3])
 
         if 'WZ' in self.analysisRegion or 'ttZ' in self.analysisRegion:
             self.out.fillBranch("deltaMassZ",        deltaMassZ)
