@@ -621,6 +621,10 @@ Trigger = {
                           },
 }
 
+Trigger['Full2016v7'] = Trigger['Full2016v6'] 
+Trigger['Full2017v7'] = Trigger['Full2017v6'] 
+Trigger['Full2018v7'] = Trigger['Full2018v6'] 
+
 NewVar_MC_dict = {
    'F': [
          'CBTriggerEffWeight_1l',
