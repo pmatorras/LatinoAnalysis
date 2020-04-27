@@ -13,8 +13,8 @@ class mt2Producer(Module):
 
         self.analysisRegion = analysisRegion
         self.dataType = dataType
-        self.looseEleWp = looseEleWP
-        self.looseMuoWp = looseMuoWP
+        self.looseEleWP = looseEleWP
+        self.looseMuoWP = looseMuoWP
 
         self.Zmass = 91.1876
 
@@ -150,10 +150,10 @@ class mt2Producer(Module):
 
             isLooseLepton = False
             if abs(leptons[iLep].pdgId)==11:
-                if looseEleWP=='' or (hasattr(leptons[iLep], 'isTightElectron_'+self.looseEleWP))==1: 
+                if self.looseEleWP=='' or (hasattr(leptons[iLep], 'isTightElectron_'+self.looseEleWP))==1: 
                     isLooseLepton = True
             elif abs(leptons[iLep].pdgId)==13:
-                if LooseMuoWP=='' or (hasattr(leptons[iLep], 'isTightMuon_'+self.looseMuoWP))==1:
+                if self.looseMuoWP=='' or (hasattr(leptons[iLep], 'isTightMuon_'+self.looseMuoWP))==1:
                     isLooseLepton = True
 
             if isLooseLepton:
