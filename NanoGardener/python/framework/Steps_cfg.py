@@ -923,6 +923,65 @@ Steps = {
                   'subTargets' : ['l2Kin', 'l3Kin'],
             },
 
+## ------- T&P Skims
+
+ 'MCTandP' : { 
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"(nElectron>=2 || nMuon>=2) && (Sum$(Muon_pt > 10 && abs(Muon_eta)<2.4) >1 || Sum$(Electron_pt > 10 && abs(Electron_eta)<2.5) >1)"' , 
+                  'subTargets' : ['RunPeriodMC','puW','baseW'] ,
+                  'onlySample' : [ 
+                                  'DYJetsToLL_M-50-LO_ext1','DYJetsToLL_M-50_ext1','DYJetsToLL_M-50_ext2' 
+                                 ] ,
+              }, 
+
+  'DataTandP' : {
+                  'isChain'    : True  ,
+                  'do4MC'      : False  ,
+                  'do4Data'    : True ,
+                  'selection'  : '"(nElectron>=2 || nMuon>=2) && (Sum$(Muon_pt > 10 && abs(Muon_eta)<2.4) >1 || Sum$(Electron_pt > 10 && abs(Electron_eta)<2.5) >1)"' ,
+                  'subTargets' : ['RunPeriodDATA'] ,
+                  'onlySample' : [
+                                  # Run2016 v6
+                                  'SingleElectron_Run2016B-Nano25Oct2019_ver2-v1',
+                                  'SingleElectron_Run2016C-Nano25Oct2019-v1',      
+                                  'SingleElectron_Run2016D-Nano25Oct2019-v1',      
+                                  'SingleElectron_Run2016E-Nano25Oct2019-v1',      
+                                  'SingleElectron_Run2016F-Nano25Oct2019-v1',      
+                                  'SingleElectron_Run2016G-Nano25Oct2019-v1',      
+                                  'SingleElectron_Run2016H-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2016B-Nano25Oct2019_ver2-v1',
+                                  'SingleMuon_Run2016C-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2016D-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2016E-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2016F-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2016G-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2016H-Nano25Oct2019-v1',      
+                                  # Run2017 v6
+                                  'SingleElectron_Run2017B-Nano25Oct2019-v1',
+                                  'SingleElectron_Run2017C-Nano25Oct2019-v1',
+                                  'SingleElectron_Run2017D-Nano25Oct2019-v1',
+                                  'SingleElectron_Run2017E-Nano25Oct2019-v1',
+                                  'SingleElectron_Run2017F-Nano25Oct2019-v1',
+                                  'SingleMuon_Run2017B-Nano25Oct2019-v1',
+                                  'SingleMuon_Run2017C-Nano25Oct2019-v1',
+                                  'SingleMuon_Run2017D-Nano25Oct2019-v1',
+                                  'SingleMuon_Run2017E-Nano25Oct2019-v1',
+                                  'SingleMuon_Run2017F-Nano25Oct2019-v1',
+                                  # Run2018 v6
+                                  'EGamma_Run2018A-Nano25Oct2019-v1',      
+                                  'EGamma_Run2018B-Nano25Oct2019-v1',      
+                                  'EGamma_Run2018C-Nano25Oct2019-v1',      
+                                  'EGamma_Run2018D-Nano25Oct2019_ver2-v1',
+                                  'SingleMuon_Run2018A-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2018B-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2018C-Nano25Oct2019-v1',      
+                                  'SingleMuon_Run2018D-Nano25Oct2019_ver2-v1'
+                                 ] ,
+
+              }, 
+
 ## ------- WgStar MC:
 
   'MCWgStar2017' : { 
@@ -2127,7 +2186,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("")' ,
+                  'module'     : 'mt2Producer(looseEleWP="", looseMuoWP="")' ,
                },  
 
    'susyMT2FS': {
@@ -2135,79 +2194,15 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("","fastsim")' ,
-               },  
-
-   'susyMT2FSgen': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("gen","fastsim")' ,
-               },  
-
-   'susyMT2FSreco': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("reco","fastsim")' ,
-               }, 
+                  'module'     : 'mt2Producer(dataType="fastsim", looseEleWP="", looseMuoWP="")' ,
+               },   
 
    'susyMT2data': {
                   'isChain'    : False ,
                   'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("","data")' ,
-               },  
-
-   'susyMT2SameSign': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : True ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("SameSign")' ,
-               }, 
-
-   'susyMT2Fake': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : True ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("Fake")' ,
-               },  
-
-   'susyMT2WZ': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : True ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("WZ")' ,
-               }, 
-
-   'susyMT2WZtoWW': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : True ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("WZtoWW")' ,
-               },
-
-   'susyMT2ZZ': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : True ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ZZ")' , 
-               },
-
-   'susyMT2ttZ': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : True ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer("ttZ")' , 
+                  'module'     : 'mt2Producer(dataType="data", looseEleWP="", looseMuoWP="")' ,
                }, 
 
 ## EFT JJH->WW->2l2nu
@@ -2816,6 +2811,25 @@ Steps = {
 
 ## ------- Pile-Up weights
 
+  'RunPeriodMC' : {
+                     'isChain'    : False ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'import'     : 'LatinoAnalysis.NanoGardener.modules.RunPeriod',
+                     'declare'    : 'RunPeriodMC = lambda : RunPeriod("RPLME_CMSSW",False)',
+                     'module'     : 'RunPeriodMC()'
+                  },
+
+  'RunPeriodDATA' : {
+                     'isChain'    : False ,
+                     'do4MC'      : False  ,
+                     'do4Data'    : True ,
+                     'import'     : 'LatinoAnalysis.NanoGardener.modules.RunPeriod',
+                     'declare'    : 'RunPeriodDATA = lambda : RunPeriod("RPLME_CMSSW",True)',
+                     'module'     : 'RunPeriodDATA()'
+                  },
+ 
+
   'puW'    : {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
@@ -2824,6 +2838,9 @@ Steps = {
                   'declare'    : 'puWeight = lambda : runDependentPuW("RPLME_CMSSW")',
                   'module'     : 'puWeight()', 
              } , 
+
+
+
 
   'puW2016': {
                   'isChain'    : False ,
@@ -4943,6 +4960,7 @@ Steps = {
                },
 }
 
+# Copy versions
 Steps['MCSusy2016v6']    = Steps['MCSusy2016']
 Steps['MCSusy2016FSv6']  = Steps['MCSusy2016FS']
 Steps['MCSusy2017v6']    = Steps['MCSusy2017']
@@ -4950,6 +4968,7 @@ Steps['MCSusy2017FSv6']  = Steps['MCSusy2017FS']
 Steps['MCSusy2018v6']    = Steps['MCSusy2018']
 Steps['MCSusy2018FSv6']  = Steps['MCSusy2018FS']
 
+# METFixEEDATA2017
 for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
     Steps['DATASusy2017'+dataperiod+'v6'] = { }
     for key in Steps['DATASusy2017v6']:
@@ -4961,6 +4980,7 @@ for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
                 Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].append(subtarget)
             Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].insert(1, 'METFixEEDATA2017'+dataperiod)
 
+# btagPerEvent
 for datatype in [ '', 'FS', 'Data' ] :
     for year in [ '2016', '2017', '2018' ] : 
         for ptcut in [ '25', '30' ] :
@@ -4968,6 +4988,37 @@ for datatype in [ '', 'FS', 'Data' ] :
             for key in Steps['btagPerEvent'+year+datatype]: 
                 Steps['btagPerEvent'+year+datatype+'Pt'+ptcut][key] = Steps['btagPerEvent'+year+datatype][key]
             Steps['btagPerEvent'+year+datatype+'Pt'+ptcut]['module'] = Steps['btagPerEvent'+year+datatype]['module'].replace('bTagPtCut="20"', 'bTagPtCut="'+ptcut+'"') 
+
+# mt2Producer
+for looselep in [ '', 'miniiso', 'reliso' ] :
+
+    looseele, loosemuo = '', ''
+    if looselep=='miniiso':
+        looseele, loosemuo = 'SusyMVAVLoose', 'looseMiniIsoLoose'
+    elif looselep=='reliso':
+        looseele, loosemuo = 'cutBasedVeto', 'looseIsoVeryLoose'
+
+    if looselep!='':
+      for datatype in [ '', 'data', 'FS' ]:
+          Steps['susy'+looselep+'MT2'+datatype] = { }
+          for key in Steps['susyMT2'+datatype]:
+              Steps['susy'+looselep+'MT2'+datatype][key] = Steps['susyMT2'+datatype][key]
+          Steps['susy'+looselep+'MT2'+datatype]['module'] = Steps['susyMT2'+datatype]['module'].replace('looseEleWP="", looseMuoWP=""', 'looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'"')
+
+    for region in [ 'gen', 'reco' ]:
+        Steps['susy'+looselep+'MT2FS'+region] = { }
+        for key in Steps['susyMT2FS']:
+            Steps['susy'+looselep+'MT2FS'+region][key] = Steps['susyMT2FS'][key]
+        Steps['susy'+looselep+'MT2FS'+region]['module'] = 'mt2Producer(analysisRegion="'+region+'", dataType="fastsim", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'")'
+
+    for region in [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]:
+        Steps['susy'+looselep+'MT2'+region] = { }
+        for key in Steps['susyMT2']:
+            Steps['susy'+looselep+'MT2'+region][key] = Steps['susyMT2'][key]
+        Steps['susy'+looselep+'MT2'+region]['do4Data'] = True    
+        Steps['susy'+looselep+'MT2'+region]['module'] = 'mt2Producer(analysisRegion="'+region+'", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'")'  
+
+#
 
 Steps.update(addJESchainMembers())
 Steps.update(addSystChainMembers_CombJJLNu())

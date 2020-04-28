@@ -307,7 +307,10 @@ class PostProcMaker():
      self._targetDir = None
      self._sourceDir = None
      if not self._iniStep == 'Prod' :
-       self._sourceDir = self._Sites[self._LocalSite]['treeBaseDir']+'/'+iProd+'/'+self._iniStep+'/'
+       if 'sourceDir' in self._Sites[self._LocalSite]:
+         self._sourceDir = self._Sites[self._LocalSite]['sourceDir']  +'/'+iProd+'/'+self._iniStep+'/'
+       else:
+         self._sourceDir = self._Sites[self._LocalSite]['treeBaseDir']+'/'+iProd+'/'+self._iniStep+'/'
 
 
      if not iStep == 'UEPS' :
