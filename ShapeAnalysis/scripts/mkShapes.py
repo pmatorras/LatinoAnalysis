@@ -214,6 +214,18 @@ if __name__ == '__main__':
         print 'Logging level set to INFO (%d)' % opt.debug
         logging.basicConfig( level=logging.INFO )
 
+    
+    samples = {}
+    if os.path.exists(opt.samplesFile) :
+      handle = open(opt.samplesFile,'r')
+      exec(handle)
+      handle.close()
+      #in case some samples need a compiled function
+      for sampleName, sample in samples.iteritems():
+          if sample.has_key('linesToAdd'):
+            linesToAdd = sample['linesToAdd']
+            for line in linesToAdd:
+              ROOT.gROOT.ProcessLineSync(line)
 
     variables = {}
     print opt.variablesFile
@@ -225,18 +237,6 @@ if __name__ == '__main__':
       for variableName, variable in variables.iteritems():
           if variable.has_key('linesToAdd'):
             linesToAdd = variable['linesToAdd']
-            for line in linesToAdd:
-              ROOT.gROOT.ProcessLineSync(line)
-    
-    samples = {}
-    if os.path.exists(opt.samplesFile) :
-      handle = open(opt.samplesFile,'r')
-      exec(handle)
-      handle.close()
-      #in case some samples need a compiled function
-      for sampleName, sample in samples.iteritems():
-          if sample.has_key('linesToAdd'):
-            linesToAdd = sample['linesToAdd']
             for line in linesToAdd:
               ROOT.gROOT.ProcessLineSync(line)
    
