@@ -4990,13 +4990,15 @@ for datatype in [ '', 'FS', 'Data' ] :
             Steps['btagPerEvent'+year+datatype+'Pt'+ptcut]['module'] = Steps['btagPerEvent'+year+datatype]['module'].replace('bTagPtCut="20"', 'bTagPtCut="'+ptcut+'"') 
 
 # mt2Producer
-for looselep in [ '', 'miniiso', 'reliso' ] :
+for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
 
     looseele, loosemuo = '', ''
     if looselep=='miniiso':
         looseele, loosemuo = 'SusyMVAVLoose', 'looseMiniIsoLoose'
     elif looselep=='reliso':
         looseele, loosemuo = 'cutBasedVeto', 'looseIsoVeryLoose'
+    elif looselep=='relisov6':
+        looseele, loosemuo = 'cutBasedVeto', 'looseIsoLoose'
 
     if looselep!='':
       for datatype in [ '', 'data', 'FS' ]:
