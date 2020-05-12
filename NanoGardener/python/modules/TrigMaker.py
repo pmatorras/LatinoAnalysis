@@ -190,7 +190,7 @@ class TrigMaker(Module):
            raise ValueError('_over_under can only operate on leptons, pdgI = ' + str(pdgId) + ', pt = ' + str(pt) + ', eta = ' + str(eta))
 
     def _get_DZEff(self,run_p,trigName,nvtxIn,pt1In,pt2In):
-      DZeff = 1. 
+      DZeff, DZeff_err = 1., 0. 
       nvtx = nvtxIn
       pt1 = pt1In
       pt2 = pt2In
