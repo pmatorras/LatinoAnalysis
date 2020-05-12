@@ -4905,7 +4905,7 @@ Steps = {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
                   'do4Data'    : True  ,
-                  'SizeMax'    : 1e9 ,
+                  'SizeMax'    : 2e9 ,
                  #'bigSamples' : ['DYJetsToLL_M-50','DY2JetsToLL','ZZTo2L2Q','DYJetsToLL_M-50-LO',
                  #                'DYJetsToLL_M-50-LO-ext1',
                  #                'WZTo2L2Q','TTToSemiLepton','TTToSemiLeptonic','TTTo2L2Nu_ext1','TTJetsDiLep-LO-ext1','TTTo2L2Nu',
