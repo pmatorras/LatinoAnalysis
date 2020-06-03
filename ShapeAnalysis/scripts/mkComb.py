@@ -34,11 +34,11 @@ if __name__ == '__main__':
 
     samples = {}
     if os.path.exists(opt.samplesFile) :
-      handle = open(opt.samplesFile,'r')
-      exec(handle)
-      handle.close()
-
-
+        handle = open(opt.samplesFile,'r')
+        exec(handle)
+        handle.close()
+        
+        
     variables = {}
     if os.path.exists(opt.variablesFile) :
       handle = open(opt.variablesFile,'r')
@@ -50,7 +50,7 @@ if __name__ == '__main__':
       handle = open(opt.cutsFile,'r')
       exec(handle)
       handle.close()
-
+   
     combs = {}
     if os.path.exists(opt.combcfg) :
       handle = open(opt.combcfg,'r')
