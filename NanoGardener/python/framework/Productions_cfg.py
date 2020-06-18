@@ -774,3 +774,13 @@ Productions = {
 
 }
 
+###
+Productions['Run2016_102X_nAODv6_Full2016v6loose']    = Productions['Run2016_102X_nAODv6_Full2016v6']
+Productions['Run2017_102X_nAODv6_Full2017v6loose']    = Productions['Run2017_102X_nAODv6_Full2017v6']
+Productions['Run2018_102X_nAODv6_Full2018v6loose']    = Productions['Run2018_102X_nAODv6_Full2018v6']
+Productions['Summer16_102X_nAODv6_Full2016v6loose']   = Productions['Summer16_102X_nAODv6_Full2016v6']
+Productions['Fall2017_102X_nAODv6_Full2017v6loose']   = Productions['Fall2017_102X_nAODv6_Full2017v6']
+Productions['Autumn18_102X_nAODv6_Full2018v6loose']   = Productions['Autumn18_102X_nAODv6_Full2018v6']
+Productions['Summer16FS_102X_nAODv6_Full2016v6loose'] = Productions['Summer16FS_102X_nAODv6_Full2016v6']
+Productions['Fall2017FS_102X_nAODv6_Full2017v6loose'] = Productions['Fall2017FS_102X_nAODv6_Full2017v6']
+Productions['Autumn18FS_102X_nAODv6_Full2018v6loose'] = Productions['Autumn18FS_102X_nAODv6_Full2018v6']
