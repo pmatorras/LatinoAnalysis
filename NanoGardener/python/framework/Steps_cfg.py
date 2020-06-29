@@ -2239,6 +2239,17 @@ Steps = {
     #               'module'     : 'fatjetmass_scaler()'
     # },
 
+   'ZZGen': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.SusyGenVarsProducer' ,
+                  'module'     : 'ZZGenVarsProducer()' ,
+                  'onlySample' : ['ZZto4L', 'ggZZ4e', 'ggZZ4m', 'ggZZ4l', 'ggZZ2e2m', 'ggZZ2e2l', 'ggZZ2l2m', 'VBFHToZZTo4L_M125', 'GluGluHToZZTo4L_M125'],
+               },  
+
+
+
 
    'susyGen': {
                   'isChain'    : False ,
