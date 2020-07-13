@@ -29,18 +29,10 @@ class ZZGenVarsProducer(Module):
         print "begin file"
         self.out = wrappedOutputTree
 
-        self.out.branch("susyIDprompt",  "F")
-        self.out.branch("susyMprompt",   "F")
-        self.out.branch("susyMstop",     "F")
-        self.out.branch("susyMLSP",      "F")
-        self.out.branch("susyMChargino", "F")
-        self.out.branch("susyMSlepton",  "F")
-        self.out.branch("Xsec",          "F")
-        self.out.branch("XsecUp",        "F")
-        self.out.branch("XsecDown",      "F")
-        self.out.branch("ptISR",         "F")
-        self.out.branch("njetISR",       "F")
-
+        self.out.branch("kZZ_mass",  "F")
+        self.out.branch("kZZ_dphi",  "F")
+        self.out.branch("kZZ_pt"  ,  "F")
+        
 
         '''
         if self.susyModelIsSet==False :
@@ -74,88 +66,197 @@ class ZZGenVarsProducer(Module):
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         pass
 
-    def getCrossSectionUncertainty(self, susyProcess, isusyMass, variation):
-    
-        if 'uncertainty'+variation not in SUSYCrossSections[susyProcess]['massPoints'][str(isusyMass)]: variation = ''
-        xsUnc = SUSYCrossSections[susyProcess]['massPoints'][str(isusyMass)]['uncertainty'+variation]
 
-        if '%' not in xsUnc: 
-            return float(xsUnc)
-        else:
-            xsUnc = xsUnc.replace('%', '')
-            return float(SUSYCrossSections[susyProcess]['massPoints'][str(isusyMass)]['value'])*float(xsUnc)/100.
-        
-    def getCrossSection(self, susyProcess, susyModel, susyMass):
-
-        convBR = float(SUSYCrossSections[susyProcess]['susyModels'][susyModel])
-        
-        isusyMass = int(susyMass)
-        
-        if str(isusyMass) in SUSYCrossSections[susyProcess]['massPoints'].keys() :
-        
-            susyXsec = float(SUSYCrossSections[susyProcess]['massPoints'][str(isusyMass)]['value'])
-
-            return [ convBR*susyXsec,
-                     convBR*(susyXsec+self.getCrossSectionUncertainty(susyProcess, isusyMass, 'Up')),
-                     convBR*(susyXsec-self.getCrossSectionUncertainty(susyProcess, isusyMass, 'Down')) ]
-        
-        else: # Try to extrapolate
-
-            step = 5 # T2tt
+    def kfactor_qqZZ_qcd_dPhi(self,GendPhiZZ, finalState):
+        # finalState=1 : 4e/4mu/4tau
+        # finalState=2 : 2e2mu/2mutau/2e2tau
+        k=0  
+        absdphi=abs(GendPhiZZ)
+        if (finalState==1):
+            if (absdphi >= 0.0 and absdphi < 0.1): k+=1.515838921760
+            if (absdphi >= 0.1 and absdphi < 0.2): k+=1.496256665410 
+            if (absdphi >= 0.2 and absdphi < 0.3): k+=1.495522061910
+            if (absdphi >= 0.3 and absdphi < 0.4): k+=1.483273154250
+            if (absdphi >= 0.4 and absdphi < 0.5): k+=1.465589701130
+            if (absdphi >= 0.5 and absdphi < 0.6): k+=1.491500887510
+            if (absdphi >= 0.6 and absdphi < 0.7): k+=1.441183580450
+            if (absdphi >= 0.7 and absdphi < 0.8): k+=1.440830603990
+            if (absdphi >= 0.8 and absdphi < 0.9): k+=1.414339019120
+            if (absdphi >= 0.9 and absdphi < 1.0): k+=1.422534218560
+            if (absdphi >= 1.0 and absdphi < 1.1): k+=1.401037066000
+            if (absdphi >= 1.1 and absdphi < 1.2): k+=1.408539428810
+            if (absdphi >= 1.2 and absdphi < 1.3): k+=1.381247744080
+            if (absdphi >= 1.3 and absdphi < 1.4): k+=1.370553357430
+            if (absdphi >= 1.4 and absdphi < 1.5): k+=1.347323316000
+            if (absdphi >= 1.5 and absdphi < 1.6): k+=1.340113437450
+            if (absdphi >= 1.6 and absdphi < 1.7): k+=1.312661036510
+            if (absdphi >= 1.7 and absdphi < 1.8): k+=1.290055062010
+            if (absdphi >= 1.8 and absdphi < 1.9): k+=1.255322614790
+            if (absdphi >= 1.9 and absdphi < 2.0): k+=1.254455642450
+            if (absdphi >= 2.0 and absdphi < 2.1): k+=1.224047664420
+            if (absdphi >= 2.1 and absdphi < 2.2): k+=1.178816782670
+            if (absdphi >= 2.2 and absdphi < 2.3): k+=1.162624827140
+            if (absdphi >= 2.3 and absdphi < 2.4): k+=1.105401140940
+            if (absdphi >= 2.4 and absdphi < 2.5): k+=1.074749265690
+            if (absdphi >= 2.5 and absdphi < 2.6): k+=1.021864599380
+            if (absdphi >= 2.6 and absdphi < 2.7): k+=0.946334793286
+            if (absdphi >= 2.7 and absdphi < 2.8): k+=0.857458082628
+            if (absdphi >= 2.8 and absdphi < 2.9): k+=0.716607670482
+            if (absdphi >= 2.9 and absdphi < 3.1416): k+=1.132841784840
             
-            if 'Slepton' in susyProcess:
-                if isusyMass<=400:
-                    step =  20
-                elif isusyMass<=440:
-                    step =  40
-                elif isusyMass<=500:
-                    step =  60
-                elif isusyMass<=1000:
-                    step = 100
- 
-            isusyMass1 = step*(isusyMass/step)
-            isusyMass2 = step*(isusyMass/step+1)
-
-            if 'Slepton' in susyProcess:
-                if step==60:
-                    isusyMass1 =  440
-                    isusyMass2 =  500
-                elif isusyMass>1000:
-                    isusyMass1 =  900
-                    isusyMass2 = 1000
-
-            if str(isusyMass1) in SUSYCrossSections[susyProcess]['massPoints'].keys() and str(isusyMass2) in SUSYCrossSections[susyProcess]['massPoints'].keys() :
-
-                susyXsec1 = float(SUSYCrossSections[susyProcess]['massPoints'][str(isusyMass1)]['value'])
-                susyXsec2 = float(SUSYCrossSections[susyProcess]['massPoints'][str(isusyMass2)]['value'])
-            
-                slope = -math.log(susyXsec2/susyXsec1)/(isusyMass2-isusyMass1)
-                susyXsec = susyXsec1*math.exp(-slope*(isusyMass-isusyMass1))
-            
-                susyXsecRelUncUp = (self.getCrossSectionUncertainty(susyProcess, isusyMass1, 'Up')/susyXsec1 + 
-                                    self.getCrossSectionUncertainty(susyProcess, isusyMass2, 'Up')/susyXsec2)/2.
-            
-                susyXsecRelUncDown = (self.getCrossSectionUncertainty(susyProcess, isusyMass1, 'Down')/susyXsec1 + 
-                                      self.getCrossSectionUncertainty(susyProcess, isusyMass2, 'Down')/susyXsec2)/2.
-            
-                return [convBR*susyXsec, convBR*susyXsec*(1.+susyXsecRelUncUp), convBR*susyXsec*(1.-susyXsecRelUncDown)]
-            
-            raise Exception('susyCrossSections ERROR: cross section not available for', self.susyProcess, 'at mass =', susyMass)
-
-    ###
-    '''
-    def GetZZGenvar():
-        _ZZpt   = -1.
-        _ZZdphi = -1
-        _ZZmass = -1
-        nZZleps =  0
+        if (finalState==2):
+            if (absdphi >= 0.0 and absdphi < 0.1): k+=1.513834489150
+            if (absdphi >= 0.1 and absdphi < 0.2): k+=1.541738780180
+            if (absdphi >= 0.2 and absdphi < 0.3): k+=1.497829632510
+            if (absdphi >= 0.3 and absdphi < 0.4): k+=1.534956782920
+            if (absdphi >= 0.4 and absdphi < 0.5): k+=1.478217033060
+            if (absdphi >= 0.5 and absdphi < 0.6): k+=1.504330859290
+            if (absdphi >= 0.6 and absdphi < 0.7): k+=1.520626246850
+            if (absdphi >= 0.7 and absdphi < 0.8): k+=1.507013090030
+            if (absdphi >= 0.8 and absdphi < 0.9): k+=1.494243156250
+            if (absdphi >= 0.9 and absdphi < 1.0): k+=1.450536096150
+            if (absdphi >= 1.0 and absdphi < 1.1): k+=1.460812521660
+            if (absdphi >= 1.1 and absdphi < 1.2): k+=1.471603622200
+            if (absdphi >= 1.2 and absdphi < 1.3): k+=1.467700038200
+            if (absdphi >= 1.3 and absdphi < 1.4): k+=1.422408690640
+            if (absdphi >= 1.4 and absdphi < 1.5): k+=1.397184022730
+            if (absdphi >= 1.5 and absdphi < 1.6): k+=1.375593447520
+            if (absdphi >= 1.6 and absdphi < 1.7): k+=1.391901318370
+            if (absdphi >= 1.7 and absdphi < 1.8): k+=1.368564350560
+            if (absdphi >= 1.8 and absdphi < 1.9): k+=1.317884804290
+            if (absdphi >= 1.9 and absdphi < 2.0): k+=1.314019950800
+            if (absdphi >= 2.0 and absdphi < 2.1): k+=1.274641749910
+            if (absdphi >= 2.1 and absdphi < 2.2): k+=1.242346606820
+            if (absdphi >= 2.2 and absdphi < 2.3): k+=1.244727403840
+            if (absdphi >= 2.3 and absdphi < 2.4): k+=1.146259351670
+            if (absdphi >= 2.4 and absdphi < 2.5): k+=1.107804993520
+            if (absdphi >= 2.5 and absdphi < 2.6): k+=1.042053646740
+            if (absdphi >= 2.6 and absdphi < 2.7): k+=0.973608545141
+            if (absdphi >= 2.7 and absdphi < 2.8): k+=0.872169942668
+            if (absdphi >= 2.8 and absdphi < 2.9): k+=0.734505279177
+            if (absdphi >= 2.9 and absdphi < 3.1416): k+=1.163152837230       
         
-        ZZlep      = ROOT.TLorentzVector()
-        ZZlepID    = []
-        genleptons = Collection(event, 'LeptonGen')
-        for genlepton in genleptons:
-            print genlepton.pdgID()
-    '''
+        if (k==0.0): return 1.1 #if something goes wrong return inclusive k-factor
+        else: return k
+
+    #---------------------------------------------
+    def kfactor_qqZZ_qcd_M(self, GENmassZZ, finalState):
+
+        # finalState=1 : 4e/4mu/4tau
+        # finalState=2 : 2e2mu/2mutau/2e2tau
+
+        k=0.0;
+        absZZmass=abs(GENmassZZ)
+        if (finalState==1):
+            if absZZmass >=   0.0 and absZZmass <  25.0: k+=1.23613311013
+            if absZZmass >=  25.0 and absZZmass <  50.0: k+=1.17550314639
+            if absZZmass >=  50.0 and absZZmass <  75.0: k+=1.17044565911
+            if absZZmass >=  75.0 and absZZmass < 100.0: k+=1.03141209689
+            if absZZmass >= 100.0 and absZZmass < 125.0: k+=1.05285574912
+            if absZZmass >= 125.0 and absZZmass < 150.0: k+=1.11287217794
+            if absZZmass >= 150.0 and absZZmass < 175.0: k+=1.13361441158
+            if absZZmass >= 175.0 and absZZmass < 200.0: k+=1.10355603327
+            if absZZmass >= 200.0 and absZZmass < 225.0: k+=1.10053981637
+            if absZZmass >= 225.0 and absZZmass < 250.0: k+=1.10972676811
+            if absZZmass >= 250.0 and absZZmass < 275.0: k+=1.12069120525
+            if absZZmass >= 275.0 and absZZmass < 300.0: k+=1.11589101635
+            if absZZmass >= 300.0 and absZZmass < 325.0: k+=1.13906170314
+            if absZZmass >= 325.0 and absZZmass < 350.0: k+=1.14854594271
+            if absZZmass >= 350.0 and absZZmass < 375.0: k+=1.14616229031
+            if absZZmass >= 375.0 and absZZmass < 400.0: k+=1.14573157789
+            if absZZmass >= 400.0 and absZZmass < 425.0: k+=1.13829430515
+            if absZZmass >= 425.0 and absZZmass < 450.0: k+=1.15521193686
+            if absZZmass >= 450.0 and absZZmass < 475.0: k+=1.13679822698
+            if absZZmass >= 475.0: k+=1.13223956942
+
+        if (finalState==2) :
+            if absZZmass >=   0.0 and absZZmass <  25.0: k+=1.25094466582
+            if absZZmass >=  25.0 and absZZmass <  50.0: k+=1.22459455362
+            if absZZmass >=  50.0 and absZZmass <  75.0: k+=1.19287368979
+            if absZZmass >=  75.0 and absZZmass < 100.0: k+=1.04597506451
+            if absZZmass >= 100.0 and absZZmass < 125.0: k+=1.08323413771
+            if absZZmass >= 125.0 and absZZmass < 150.0: k+=1.09994968030
+            if absZZmass >= 150.0 and absZZmass < 175.0: k+=1.16698455800
+            if absZZmass >= 175.0 and absZZmass < 200.0: k+=1.10399053155
+            if absZZmass >= 200.0 and absZZmass < 225.0: k+=1.10592664340
+            if absZZmass >= 225.0 and absZZmass < 250.0: k+=1.10690381480
+            if absZZmass >= 250.0 and absZZmass < 275.0: k+=1.11194928918
+            if absZZmass >= 275.0 and absZZmass < 300.0: k+=1.13522586553
+            if absZZmass >= 300.0 and absZZmass < 325.0: k+=1.11895090244
+            if absZZmass >= 325.0 and absZZmass < 350.0: k+=1.13898508615
+            if absZZmass >= 350.0 and absZZmass < 375.0: k+=1.15463977506
+            if absZZmass >= 375.0 and absZZmass < 400.0: k+=1.17341664594
+            if absZZmass >= 400.0 and absZZmass < 425.0: k+=1.20093349763
+            if absZZmass >= 425.0 and absZZmass < 450.0: k+=1.18915554919
+            if absZZmass >= 450.0 and absZZmass < 475.0: k+=1.18546007375
+            if absZZmass >= 475.0 : k+=1.12864505708
+
+        if (k==0.0): return 1.1
+        else: return k #if something goes wrong return inclusive k-factor
+
+
+
+    #------------------------------------------------------------------------------
+    #  kfactor_qqZZ_qcd_Pt  (GENpTZZ,   finalState);
+    #------------------------------------------------------------------------------
+    def kfactor_qqZZ_qcd_Pt(self, GENpTZZ, finalState):
+
+        #finalState=1 : 4e/4mu/4tau
+        # finalState=2 : 2e2mu/2mutau/2e2tau
+
+        k=0.0;
+        absZZpt=abs(GENpTZZ)
+        if (finalState==1):
+            if absZZpt >=   0.0 and absZZpt <  5.0: k+=0.64155491983
+            if absZZpt >=   5.0 and absZZpt <  10.0: k+=1.09985240531
+            if absZZpt >=  10.0 and absZZpt <  15.0: k+=1.29390628654
+            if absZZpt >=  15.0 and absZZpt <  20.0: k+=1.37859998571
+            if absZZpt >=  20.0 and absZZpt <  25.0: k+=1.42430263312
+            if absZZpt >=  25.0 and absZZpt <  30.0: k+=1.45038493266
+            if absZZpt >=  30.0 and absZZpt <  35.0: k+=1.47015377651
+            if absZZpt >=  35.0 and absZZpt <  40.0: k+=1.48828685748
+            if absZZpt >=  40.0 and absZZpt <  45.0: k+=1.50573440448
+            if absZZpt >=  45.0 and absZZpt <  50.0: k+=1.50211655928
+            if absZZpt >=  50.0 and absZZpt <  55.0: k+=1.50918720827
+            if absZZpt >=  55.0 and absZZpt <  60.0: k+=1.52463089491
+            if absZZpt >=  60.0 and absZZpt <  65.0: k+=1.52400838378
+            if absZZpt >=  65.0 and absZZpt <  70.0: k+=1.52418067701
+            if absZZpt >=  70.0 and absZZpt <  75.0: k+=1.55424382578
+            if absZZpt >=  75.0 and absZZpt <  80.0: k+=1.52544284222
+            if absZZpt >=  80.0 and absZZpt <  85.0: k+=1.57896384602
+            if absZZpt >=  85.0 and absZZpt <  90.0: k+=1.53034682567
+            if absZZpt >=  90.0 and absZZpt <  95.0: k+=1.56147329708
+            if absZZpt >=  95.0 and absZZpt < 100.0: k+=1.54468169268
+            if absZZpt >=  10.0: k+=1.57222952415
+
+        if (finalState==2) :
+            if absZZpt >=   0.0 and absZZpt <   5.0: k+=0.743602533303
+            if absZZpt >=   5.0 and absZZpt <  10.0: k+=1.14789453219
+            if absZZpt >=  10.0 and absZZpt <  15.0: k+=1.33815867892
+            if absZZpt >=  15.0 and absZZpt <  20.0: k+=1.41420044104
+            if absZZpt >=  20.0 and absZZpt <  25.0: k+=1.45511318916
+            if absZZpt >=  25.0 and absZZpt <  30.0: k+=1.47569225244
+            if absZZpt >=  30.0 and absZZpt <  35.0: k+=1.49053003693
+            if absZZpt >=  35.0 and absZZpt <  40.0: k+=1.50622827695
+            if absZZpt >=  40.0 and absZZpt <  45.0: k+=1.50328889799
+            if absZZpt >=  45.0 and absZZpt <  50.0: k+=1.52186945281
+            if absZZpt >=  50.0 and absZZpt <  55.0: k+=1.52043468754
+            if absZZpt >=  55.0 and absZZpt <  60.0: k+=1.53977869986
+            if absZZpt >=  60.0 and absZZpt <  65.0: k+=1.53491994434
+            if absZZpt >=  65.0 and absZZpt <  70.0: k+=1.51772882172
+            if absZZpt >=  70.0 and absZZpt <  75.0: k+=1.54494489131
+            if absZZpt >=  75.0 and absZZpt <  80.0: k+=1.57762411697
+            if absZZpt >=  80.0 and absZZpt <  85.0: k+=1.55078339014
+            if absZZpt >=  85.0 and absZZpt <  90.0: k+=1.57078191891
+            if absZZpt >=  90.0 and absZZpt <  95.0: k+=1.56162666568
+            if absZZpt >=  95.0 and absZZpt < 100.0: k+=1.54183774627
+            if absZZpt >= 100.0: k+=1.58485762205
+
+        if (k==0.0): return 1.1
+        else: return k #if something goes wrong return inclusive k-factor
+
+
+    #---------------------------------------------
 
 
     def analyze(self, event):
@@ -175,13 +276,10 @@ class ZZGenVarsProducer(Module):
             if genpart.genPartIdxMother < 0 : continue
             abspdgID  = abs(genpart.pdgId)
             abspdgMum = abs(genParticles[genpart.genPartIdxMother].pdgId)
-            print "IDX", idx, "\t particle", genpart.pdgId, "\t",
             if genpart.genPartIdxMother > -1 :
-                print "muuum", abspdgMum,
                 if abspdgMum == 23:
                     #print "this should be the genpart", genpart.pdgId
                     1==1
-            print ""
             lepmass = -1
             isEle   = False
             isMu    = False
@@ -210,24 +308,31 @@ class ZZGenVarsProducer(Module):
 
         if nZZleps is not 4: print " ZZGenVarsProducer warning:", nZZleps, "leptons found"
         if nZZleps <4: return
-        MinZZdiff= 999
-        print "i should be inside", nZZleps, ZZlep
+
+        nele = 0
+        nmu  = 0
+        nnu  = 0
+        for lep in ZZlepID:
+            if   abs(lep) in neupdgID: nnu  += 1
+            elif abs(lep) == 11:       nele += 1
+            elif abs(lep) == 13:       nmu  += 1
+            #print lep
+        MinZZdiff  = 999
+        finalstate = 2
+        if nele == 4 or nmu == 4: finalstate = 1
+        #print "i should be inside", nZZleps, ZZlep, nele, nmu, nnu
         
         for l1 in range(0, nZZleps):
             #print lep_ch[l1], ZZlepID[l1]
             for l2 in range(l1+1, nZZleps):
-                print lep_ch[l1], lep_ch[l2]
                 if lep_ch[l1] + lep_ch[l2] is not 0: continue
-                print "works"
                 Z1= ZZlep[l1]+ZZlep[l2]
                 for l3 in range(0, nZZleps):
                     if l3 in [l1,l2] : continue
                     for l4 in range(l3+1, nZZleps):
                         if (l4 in [l1,l2]) or (lep_ch[l3] + lep_ch[l4] is not 0) : continue
                         Z2= ZZlep[l3]+ZZlep[l4]
-                        print l1,l2,l3,l4, Z1, Z2
                         ZZdiff = math.sqrt(pow(Z1.M()-90,2) + pow(Z2.M() -90 ,2))
-                        print ZZdiff
                         if (ZZdiff<MinZZdiff): 
                             ZZCand  = Z1 + Z2
                             _ZZmass = ZZCand.M()
@@ -235,176 +340,19 @@ class ZZGenVarsProducer(Module):
                             _ZZdphi = Z2.DeltaPhi(Z1)
                             
                             MinZZDiff = ZZdiff
-        exit()
 
-
-
-        idPrompt     = -1.
-        massPrompt   = -1.
-        massStop     = -1.
-        massLSP      = -1.
-        massChargino = -1.
-        massSlepton  = -1.
-        xSection     = -1.
-        xSecUncert   = -1.
-        ptISR        = -1.
-        njetISR      =  0.
 
         
-        _ZZpt   = -1.
-        _ZZdphi = -1.
-        _ZZmass = -1.
-        nZZleps =  0
-        ZZlep    = []
-        ZZlepID  = []
-        neupdgID = [12,14,16]
-        lep_ch   = []
 
-
-        self.out.fillBranch("susyIDprompt",  idPrompt)
-        self.out.fillBranch("susyMprompt",   massPrompt)
-        self.out.fillBranch("susyMstop",     massStop)
-        self.out.fillBranch("susyMLSP",      massLSP)
-        self.out.fillBranch("susyMChargino", massChargino)
-        self.out.fillBranch("susyMSlepton",  massSlepton)
-        self.out.fillBranch("Xsec",          xSection)
-        self.out.fillBranch("XsecUp",        xSectionUp)
-        self.out.fillBranch("XsecDown",      xSectionDown)
-        self.out.fillBranch("ptISR",         ptISR)
-        self.out.fillBranch("njetISR",       njetISR)
-
-
-        nSusyParticles = 0
-        susyParticle1 = ROOT.TLorentzVector()
-        susyParticle2 = ROOT.TLorentzVector()
-
-        genParticles = Collection(event, "GenPart")
-
-        # http://pdg.lbl.gov/2007/reviews/montecarlorpp.pdf
-        for particle in genParticles :
-
-            if abs(particle.pdgId)>=1000000 and abs(particle.pdgId)<=2001000 : # It is SUSY particle
-
-                if abs(genParticles[particle.genPartIdxMother].pdgId)<1000000 : # Its mother is not SUSY
-
-                    if nSusyParticles==0 :
-                        idPrompt = abs(particle.pdgId)
-                        massPrompt = particle.mass
-                        susyParticle1.SetPtEtaPhiM(particle.pt, particle.eta, particle.phi, particle.mass)
-                    elif nSusyParticles==1 :
-                        susyParticle2.SetPtEtaPhiM(particle.pt, particle.eta, particle.phi, particle.mass)
-                    nSusyParticles += 1
-
-                if abs(particle.pdgId)==1000006 : # Stop1
-                    massStop = particle.mass
-                
-                if abs(particle.pdgId)==1000022 : # Chi^0_1
-                    massLSP = particle.mass
-                    
-                if abs(particle.pdgId)==1000024 : # Chi^{\pm}_1
-                    massChargino = particle.mass
-                        
-                if ((abs(particle.pdgId)>=1000011 and abs(particle.pdgId)<=1000016) or # LH sleptons
-                    (abs(particle.pdgId)==2000011 or abs(particle.pdgId)==2000013 or abs(particle.pdgId)==2000015)) : # RH sleptons
-                    massSlepton = particle.mass
-
-        if self.susyModelIsSet==False:
-            if massStop>-1:
-                self.susyProcess = 'StopSbottom'
-                if massChargino>-1:
-                    self.susyModel = 'T2bW'
-                else:
-                    self.susyModel = 'T2tt'
-            elif massChargino>-1:
-                self.susyProcess = 'WinoC1C1'
-                if massSlepton>-1:
-                    self.susyModel = 'TChipmSlepSnu'
-                else:
-                    self.susyModel = 'TChipmWW'
-            elif massSlepton>-1:
-                if idPrompt>=2000000:
-                    self.susyProcess = 'SleptonRH'
-                    if idPrompt==2000011:
-                        self.susyModel = 'TSelectronSelectronRH'
-                    elif idPrompt==2000013:
-                        self.susyModel = 'TSmuonSmuonRH'
-                else:
-                    self.susyProcess = 'SleptonLH'
-                    if idPrompt==1000011:
-                        self.susyModel = 'TSelectronSelectronLH'
-                    elif idPrompt==1000013:
-                        self.susyModel = 'TSmuonSmuonLH'
-            else:
-                raise Exception('ZZGenVarsProducer ERROR: SUSY process not set from gen particle inspection either')
-            if self.susyProcess=='StopSbottom' or self.susyProcess=='WinoC1C1':
-                print 'ZZGenVarsProducer WARNING: SUSY process set to', self.susyProcess, 'from gen particle inspection'
-                self.susyModelIsSet = True
-                
-    
-        susyMass = int(25*round(float(massPrompt)/25)) if ((massPrompt%25)>=21 or (massPrompt%25)<=4) else massPrompt
-        xSection, xSectionUp, xSectionDown = self.getCrossSection(self.susyProcess, self.susyModel, susyMass)
-        
-        if nSusyParticles==2 :
-            ptISR = (susyParticle1+susyParticle2).Pt()
-        else :
-            print 'ZZGenVarsProducer WARNING:', nSusyParticles, 'SUSY particles found for pt ISR computation'
-
-        # Adapted from (check for updates for nanoAOD):
-        # https://github.com/manuelfs/babymaker/blob/0136340602ee28caab14e3f6b064d1db81544a0a/bmaker/plugins/bmaker_full.cc#L1268-L1295
-        jetColl = Collection(event, "Jet")
-
-        for jet in jetColl :
-            # https://github.com/manuelfs/babymaker/blob/0136340602ee28caab14e3f6b064d1db81544a0a/bmaker/plugins/bmaker_full.cc#L372-L395
-            if jet.jetId & 1 : # is loose 
-                # https://github.com/manuelfs/babymaker/blob/11e7a6f26ed6c1efcd0027c8b4219eb69a997bae/bmaker/interface/jet_met_tools.hh
-                if jet.pt>30 and abs(jet.eta)<2.4 :
-                    
-                    matched = False
-
-                    jetV = ROOT.TLorentzVector()
-                    jetV.SetPtEtaPhiM(jet.pt, jet.eta, jet.phi, jet.mass)
-                    
-                    for particle in genParticles :
-
-                        if particle.genPartIdxMother>-1 :
-
-                            matchThis = False
-
-                            motherId = abs(genParticles[particle.genPartIdxMother].pdgId) 
-
-                            if abs(particle.pdgId)==11 or abs(particle.pdgId)==13 :
-                                if motherId==15 or motherId==23 or motherId==24 or motherId==25 or motherId>1e6 :
-                                    matchThis = True
-                        
-                            if motherId<=5 : # Why not gluons?
-                                if genParticles[particle.genPartIdxMother].genPartIdxMother>-1 :
-                                    grandmotherId = abs(genParticles[genParticles[particle.genPartIdxMother].genPartIdxMother].pdgId) 
-                                    if grandmotherId==6 or grandmotherId==23 or grandmotherId==24 or grandmotherId==25 or grandmotherId>1e6 : 
-                                        matchThis = True
-
-                            if matchThis==True :
-
-                                parV = ROOT.TLorentzVector()
-                                parV.SetPtEtaPhiM(particle.pt, particle.eta, particle.phi, particle.mass)
-
-                                if jetV.DeltaR(parV)<0.3 :
-                                    matched = True
-                                    break
-
-                    if matched==False:
-                        njetISR += 1
-
-        self.out.fillBranch("susyIDprompt",  idPrompt)
-        self.out.fillBranch("susyMprompt",   massPrompt)
-        self.out.fillBranch("susyMstop",     massStop)
-        self.out.fillBranch("susyMLSP",      massLSP)
-        self.out.fillBranch("susyMChargino", massChargino)
-        self.out.fillBranch("susyMSlepton",  massSlepton)
-        self.out.fillBranch("Xsec",          xSection)
-        self.out.fillBranch("XsecUp",        xSectionUp)
-        self.out.fillBranch("XsecDown",      xSectionDown)
-        self.out.fillBranch("ptISR",         ptISR)
-        self.out.fillBranch("njetISR",       njetISR)
-            
+        k_dphi = -1
+        k_mass = -1
+        k_pt   = -1
+        k_dphi = self.kfactor_qqZZ_qcd_dPhi(_ZZdphi,finalstate)
+        k_mass = self.kfactor_qqZZ_qcd_M   (_ZZmass,finalstate)
+        k_pt   = self.kfactor_qqZZ_qcd_Pt  (_ZZpt  ,finalstate)
+        #print "--> pt", k_dphi, k_mass, k_pt
+        self.out.fillBranch("kZZ_dphi", k_dphi )
+        self.out.fillBranch("kZZ_mass", k_mass )
+        self.out.fillBranch("kZZ_pt"  , k_pt )
+        #self.out.fillBranch("k",  k) 
         return True
- 

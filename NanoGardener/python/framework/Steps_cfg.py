@@ -588,16 +588,15 @@ Steps = {
                   'selection'  : '"((nElectron+nMuon)>0)"' ,
                   'subTargets' : ['leptonMaker','lepSel', 'puW2017', 'l2Kin', 'l3Kin', 'l4Kin', 'btagPerJet2017', 'btagPerEvent','PrefCorr2017'],
                 },
-
-  'MCCorr2017OLD' : {
-                 'isChain'    : True  ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'subTargets' : ['baseW','PrefCorr2017','jetSel','CleanJetCut', 'btagPerJet2017', 'btagPerEvent' ,
-                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch', 'HiggsGenVars', 'TopGenVars', 'wwNLL',
-                                  'ggHTheoryUncertainty', 'DressedLeptons', 'WGammaStar',
-                                  'rochesterMC','trigMC','LeptonSF','puW','l2Kin', 'l3Kin', 'l4Kin','formulasMC'],
-                    },
+  
+  #'MCCorr2017OLD' : {
+  #               'isChain'    : True  ,
+  #                'do4MC'      : True  ,
+  #                'do4Data'    : False ,
+  #                'subTargets' : ['baseW','PrefCorr2017','jetSel','CleanJetCut', 'btagPerJet2017', 'btagPerEvent' ,
+  #                                'PromptParticlesGenVars','GenVar','GenLeptonMatch', 'HiggsGenVars', 'TopGenVars', 'wwNLL',
+  #                                'ggHTheoryUncertainty', 'DressedLeptons', 'WGammaStar',
+  #                                'rochesterMC','trigMC','LeptonSF','puW','l2Kin', 'l3Kin', 'l4Kin','formulasMC'],},
 
   'MCCorr2017_SemiLep' : {
                  'isChain'    : True  ,
@@ -2239,16 +2238,17 @@ Steps = {
     #               'module'     : 'fatjetmass_scaler()'
     # },
 
+
    'ZZGen': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.SusyGenVarsProducer' ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.ZZGenVarsProducer' ,
                   'module'     : 'ZZGenVarsProducer()' ,
-                  'onlySample' : ['ZZto4L', 'ggZZ4e', 'ggZZ4m', 'ggZZ4l', 'ggZZ2e2m', 'ggZZ2e2l', 'ggZZ2l2m', 'VBFHToZZTo4L_M125', 'GluGluHToZZTo4L_M125'],
+                  'onlySample' : ['ggZZ4e'],#, 'ggZZ4e', 'ggZZ4m', 'ggZZ4l', 'ggZZ2e2m', 'ggZZ2e2l', 'ggZZ2l2m', 'VBFHToZZTo4L_M125', 'GluGluHToZZTo4L_M125'],
                },  
 
-
+  
 
 
    'susyGen': {
@@ -5046,6 +5046,9 @@ Steps['MCSusy2017FSv6']  = Steps['MCSusy2017FS']
 Steps['MCSusy2018v6']    = Steps['MCSusy2018']
 Steps['MCSusy2018FSv6']  = Steps['MCSusy2018FS']
 
+
+
+print "before loops"
 # METFixEEDATA2017
 for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
     Steps['DATASusy2017'+dataperiod+'v6'] = { }
@@ -5071,6 +5074,7 @@ for datatype in [ '', 'FS', 'Data' ] :
 for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
 
     looseele, loosemuo = '', ''
+    print "inside mt2 loop"
     if looselep=='miniiso':
         looseele, loosemuo = 'SusyMVAVLoose', 'looseMiniIsoLoose'
     elif looselep=='reliso':
@@ -5098,7 +5102,6 @@ for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
         Steps['susy'+looselep+'MT2'+region]['do4Data'] = True    
         Steps['susy'+looselep+'MT2'+region]['module'] = 'mt2Producer(analysisRegion="'+region+'", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'")'  
 
-#
 
 Steps.update(addJESchainMembers())
 Steps.update(addSystChainMembers_CombJJLNu())
