@@ -203,11 +203,11 @@ class ZZGenVarsProducer(Module):
 
         #finalState=1 : 4e/4mu/4tau
         # finalState=2 : 2e2mu/2mutau/2e2tau
-
+        
         k=0.0;
         absZZpt=abs(GENpTZZ)
         if (finalState==1):
-            if absZZpt >=   0.0 and absZZpt <  5.0: k+=0.64155491983
+            if absZZpt >=   0.0 and absZZpt <  5.0:  k+=0.64155491983
             if absZZpt >=   5.0 and absZZpt <  10.0: k+=1.09985240531
             if absZZpt >=  10.0 and absZZpt <  15.0: k+=1.29390628654
             if absZZpt >=  15.0 and absZZpt <  20.0: k+=1.37859998571
@@ -227,7 +227,7 @@ class ZZGenVarsProducer(Module):
             if absZZpt >=  85.0 and absZZpt <  90.0: k+=1.53034682567
             if absZZpt >=  90.0 and absZZpt <  95.0: k+=1.56147329708
             if absZZpt >=  95.0 and absZZpt < 100.0: k+=1.54468169268
-            if absZZpt >=  10.0: k+=1.57222952415
+            if absZZpt >=  100.0: k+=1.57222952415
 
         if (finalState==2) :
             if absZZpt >=   0.0 and absZZpt <   5.0: k+=0.743602533303
@@ -350,7 +350,7 @@ class ZZGenVarsProducer(Module):
         k_dphi = self.kfactor_qqZZ_qcd_dPhi(_ZZdphi,finalstate)
         k_mass = self.kfactor_qqZZ_qcd_M   (_ZZmass,finalstate)
         k_pt   = self.kfactor_qqZZ_qcd_Pt  (_ZZpt  ,finalstate)
-        #print "--> pt", k_dphi, k_mass, k_pt
+        #print "--> pt", finalstate, k_pt
         self.out.fillBranch("kZZ_dphi", k_dphi )
         self.out.fillBranch("kZZ_mass", k_mass )
         self.out.fillBranch("kZZ_pt"  , k_pt )
