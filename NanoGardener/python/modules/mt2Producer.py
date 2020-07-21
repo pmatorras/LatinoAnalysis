@@ -9,13 +9,21 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 class mt2Producer(Module):
 
     ###
+<<<<<<< HEAD
     def __init__(self, analysisRegion = '',  dataType = 'mc', looseEleWP = '', looseMuoWP = '', metType = 'type1pf'):
+=======
+    def __init__(self, analysisRegion = '',  dataType = 'mc', looseEleWP = '', looseMuoWP = '', metType = 'type1pf', metSystematic = 'nom'):
+>>>>>>> origin/master
 
         self.analysisRegion = analysisRegion
         self.dataType = dataType
         self.looseEleWP = looseEleWP
         self.looseMuoWP = looseMuoWP
         self.metType = metType
+<<<<<<< HEAD
+=======
+        self.metSystematic = metSystematic
+>>>>>>> origin/master
 
         self.Zmass = 91.1876
 
@@ -174,6 +182,7 @@ class mt2Producer(Module):
         if nLooseLeptons<2: return False
  
         ptmissvec3 = ROOT.TVector3()
+<<<<<<< HEAD
         if self.metType=='puppi' :
             ptmissvec3.SetPtEtaPhi(event.PuppiMET_pt, 0., event.PuppiMET_phi)
         elif hasattr(event, 'METFixEE2017_pt_nom'):
@@ -181,6 +190,22 @@ class mt2Producer(Module):
         else:
             ptmissvec3.SetPtEtaPhi(event.MET_pt, 0., event.MET_phi)
         
+=======
+
+        metBranch = 'MET' 
+        if hasattr(event, 'METFixEE2017_pt_nom'): metBranch = 'METFixEE2017' 
+        if self.metType=='puppi':  metBranch = 'PuppiMET' 
+
+        metSystem = '_'+self.metSystematic 
+        if not hasattr(event, metBranch+'_pt'+metSystem):
+            if self.metSystematic=='nom':
+                metSystem = ''
+            else:    
+                raise Exception('mt2producer ERROR: variable', metBranch+'_pt'+metSystem, 'does not exist')
+
+        ptmissvec3.SetPtEtaPhi(getattr(event, metBranch+'_pt'+metSystem), 0., getattr(event, metBranch+'_phi'+metSystem)) 
+
+>>>>>>> origin/master
         # Looking for the leptons to turn into neutrinos
         Lost = []
         Skip = []
@@ -339,6 +364,9 @@ class mt2Producer(Module):
                 if W0==-1 : W0 = iLep
                 elif W1==-1 : W1 = iLep
 
+        if self.metSystematic!='nom' and self.dataType!='fastsim': 
+            if ptmissvec3.Pt()<100.: return False
+
         if lepVect[W0].Pt()<25. : return False
         if lepVect[W1].Pt()<20. : return False
 
@@ -402,7 +430,6 @@ class mt2Producer(Module):
                     elif self.analysisRegion=='gen':
                         ptmiss = ptmiss_gen
                         mt2ll = mt2ll_gen
- 
 
         self.out.fillBranch("ptmiss",     ptmiss)
         self.out.fillBranch("ptmiss_phi", ptmiss_phi)

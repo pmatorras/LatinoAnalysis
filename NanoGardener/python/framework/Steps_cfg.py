@@ -79,7 +79,7 @@ def createJESchain_CombJJLNu(type, kind="Up"):
   if type == "Total":
     typeShort = ""
   toreplace = typeShort+kind.lower()  
-  chainTemplate = ['do_JESVAR_suffix', 'VBSjjlnu_pairing_JESVAR', 'VBSjjlnu_kin_JESVAR',
+  chainTemplate = ['do_JESVAR_suffix', 'l2Kin_JESVAR', 'VBSjjlnu_pairing_JESVAR', 'VBSjjlnu_kin_JESVAR',
                   'whadJetSel_JESVAR', 'wlepMaker_JESVAR', 'HMlnjjVars_JESVAR', 'HMDNNProdSemi_JESVAR' , 'HMDNNNeutSemi_JESVAR',
                   'MHSemiLepVars_JESVAR', 'MHSemiLepMVA_JESVAR']
   chain = []
@@ -385,7 +385,7 @@ def prepare_CombJJLNu_syst(basename, selection):
           'do4MC'      : True  ,
           'do4Data'    : False  ,
           'selection'  : selection,
-          'subTargets' : ['JESBase', 'l2Kin_{0}'.format(torep), 
+          'subTargets' : ['JESBase', 
                         ] +
                           createJESchain_CombJJLNu("Total", kind) +
                           createJESchain_CombJJLNu("Absolute", kind) +
@@ -413,7 +413,7 @@ def prepare_CombJJLNu_syst(basename, selection):
                         'trigMCKeepRun_{0}'.format(torep), 
                         'LeptonSF_{0}'.format(torep),
                         'VBSjjlnu_pairing_{0}'.format(torep), 'VBSjjlnu_kin_{0}'.format(torep), 
-                        'wlepMaker_{0}'.format(torep), 'HMlnjjVars_{0}'.format(torep), 'HMDNNProdSemi_{0}'.format(torep), 'HMDNNNeutSemi_{0}'.format(torep),
+                        'whadJetSel_{0}'.format(torep), 'wlepMaker_{0}'.format(torep), 'HMlnjjVars_{0}'.format(torep), 'HMDNNProdSemi_{0}'.format(torep), 'HMDNNNeutSemi_{0}'.format(torep),
                         'l2Kin_{0}'.format(torep), 'MHSemiLepVars_{0}'.format(torep), 'MHSemiLepMVA_{0}'.format(torep),
                         ],
           'outputbranchsel': os.getenv('CMSSW_BASE') + '/src/LatinoAnalysis/NanoGardener/python/data/keepsysts.txt'
@@ -426,7 +426,7 @@ def prepare_CombJJLNu_syst(basename, selection):
           'selection'  : selection,
           'subTargets': ['do_{0}_suffix'.format(torep), 
                         'VBSjjlnu_pairing_{0}'.format(torep), 'VBSjjlnu_kin_{0}'.format(torep), 
-                        'wlepMaker_{0}'.format(torep), 'HMlnjjVars_{0}'.format(torep), 'HMDNNProdSemi_{0}'.format(torep), 'HMDNNNeutSemi_{0}'.format(torep),
+                        'whadJetSel_{0}'.format(torep), 'wlepMaker_{0}'.format(torep), 'HMlnjjVars_{0}'.format(torep), 'HMDNNProdSemi_{0}'.format(torep), 'HMDNNNeutSemi_{0}'.format(torep),
                         'l2Kin_{0}'.format(torep), 'MHSemiLepVars_{0}'.format(torep), 'MHSemiLepMVA_{0}'.format(torep),
                         ],
           'outputbranchsel': os.getenv('CMSSW_BASE') + '/src/LatinoAnalysis/NanoGardener/python/data/keepsysts.txt'
@@ -439,7 +439,7 @@ def prepare_CombJJLNu_syst(basename, selection):
           'selection'  : selection,
           'subTargets': ['CorrFatJetMC', 'CleanFatJet_{0}'.format(torep), 'BoostedWtagSF_{0}'.format(torep),
                         'VBSjjlnu_pairing_{0}'.format(torep), 'VBSjjlnu_kin_{0}'.format(torep),  
-                        'whadJetSel_{0}'.format(torep), 'HMlnjjVars_{0}'.format(torep), 'HMDNNProdSemi_{0}'.format(torep), 'HMDNNNeutSemi_{0}'.format(torep)
+                        'whadJetSel_{0}'.format(torep), 'wlepMaker_{0}'.format(torep), 'HMlnjjVars_{0}'.format(torep), 'HMDNNProdSemi_{0}'.format(torep), 'HMDNNNeutSemi_{0}'.format(torep)
                         ],
           'outputbranchsel': os.getenv('CMSSW_BASE') + '/src/LatinoAnalysis/NanoGardener/python/data/keepsysts.txt'
         }
@@ -4570,7 +4570,7 @@ Steps = {
                     'do4MC'      : True  ,
                     'do4Data'    : True  ,
                     'import'     : 'LatinoAnalysis.NanoGardener.modules.BoostedWtagSF',
-                    'declare'    : 'boostedWtagsf_jmsDo = lambda : BoostedWtagSF(input_branch_suffix="jmsDo",output_branch_map="fatjetJMSdo", year="RPLME_YEAR", jetid=0, minpt=200, maxeta=2.4, max_tau21=0.45, mass_range=[40, 250], over_lepR=0.8)',
+                    'declare'    : 'boostedWtagsf_jmsDo = lambda : BoostedWtagSF(input_branch_suffix="jmsDown",output_branch_map="fatjetJMSdo", year="RPLME_YEAR", jetid=0, minpt=200, maxeta=2.4, max_tau21=0.45, mass_range=[40, 250], over_lepR=0.8)',
                     'module'     : 'boostedWtagsf_jmsDo()'
       },
 
@@ -4588,7 +4588,7 @@ Steps = {
                     'do4MC'      : True  ,
                     'do4Data'    : True  ,
                     'import'     : 'LatinoAnalysis.NanoGardener.modules.BoostedWtagSF',
-                    'declare'    : 'boostedWtagsf_jmrDo = lambda : BoostedWtagSF(input_branch_suffix="jmrDo",output_branch_map="fatjetJMRdo", year="RPLME_YEAR", jetid=0, minpt=200, maxeta=2.4, max_tau21=0.45, mass_range=[40, 250], over_lepR=0.8)',
+                    'declare'    : 'boostedWtagsf_jmrDo = lambda : BoostedWtagSF(input_branch_suffix="jmrDown",output_branch_map="fatjetJMRdo", year="RPLME_YEAR", jetid=0, minpt=200, maxeta=2.4, max_tau21=0.45, mass_range=[40, 250], over_lepR=0.8)',
                     'module'     : 'boostedWtagsf_jmrDo()'
       },
 
@@ -4606,7 +4606,7 @@ Steps = {
                     'do4MC'      : True  ,
                     'do4Data'    : True  ,
                     'import'     : 'LatinoAnalysis.NanoGardener.modules.BoostedWtagSF',
-                    'declare'    : 'boostedWtagsf_jerDo = lambda : BoostedWtagSF(input_branch_suffix="jerDo",output_branch_map="fatjetJERdo", year="RPLME_YEAR", jetid=0, minpt=200, maxeta=2.4, max_tau21=0.45, mass_range=[40, 250], over_lepR=0.8)',
+                    'declare'    : 'boostedWtagsf_jerDo = lambda : BoostedWtagSF(input_branch_suffix="jerDown",output_branch_map="fatjetJERdo", year="RPLME_YEAR", jetid=0, minpt=200, maxeta=2.4, max_tau21=0.45, mass_range=[40, 250], over_lepR=0.8)',
                     'module'     : 'boostedWtagsf_jerDo()'
       },
 
