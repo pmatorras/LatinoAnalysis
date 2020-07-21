@@ -2433,6 +2433,22 @@ Steps = {
                   'module'     : 'mt2Producer(dataType="data", looseEleWP="", looseMuoWP="")' ,
                }, 
 
+   'susyMT2puppi': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer(looseEleWP="", looseMuoWP="", metType="puppi")' ,
+               },
+
+   'susyMT2puppidata': {
+                  'isChain'    : False ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer(dataType="data", looseEleWP="", looseMuoWP="", metType="puppi")' ,
+               },
+
 ## EFT JJH->WW->2l2nu
 
     'JJHl2EFT' : {
