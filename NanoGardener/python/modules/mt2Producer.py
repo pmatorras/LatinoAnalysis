@@ -9,21 +9,14 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 class mt2Producer(Module):
 
     ###
-<<<<<<< HEAD
-    def __init__(self, analysisRegion = '',  dataType = 'mc', looseEleWP = '', looseMuoWP = '', metType = 'type1pf'):
-=======
     def __init__(self, analysisRegion = '',  dataType = 'mc', looseEleWP = '', looseMuoWP = '', metType = 'type1pf', metSystematic = 'nom'):
->>>>>>> origin/master
 
         self.analysisRegion = analysisRegion
         self.dataType = dataType
         self.looseEleWP = looseEleWP
         self.looseMuoWP = looseMuoWP
         self.metType = metType
-<<<<<<< HEAD
-=======
         self.metSystematic = metSystematic
->>>>>>> origin/master
 
         self.Zmass = 91.1876
 
@@ -182,15 +175,6 @@ class mt2Producer(Module):
         if nLooseLeptons<2: return False
  
         ptmissvec3 = ROOT.TVector3()
-<<<<<<< HEAD
-        if self.metType=='puppi' :
-            ptmissvec3.SetPtEtaPhi(event.PuppiMET_pt, 0., event.PuppiMET_phi)
-        elif hasattr(event, 'METFixEE2017_pt_nom'):
-            ptmissvec3.SetPtEtaPhi(event.METFixEE2017_pt_nom, 0., event.METFixEE2017_phi_nom) 
-        else:
-            ptmissvec3.SetPtEtaPhi(event.MET_pt, 0., event.MET_phi)
-        
-=======
 
         metBranch = 'MET' 
         if hasattr(event, 'METFixEE2017_pt_nom'): metBranch = 'METFixEE2017' 
@@ -205,7 +189,6 @@ class mt2Producer(Module):
 
         ptmissvec3.SetPtEtaPhi(getattr(event, metBranch+'_pt'+metSystem), 0., getattr(event, metBranch+'_phi'+metSystem)) 
 
->>>>>>> origin/master
         # Looking for the leptons to turn into neutrinos
         Lost = []
         Skip = []
