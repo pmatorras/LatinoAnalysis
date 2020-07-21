@@ -2691,6 +2691,24 @@ Steps = {
                   'declare'    : 'jetRecalib2017MC = lambda : jetRecalib(globalTag="Fall17_17Nov2017_V32_MC", jetCollections=["CleanJet"], metCollections=["MET"])',
                   'module'     : 'jetRecalib2017MC()',
                  }, 
+ 
+  'JMEUncertMC2016' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorMC2016 = (isMC=True, dataYear=2016, jesUncert="All", redojec=True)',
+                  'module'     : 'jetmetCorrectorMC2016()',
+                 },   
+ 
+  'JMEUncertFS2016' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorFS2016 = (isMC=True, dataYear=2016, jesUncert="All", redojec=True, isFastSim=True)',
+                  'module'     : 'jetmetCorrectorFS2016()',
+                 }, 
 
   'METFixEEMC2017' : {
                   'isChain'    : False ,
@@ -2708,6 +2726,24 @@ Steps = {
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
                   'declare'    : 'jetmetCorrectorEEFS2017 = createJMECorrector(isMC=True, dataYear=2017, runPeriod="", metBranchName="METFixEE2017", isFastSim=True)',
                   'module'     : 'jetmetCorrectorEEFS2017()',
+                 },  
+ 
+  'JMEUncertMC2018' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorMC2018 = (isMC=True, dataYear=2018, jesUncert="All", redojec=True)',
+                  'module'     : 'jetmetCorrectorMC2018()',
+                 },   
+ 
+  'JMEUncertFS2018' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                  'declare'    : 'jetmetCorrectorFS2018 = (isMC=True, dataYear=2018, jesUncert="All", redojec=True, isFastSim=True)',
+                  'module'     : 'jetmetCorrectorFS2018()',
                  }, 
 
   #'METFixEEDATA2017' : {
