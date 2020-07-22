@@ -2414,7 +2414,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(looseEleWP="", looseMuoWP="")' ,
+                  'module'     : 'mt2Producer(looseEleWP="", looseMuoWP="", metSystematic="nom")' ,
                },  
 
    'susyMT2FS': {
@@ -2422,7 +2422,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(dataType="fastsim", looseEleWP="", looseMuoWP="")' ,
+                  'module'     : 'mt2Producer(dataType="fastsim", looseEleWP="", looseMuoWP="", metSystematic="nom")' ,
                },   
 
    'susyMT2data': {
@@ -5335,11 +5335,18 @@ for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
         looseele, loosemuo = 'cutBasedVeto', 'looseIsoLoose'
 
     if looselep!='':
-      for datatype in [ '', 'data', 'FS' ]:
-          Steps['susy'+looselep+'MT2'+datatype] = { }
-          for key in Steps['susyMT2'+datatype]:
-              Steps['susy'+looselep+'MT2'+datatype][key] = Steps['susyMT2'+datatype][key]
-          Steps['susy'+looselep+'MT2'+datatype]['module'] = Steps['susyMT2'+datatype]['module'].replace('looseEleWP="", looseMuoWP=""', 'looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'"')
+        for datatype in [ '', 'data', 'FS' ]:
+            Steps['susy'+looselep+'MT2'+datatype] = { }
+            for key in Steps['susyMT2'+datatype]:
+                Steps['susy'+looselep+'MT2'+datatype][key] = Steps['susyMT2'+datatype][key]
+            Steps['susy'+looselep+'MT2'+datatype]['module'] = Steps['susyMT2'+datatype]['module'].replace('looseEleWP="", looseMuoWP=""', 'looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'"')
+
+    for datatype in [ '', 'FS' ]:
+        for metsyst in [ 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
+            Steps['susy'+looselep+'MT2'+datatype+metsyst] = { }
+            for key in Steps['susy'+looselep+'MT2'+datatype]:
+                Steps['susy'+looselep+'MT2'+datatype+metsyst][key] = Steps['susy'+looselep+'MT2'+datatype][key]
+            Steps['susy'+looselep+'MT2'+datatype+metsyst]['module'] = Steps['susy'+looselep+'MT2'+datatype]['module'].replace('metSystematic="nom"', 'metSystematic="'+metsyst+'"')
 
     for region in [ 'gen', 'reco' ]:
         Steps['susy'+looselep+'MT2FS'+region] = { }
@@ -5347,12 +5354,14 @@ for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
             Steps['susy'+looselep+'MT2FS'+region][key] = Steps['susyMT2FS'][key]
         Steps['susy'+looselep+'MT2FS'+region]['module'] = 'mt2Producer(analysisRegion="'+region+'", dataType="fastsim", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'")'
 
-    for region in [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]:
-        Steps['susy'+looselep+'MT2'+region] = { }
-        for key in Steps['susyMT2']:
-            Steps['susy'+looselep+'MT2'+region][key] = Steps['susyMT2'][key]
-        Steps['susy'+looselep+'MT2'+region]['do4Data'] = True    
-        Steps['susy'+looselep+'MT2'+region]['module'] = 'mt2Producer(analysisRegion="'+region+'", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'")'  
+    for region in [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]: 
+        for metsyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
+            metsystname = '' if metsyst=='nom' else metsyst
+            Steps['susy'+looselep+'MT2'+region+metsystname] = { }
+            for key in Steps['susyMT2']:
+              Steps['susy'+looselep+'MT2'+region+metsystname][key] = Steps['susyMT2'][key]
+            Steps['susy'+looselep+'MT2'+region+metsystname]['do4Data'] = True    
+            Steps['susy'+looselep+'MT2'+region+metsystname]['module'] = 'mt2Producer(analysisRegion="'+region+'", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+', metSystematic="'+metsyst+'")' 
 
 #
 
