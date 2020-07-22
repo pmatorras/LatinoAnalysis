@@ -2713,7 +2713,7 @@ Steps = {
                   'do4MC'      : True ,
                   'do4Data'    : False ,
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                  'declare'    : 'jetmetCorrectorMC2016 = (isMC=True, dataYear=2016, jesUncert="All", redojec=True)',
+                  'declare'    : 'jetmetCorrectorMC2016 = createJMECorrector(isMC=True, dataYear=2016, jesUncert="Total", redojec=True)',
                   'module'     : 'jetmetCorrectorMC2016()',
                  },   
  
@@ -2722,7 +2722,7 @@ Steps = {
                   'do4MC'      : True ,
                   'do4Data'    : False ,
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                  'declare'    : 'jetmetCorrectorFS2016 = (isMC=True, dataYear=2016, jesUncert="All", redojec=True, isFastSim=True)',
+                  'declare'    : 'jetmetCorrectorFS2016 = createJMECorrector(isMC=True, dataYear=2016, jesUncert="Total", redojec=True, isFastSim=True)',
                   'module'     : 'jetmetCorrectorFS2016()',
                  }, 
 
@@ -2749,7 +2749,7 @@ Steps = {
                   'do4MC'      : True ,
                   'do4Data'    : False ,
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                  'declare'    : 'jetmetCorrectorMC2018 = (isMC=True, dataYear=2018, jesUncert="All", redojec=True)',
+                  'declare'    : 'jetmetCorrectorMC2018 = createJMECorrector(isMC=True, dataYear=2018, jesUncert="Total", redojec=True)',
                   'module'     : 'jetmetCorrectorMC2018()',
                  },   
  
@@ -2758,7 +2758,7 @@ Steps = {
                   'do4MC'      : True ,
                   'do4Data'    : False ,
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                  'declare'    : 'jetmetCorrectorFS2018 = (isMC=True, dataYear=2018, jesUncert="All", redojec=True, isFastSim=True)',
+                  'declare'    : 'jetmetCorrectorFS2018 = createJMECorrector(isMC=True, dataYear=2018, jesUncert="Total", redojec=True, isFastSim=True)',
                   'module'     : 'jetmetCorrectorFS2018()',
                  }, 
 
