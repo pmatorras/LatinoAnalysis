@@ -689,7 +689,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30'
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30'
                                    ],
                 },
 
@@ -706,7 +706,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2016FS','btagPerEvent2016FSPt25','btagPerEvent2016FSPt30'
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2016FS','btagPerEvent2016FSPt25','btagPerEvent2016FSPt30'
                                    ],
                 },
 
@@ -945,7 +945,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30'
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30'
                                    ],
                 },
 
@@ -962,7 +962,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2017FS','btagPerEvent2017FSPt25','btagPerEvent2017FSPt30'
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2017FS','btagPerEvent2017FSPt25','btagPerEvent2017FSPt30'
                                    ],
                 },
 
@@ -1161,7 +1161,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2018','btagPerEvent2018Pt25','btagPerEvent2018Pt30'
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2018','btagPerEvent2018Pt25','btagPerEvent2018Pt30'
                                    ],
                 },
 
@@ -1178,7 +1178,7 @@ Steps = {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2018FS','btagPerEvent2018FSPt25','btagPerEvent2018FSPt30'
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2018FS','btagPerEvent2018FSPt25','btagPerEvent2018FSPt30'
                                    ],
                 },
 
@@ -2923,6 +2923,15 @@ Steps = {
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
                   'declare'    : 'jetmetCorrectorFS2018 = createJMECorrector(isMC=True, dataYear=2018, jesUncert="Total", redojec=True, isFastSim=True)',
                   'module'     : 'jetmetCorrectorFS2018()',
+                 }, 
+
+  'PtCorrReader' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.PtCorrReader', 
+                  'declare'    : 'ptcorr_SYSTVAR = lambda : PtCorrReader(Coll="CleanJet", CorrSrc="SYSTVAR")', 
+                  'module'     : 'ptcorr_SYSTVAR()',
                  }, 
 
   #'METFixEEDATA2017' : {
@@ -5525,6 +5534,26 @@ for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
               Steps['susy'+looselep+'MT2'+region+metsystname][key] = Steps['susyMT2'][key]
             Steps['susy'+looselep+'MT2'+region+metsystname]['do4Data'] = True    
             Steps['susy'+looselep+'MT2'+region+metsystname]['module'] = 'mt2Producer(analysisRegion="'+region+'", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+', metSystematic="'+metsyst+'")' 
+
+# JES, JER, MET variations
+
+for treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
+
+  treesystname = treesyst.replace('Total', '').replace('unclustEn', 'MET').upper().replace('UP', 'Up').replace('DOWN', 'Do').replace('NOM', 'Nomin')
+
+  Steps['PtCorr'+treesystname] = { } 
+  for key in Steps['PtCorrReader']:
+    Steps['PtCorr'+metsystname][key] = Steps['PtCorrReader'][key]
+    Steps['PtCorr'+metsystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', metsyst)
+    Steps['PtCorr'+metsystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', metsyst)
+
+  for year in [ '2016', '2017', '2018' ]:
+    for datatype in [ 'MC', 'FS' ]:
+      
+      Steps[datatype+'Susy'+metsystname+year+'v6loose'] = { } 
+      for key in Steps[datatype+'SusySyst'+year+'v6loose']:
+        Steps[datatype+'Susy'+metsystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
+      Steps[datatype+'Susy'+metsystname+year+'v6loose']['subTargets'] = Steps[datatype+'SusySyst'+year+'v6loose']['subTargets'].replace('PtCorrReader', 'PtCorr'+metsystname)
 
 #
 
