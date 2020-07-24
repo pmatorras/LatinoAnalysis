@@ -5543,17 +5543,17 @@ for treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclust
 
   Steps['PtCorr'+treesystname] = { } 
   for key in Steps['PtCorrReader']:
-    Steps['PtCorr'+metsystname][key] = Steps['PtCorrReader'][key]
-  Steps['PtCorr'+metsystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', metsyst)
-  Steps['PtCorr'+metsystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', metsyst)
+    Steps['PtCorr'+treesystname][key] = Steps['PtCorrReader'][key]
+  Steps['PtCorr'+treesystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', treesyst)
+  Steps['PtCorr'+treesystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', treesyst)
 
   for year in [ '2016', '2017', '2018' ]:
     for datatype in [ 'MC', 'FS' ]:
       
-      Steps[datatype+'Susy'+metsystname+year+'v6loose'] = { } 
+      Steps[datatype+'Susy'+treesystname+year+'v6loose'] = { } 
       for key in Steps[datatype+'SusySyst'+year+'v6loose']:
-        Steps[datatype+'Susy'+metsystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
-      Steps[datatype+'Susy'+metsystname+year+'v6loose']['subTargets'] = Steps[datatype+'SusySyst'+year+'v6loose']['subTargets'].replace('PtCorrReader', 'PtCorr'+metsystname)
+        Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
+      Steps[datatype+'Susy'+treesystname+year+'v6loose']['subTargets'] = Steps[datatype+'SusySyst'+year+'v6loose']['subTargets'].replace('PtCorrReader', 'PtCorr'+treesystname)
 
 #
 
