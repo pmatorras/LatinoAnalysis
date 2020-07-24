@@ -557,6 +557,16 @@ Steps = {
                                   ],
                 },
 
+  'MCSusy2016v6loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','JMEUncertMC2016',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
   'MCSusy2016FS' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -564,6 +574,16 @@ Steps = {
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy',#'CleanJetCut',
                                   #'leptonMaker','lepSelSusy','JECupdate2016FS','jetSel',#'CleanJetCut',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
+  'FSSusy2016v6loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','JMEUncertFS2016',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
                 },
@@ -653,6 +673,41 @@ Steps = {
                                      'btagPerJet2016FS','btagPerEvent2016FS','btagPerEvent2016FSPt25','btagPerEvent2016FSPt30',
                                      'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'],
+                },
+
+  'MCSusyCorr2016v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2016','btagPerJet2016',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'
+                                   ],
+                },
+
+  'MCSusySyst2016v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2016','btagPerEvent2016Pt25','btagPerEvent2016Pt30'
+                                   ],
+                },
+
+  'FSSusyCorr2016v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PrefCorr2016','btagPerJet2016FS',
+                                     'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK'],
+                },
+
+  'FSSusySyst2016v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2016FS','btagPerEvent2016FSPt25','btagPerEvent2016FSPt30'
+                                   ],
                 },
 
   'MCCorr2016_hmumu' : {
@@ -771,6 +826,16 @@ Steps = {
                                   ],
                 },
 
+  'MCSusy2017v6loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','METFixEEMC2017',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
   'MCSusy2017FS' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -778,6 +843,16 @@ Steps = {
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : ['leptonMaker','METFixEEFS2017','lepSelSusy','jetSelSusy',#'CleanJetCut',
                                   #'leptonMaker','lepSelSusy','JECupdate2017FS','jetSel',#'CleanJetCut',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
+  'FSSusy2017v6loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','METFixEEFS2017',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
                 },
@@ -855,6 +930,40 @@ Steps = {
                                      'btagPerJet2017FS','btagPerEvent2017FS','btagPerEvent2017FSPt25','btagPerEvent2017FSPt30',
                                      'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
+                },
+
+  'MCSusyCorr2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2017','btagPerJet2017',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
+                },
+
+  'MCSusySyst2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30'
+                                   ],
+                },
+
+  'FSSusyCorr2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PrefCorr2017','btagPerJet2017FS',
+                                     'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
+                },
+
+  'FSSusySyst2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2017FS','btagPerEvent2017FSPt25','btagPerEvent2017FSPt30'
+                                   ],
                 },
 
 
@@ -935,6 +1044,16 @@ Steps = {
                                   ],
                 },
 
+  'MCSusy2018v6loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','JMEUncertMC2018',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
   'MCSusy2018FS' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -942,6 +1061,16 @@ Steps = {
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy',#'CleanJetCut',
                                   #'leptonMaker','lepSelSusy','JECupdate2018FS','jetSel',#'CleanJetCut',
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
+  'FSSusy2018v6loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','JMEUncertFS2018',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
                 },
@@ -1017,6 +1146,40 @@ Steps = {
                      'subTargets' : ['btagPerJet2018FS','btagPerEvent2018FS','btagPerEvent2018FSPt25','btagPerEvent2018FSPt30',
                                      'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK', 'wNLOEWK' ],
+                },
+
+  'MCSusyCorr2018v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','btagPerJet2018',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK', 'wNLOEWK' ],
+                },
+
+  'MCSusySyst2018v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2018','btagPerEvent2018Pt25','btagPerEvent2018Pt30'
+                                   ],
+                },
+
+  'FSSusyCorr2018v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['btagPerJet2018FS',
+                                     'rochesterMC','trigFS','trigFS_Cut','LeptonSFSusyFS','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK', 'wNLOEWK' ],
+                },
+
+  'FSSusySyst2018v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrApplier','jetSelSusy','btagPerEvent2018FS','btagPerEvent2018FSPt25','btagPerEvent2018FSPt30'
+                                   ],
                 },
 
 
