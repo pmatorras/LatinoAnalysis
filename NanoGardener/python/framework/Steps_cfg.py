@@ -5544,8 +5544,8 @@ for treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclust
   Steps['PtCorr'+treesystname] = { } 
   for key in Steps['PtCorrReader']:
     Steps['PtCorr'+metsystname][key] = Steps['PtCorrReader'][key]
-    Steps['PtCorr'+metsystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', metsyst)
-    Steps['PtCorr'+metsystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', metsyst)
+  Steps['PtCorr'+metsystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', metsyst)
+  Steps['PtCorr'+metsystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', metsyst)
 
   for year in [ '2016', '2017', '2018' ]:
     for datatype in [ 'MC', 'FS' ]:
