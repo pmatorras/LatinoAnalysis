@@ -5552,8 +5552,10 @@ for treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclust
       
       Steps[datatype+'Susy'+treesystname+year+'v6loose'] = { } 
       for key in Steps[datatype+'SusySyst'+year+'v6loose']:
-        Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
-      Steps[datatype+'Susy'+treesystname+year+'v6loose']['subTargets'] = Steps[datatype+'SusySyst'+year+'v6loose']['subTargets'].replace('PtCorrReader', 'PtCorr'+treesystname)
+        if key!='subTargets':
+          Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
+        else: 
+          Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = [ 'PtCorr'+treesystname if x=='PtCorrReader' else x for x in Steps[datatype+'SusySyst'+year+'v6loose'][key] ] 
 
 #
 
