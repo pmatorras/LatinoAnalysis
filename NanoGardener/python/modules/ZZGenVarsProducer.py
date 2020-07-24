@@ -34,44 +34,17 @@ class ZZGenVarsProducer(Module):
         self.out.branch("kZZ_pt"  ,  "F")
         
 
-        '''
-        if self.susyModelIsSet==False :
-
-            self.susyProcess = ''
-            self.susyModel = ''
-
-            for process in SUSYCrossSections :
-                print "process",  process
-                for model in SUSYCrossSections[process]['susyModels'] :
-                    if model in inputFile.GetName() :
-                        self.susyProcess = process
-                        self.susyModel = model
-
-            if self.susyProcess=='' :
-                print 'ZZGenVarsProducer WARNING: SUSY process not found for input file', inputFile.GetName()
-
-                for model in SUSYCrossSections[process]['susyModels'] :
-                    if model in outputFile.GetName() :
-                        self.susyProcess = process
-                        self.susyModel = model
-
-                if self.susyProcess=='' :
-                    print 'ZZGenVarsProducer WARNING: SUSY process not found for output file', outputFile.GetName()
-            
-            if self.susyProcess!='' :
-                self.susyModelIsSet = True
-            exit()
-        '''
     ###    
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         pass
 
 
     def kfactor_qqZZ_qcd_dPhi(self,GendPhiZZ, finalState):
+
         # finalState=1 : 4e/4mu/4tau
         # finalState=2 : 2e2mu/2mutau/2e2tau
-        k=0  
-        absdphi=abs(GendPhiZZ)
+        k       = 0  
+        absdphi = abs(GendPhiZZ)
         if (finalState==1):
             if (absdphi >= 0.0 and absdphi < 0.1): k+=1.515838921760
             if (absdphi >= 0.1 and absdphi < 0.2): k+=1.496256665410 
@@ -145,8 +118,8 @@ class ZZGenVarsProducer(Module):
         # finalState=1 : 4e/4mu/4tau
         # finalState=2 : 2e2mu/2mutau/2e2tau
 
-        k=0.0;
-        absZZmass=abs(GENmassZZ)
+        k         = 0.0
+        absZZmass = abs(GENmassZZ)
         if (finalState==1):
             if absZZmass >=   0.0 and absZZmass <  25.0: k+=1.23613311013
             if absZZmass >=  25.0 and absZZmass <  50.0: k+=1.17550314639
@@ -204,8 +177,8 @@ class ZZGenVarsProducer(Module):
         #finalState=1 : 4e/4mu/4tau
         # finalState=2 : 2e2mu/2mutau/2e2tau
         
-        k=0.0;
-        absZZpt=abs(GENpTZZ)
+        k       = 0.0
+        absZZpt = abs(GENpTZZ)
         if (finalState==1):
             if absZZpt >=   0.0 and absZZpt <  5.0:  k+=0.64155491983
             if absZZpt >=   5.0 and absZZpt <  10.0: k+=1.09985240531
@@ -264,22 +237,18 @@ class ZZGenVarsProducer(Module):
         genParticles = Collection(event, "GenPart")
         # Gen                                                                                    
         
-        _ZZpt   = -1.
-        _ZZdphi = -1.
-        _ZZmass = -1.
-        nZZleps =  0
-        ZZlep    = []
-        ZZlepID  = []
-        neupdgID = [12,14,16]
-        lep_ch   = []
+        _ZZpt    = -1.
+        _ZZdphi  = -1.
+        _ZZmass  = -1.
+        nZZleps  =  0
+        ZZlep    =  []
+        ZZlepID  =  []
+        neupdgID =  [ 12, 14, 16]
+        lep_ch   =  []
         for idx, genpart in enumerate(genParticles):
             if genpart.genPartIdxMother < 0 : continue
             abspdgID  = abs(genpart.pdgId)
             abspdgMum = abs(genParticles[genpart.genPartIdxMother].pdgId)
-            if genpart.genPartIdxMother > -1 :
-                if abspdgMum == 23:
-                    #print "this should be the genpart", genpart.pdgId
-                    1==1
             lepmass = -1
             isEle   = False
             isMu    = False
@@ -326,12 +295,12 @@ class ZZGenVarsProducer(Module):
             #print lep_ch[l1], ZZlepID[l1]
             for l2 in range(l1+1, nZZleps):
                 if lep_ch[l1] + lep_ch[l2] is not 0: continue
-                Z1= ZZlep[l1]+ZZlep[l2]
+                Z1 = ZZlep[l1]+ZZlep[l2]
                 for l3 in range(0, nZZleps):
                     if l3 in [l1,l2] : continue
                     for l4 in range(l3+1, nZZleps):
                         if (l4 in [l1,l2]) or (lep_ch[l3] + lep_ch[l4] is not 0) : continue
-                        Z2= ZZlep[l3]+ZZlep[l4]
+                        Z2 = ZZlep[l3]+ZZlep[l4]
                         ZZdiff = math.sqrt(pow(Z1.M()-90,2) + pow(Z2.M() -90 ,2))
                         if (ZZdiff<MinZZdiff): 
                             ZZCand  = Z1 + Z2

@@ -21,7 +21,8 @@ Sites = {
               'treeBaseDir' : '/eos/user/p/pmatorra/SUSY/Nano/' ,
               #'treeBaseDir' : '/eos/cms/store/user/scodella/SUSY/Nano/' ,
               #'treeBaseDir' : '/eos/cms/store/caf/user/scodella/BTV/Nano/' ,
-              'sourceDir'   : '/eos/user/s/scodella/SUSY/Nano/',
+              #'sourceDir'   : '/eos/user/s/scodella/SUSY/Nano/' ,
+              #'sourceDir'   : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/' ,
               'batchQueues' : ['8nh','1nd','2nd','1nw'],
               'slc_ver'     : 7
            } ,

@@ -136,6 +136,12 @@ _ElepT_branches = [
   'me_zh_mixhm',
   'me_zh_mixhp',
   'me_qcd_hsm',
+  'pjjSm_wh',
+  'pjjTr_wh',
+  'pjjSm_zh',
+  'pjjTr_zh',
+  'meAvg_wh',
+  'meAvg_zh',
   ## MonoHiggs Semileptonic
   # deltas
   'MHlnjj_dphi_ljjVmet',
@@ -263,6 +269,12 @@ _MET_branches = [
   'me_zh_mixhm',
   'me_zh_mixhp',
   'me_qcd_hsm',
+  'pjjSm_wh',
+  'pjjTr_wh',
+  'pjjSm_zh',
+  'pjjTr_zh',
+  'meAvg_wh',
+  'meAvg_zh',
   ## MonoHiggs Semileptonic
   # deltas
   'MHlnjj_dphi_ljjVmet',
@@ -346,6 +358,10 @@ _JES_branches += [
   'VBS_jets_maxPt_massWZ',
   'VBS_jets_massWZ_maxmjj',
   'VBS_jets_massWZ_maxPt',
+  'VBS_jets_maxmjj',
+  'VBS_jets_maxPt',
+  'V_jets_maxmjj',
+  'V_jets_maxPt',
   'V_jets_maxmjj_massWZ',
   'V_jets_maxmjj_maxPt',
   'V_jets_maxPt_massWZ',
@@ -390,6 +406,12 @@ _JES_branches += [
   'me_zh_mixhm',
   'me_zh_mixhp',
   'me_qcd_hsm',
+  'pjjSm_wh',
+  'pjjTr_wh',
+  'pjjSm_zh',
+  'pjjTr_zh',
+  'meAvg_wh',
+  'meAvg_zh',
   ## MonoHiggs Semileptonic
   # deltas
   'MHlnjj_dphi_ljjVmet',
@@ -449,6 +471,10 @@ _Fatjet_syst_branches = [
   'VBS_jets_maxPt_massWZ',
   'VBS_jets_massWZ_maxmjj',
   'VBS_jets_massWZ_maxPt',
+  'VBS_jets_maxmjj',
+  'VBS_jets_maxPt',
+  'V_jets_maxmjj',
+  'V_jets_maxPt',
   'V_jets_maxmjj_massWZ',
   'V_jets_maxmjj_maxPt',
   'V_jets_maxPt_massWZ',
@@ -597,14 +623,24 @@ branch_mapping["fatjetJMRdo"] = {
   'suffix': '_fatjetJMRdo'
 }
 
-branch_mapping["fatjetJESTotalup"] = {
+branch_mapping["fatjetJERup"] = {
   'branches': _Fatjet_syst_branches,
-  'suffix': '_fatjetJESTotalup'
+  'suffix': '_fatjetJERup'
 }
 
-branch_mapping["fatjetJESTotaldo"] = {
+branch_mapping["fatjetJERdo"] = {
   'branches': _Fatjet_syst_branches,
-  'suffix': '_fatjetJESTotaldo'
+  'suffix': '_fatjetJERdo'
+}
+
+branch_mapping["fatjetJESup"] = {
+  'branches': _Fatjet_syst_branches,
+  'suffix': '_fatjetJESup'
+}
+
+branch_mapping["fatjetJESdo"] = {
+  'branches': _Fatjet_syst_branches,
+  'suffix': '_fatjetJESdo'
 }
 
 # JES 11 sources
@@ -622,4 +658,12 @@ for source in ["Absolute", "Absolute_2016", "Absolute_2017", "Absolute_2018",
   branch_mapping['JES'+source+"up"] = {
     'branches': _JES_branches,
     'suffix': '_JES'+source+'up'
+  }
+  branch_mapping['fatjetJES'+source+"do"] = {
+    'branches': _Fatjet_syst_branches,
+    'suffix': '_fatjetJES'+source+'do'
+  }
+  branch_mapping['fatjetJES'+source+"up"] = {
+    'branches': _Fatjet_syst_branches,
+    'suffix': '_fatjetJES'+source+'up'
   }
