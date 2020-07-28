@@ -46,7 +46,7 @@ class PtCorrReader(Module):
         coll = Collection(event, self.CollTC)
         jets = Collection(event, 'Jet')
         nColl = len(coll)
-                
+
         # Create new pt
         new_pt = []
         for iObj in range(nColl):
@@ -61,16 +61,20 @@ class PtCorrReader(Module):
             for idx2, pt2 in enumerate(new_pt):
                 if pt1 < pt2 or (pt1 == pt2 and idx1 > idx2): pt_idx += 1
             order.append(pt_idx)
- 
+
+        jet_order = range(len(order))
+        for ij in range(len(order)):
+            jet_order[order[ij]] = ij 
+
         # Fill branches
         for typ in self.CollBr:
             for bname in self.CollBr[typ]:
-                if '_pt' in bname: 
-                    temp_v = [new_pt[idx] for idx in order]
+                if '_pt' in bname:
+                    temp_v = [new_pt[idx] for idx in jet_order]
                     self.out.fillBranch(bname+self._suffix, temp_v)
                 else:
                     temp_b = bname.replace(self.CollTC+'_', '')
-                    temp_v = [coll[idx][temp_b] for idx in order]
+                    temp_v = [coll[idx][temp_b] for idx in jet_order]
                     self.out.fillBranch(bname+self._suffix, temp_v)
 
         return True 
