@@ -2591,8 +2591,8 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : True  ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.JetSel' ,
-                  'declare'    : 'jetSel = lambda : JetSel(2,"loose",20.0,2.5,"CleanJet")' ,
-                  'module'     : 'jetSel()' ,
+                  'declare'    : 'jetSelSusy = lambda : JetSel(2,"loose",20.0,2.5,"CleanJet")' ,
+                  'module'     : 'jetSelSusy()' ,
                },
 
    'jetSelCustom' : {
@@ -5894,7 +5894,7 @@ for treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclust
         if key!='subTargets':
           Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
         else: 
-          Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = [ 'PtCorr'+treesystname if x=='PtCorrReader' else x for x in Steps[datatype+'SusySyst'+year+'v6loose'][key] ] 
+          Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = [ 'PtCorr'+treesystname if x=='PtCorrReader' else x for x in Steps[datatype+'SusySyst'+year+'v6loose'][key] ]
 
 #
 

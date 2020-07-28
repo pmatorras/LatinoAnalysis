@@ -7,7 +7,7 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Object
 from LatinoAnalysis.NanoGardener.data.common_cfg import Type_dict
 import copy
 
-class PtCorrApplier(Module):
+class PtCorrReader(Module):
     '''
     Simplified version of PtCorrApplier, design to read the output from the standard jetmetHelperRun2
     '''
