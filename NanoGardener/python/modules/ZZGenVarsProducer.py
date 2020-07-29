@@ -15,7 +15,6 @@ class ZZGenVarsProducer(Module):
 
     ###
     def __init__(self):
-        self.ggZZ_kf = { }
         self.cmssw_base = os.getenv('CMSSW_BASE')
         pass
 
@@ -39,19 +38,18 @@ class ZZGenVarsProducer(Module):
         if 'gg' in inputFile.GetName() or 'GluGlu' in inputFile.GetName():
             self.ZZproduction = 'gg'
             self.ReadGluGluHZZkfactors()
-            for SystTitle in self.ggZZ_kf:
-                self.out.branch("kZZ_gg_"+SystTitle,  "F")
-
+            for sys in range(len(self.strSystTitle)):
+                self.out.branch("kZZ_gg_"+self.strSystTitle[sys],  "F")
+                
         else:
             self.ZZproduction = 'qq'
             self.out.branch("kZZ_mass",  "F")
             self.out.branch("kZZ_dphi",  "F")
             self.out.branch("kZZ_pt"  ,  "F")
-        
-        print '#####', self.ZZproduction
 
     ###    
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
+        del self.ggZZ_kf
         pass
 
 
@@ -247,21 +245,25 @@ class ZZGenVarsProducer(Module):
     #------------------------------------------------------------------------------
     def ReadGluGluHZZkfactors(self):
 
-        strSystTitle = [ 'Nominal', 'PDFScaleDn', 'PDFScaleUp', 'QCDScaleDn', 'QCDScaleUp', 'AsDn', 'AsUp', 'PDFReplicaDn', 'PDFReplicaUp' ] 
+        self.strSystTitle = [ 'Nominal', 'PDFScaleDn', 'PDFScaleUp', 'QCDScaleDn', 'QCDScaleUp', 'AsDn', 'AsUp', 'PDFReplicaDn', 'PDFReplicaUp' ] 
         kfRoot = ROOT.TFile.Open(self.cmssw_base + '/src/LatinoAnalysis/NanoGardener/python/data/kfactors/Kfactor_Collected_ggHZZ_2l2l_NNLO_NNPDF_NarrowWidth_13TeV.root')
 
-        for SystTitle in strSystTitle:
-            self.ggZZ_kf[SystTitle] = kfRoot.Get('sp_kfactor_'+SystTitle)
+        self.ggZZ_kf = [ ] 
+
+        for sys in range(len(self.strSystTitle)):
+            self.ggZZ_kf.append(kfRoot.Get('sp_kfactor_'+self.strSystTitle[sys]))
+
+        kfRoot.Close()
 
     #------------------------------------------------------------------------------
     #  kfactor_ggHZZ_qcd(float GENmassZZ, TString SystTitle)
     #------------------------------------------------------------------------------
-    def kfactor_ggHZZ_qcd(self, GENmassZZ, SystTitle):
+    def kfactor_ggHZZ_qcd(self, GENmassZZ, sys):
         if GENmassZZ>0.:
-            return self.ggZZ_kf[SystTitle].Eval(GENmassZZ)
+            return self.ggZZ_kf[sys].Eval(GENmassZZ)
         else:
-            return self.ggZZ_kf[SystTitle].GetMinimum(100., 2000.)
-
+            return self.ggZZ_kf[sys].GetMinimum(100., 2000.)
+                    
     #---------------------------------------------
 
     def analyze(self, event):
@@ -349,12 +351,10 @@ class ZZGenVarsProducer(Module):
         self.out.fillBranch("ZZ_pt"  , _ZZpt )
 
         if self.ZZproduction=='gg':
-
-            for SystTitle in self.ggZZ_kf:
-                k_gg = self.kfactor_ggHZZ_qcd(_ZZmass, SystTitle)
-                if _ZZmass<50.:
-                    print _ZZmass, k_gg
-                self.out.fillBranch('kZZ_gg_'+SystTitle, k_gg )
+            
+            for sys in range(len(self.strSystTitle)):
+                k_gg = self.kfactor_ggHZZ_qcd(_ZZmass, sys)
+                self.out.fillBranch('kZZ_gg_'+self.strSystTitle[sys], k_gg )
 
         elif self.ZZproduction=='qq':
 
