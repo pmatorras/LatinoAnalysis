@@ -5875,11 +5875,13 @@ for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', '
   if treesyst!='nom': 
 
     for region in mt2regions: 
+
+      addfilter = '' if (treesyst=='jer' or region not in [ 'reco', 'fast' ]) else 'syst'
     
       Steps['susyMT2'+region+treesystname] = { }
       for key in Steps['susyMT2'+region+'Nomin']:
         Steps['susyMT2'+region+treesystname][key] = Steps['susyMT2'+region+'Nomin'][key] 
-      Steps['susyMT2'+region+treesystname]['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('metSystematic="nom", filterRegion="', 'metSystematic="'+treesyst+'", filterRegion="syst')   
+      Steps['susyMT2'+region+treesystname]['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('metSystematic="nom", filterRegion="', 'metSystematic="'+treesyst+'", filterRegion="'+addfilter)   
 
   Steps['susyMT2ctrl'+treesystname] = {
       'isChain'    : True  ,
