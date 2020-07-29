@@ -2672,44 +2672,36 @@ Steps = {
                   'module'     : 'SusyGenVarsProducer()' ,
                },  
 
-   'susyMT2': {
+   'susyMT2recoNomin': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(looseEleWP="", looseMuoWP="", metSystematic="nom")' ,
-               },  
-
-   'susyMT2FS': {
-                  'isChain'    : False ,
-                  'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(dataType="fastsim", looseEleWP="", looseMuoWP="", metSystematic="nom")' ,
-               },   
-
-   'susyMT2data': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(dataType="data", looseEleWP="", looseMuoWP="")' ,
+                  'module'     : 'mt2Producer(analysisRegion="",  metKind="reco", metSystematic="nom", filterRegion="region")' ,
+               },  
+
+   'susyMT2fastNomin': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer(analysisRegion="",  metKind="fast", metSystematic="nom", filterRegion="region")' ,
                }, 
+
+   'susyMT2genmNomin': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
+                  'module'     : 'mt2Producer(analysisRegion="",  metKind="gen", metSystematic="nom", filterRegion="region")' ,
+               },
 
    'susyMT2puppi': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
-                  'do4Data'    : False ,
-                  'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(looseEleWP="", looseMuoWP="", metType="puppi")' ,
-               },
-
-   'susyMT2puppidata': {
-                  'isChain'    : False ,
-                  'do4MC'      : False ,
                   'do4Data'    : True ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(dataType="data", looseEleWP="", looseMuoWP="", metType="puppi")' ,
+                  'module'     : 'mt2Producer(metType="puppi")' ,
                },
 
 ## EFT JJH->WW->2l2nu
@@ -5835,67 +5827,68 @@ for datatype in [ '', 'FS', 'Data' ] :
                 Steps['btagPerEvent'+year+datatype+'Pt'+ptcut][key] = Steps['btagPerEvent'+year+datatype][key]
             Steps['btagPerEvent'+year+datatype+'Pt'+ptcut]['module'] = Steps['btagPerEvent'+year+datatype]['module'].replace('bTagPtCut="20"', 'bTagPtCut="'+ptcut+'"') 
 
-# mt2Producer
-for looselep in [ '', 'miniiso', 'reliso', 'relisov6' ] :
+# mt2Producer regions
 
-    looseele, loosemuo = '', ''
-    if looselep=='miniiso':
-        looseele, loosemuo = 'SusyMVAVLoose', 'looseMiniIsoLoose'
-    elif looselep=='reliso':
-        looseele, loosemuo = 'cutBasedVeto', 'looseIsoVeryLoose'
-    elif looselep=='relisov6':
-        looseele, loosemuo = 'cutBasedVeto', 'looseIsoLoose'
+mt2CRs = [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]
 
-    if looselep!='':
-        for datatype in [ '', 'data', 'FS' ]:
-            Steps['susy'+looselep+'MT2'+datatype] = { }
-            for key in Steps['susyMT2'+datatype]:
-                Steps['susy'+looselep+'MT2'+datatype][key] = Steps['susyMT2'+datatype][key]
-            Steps['susy'+looselep+'MT2'+datatype]['module'] = Steps['susyMT2'+datatype]['module'].replace('looseEleWP="", looseMuoWP=""', 'looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'"')
+for region in mt2CRs: 
 
-    for datatype in [ '', 'FS' ]:
-        for metsyst in [ 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
-            Steps['susy'+looselep+'MT2'+datatype+metsyst] = { }
-            for key in Steps['susy'+looselep+'MT2'+datatype]:
-                Steps['susy'+looselep+'MT2'+datatype+metsyst][key] = Steps['susy'+looselep+'MT2'+datatype][key]
-            Steps['susy'+looselep+'MT2'+datatype+metsyst]['module'] = Steps['susy'+looselep+'MT2'+datatype]['module'].replace('metSystematic="nom"', 'metSystematic="'+metsyst+'"')
+    Steps['susyMT2'+region+'Nomin']     = { }
+    Steps['susyMT2mlep'+region+'Nomin'] = { }
 
-    for region in [ 'gen', 'reco' ]:
-        Steps['susy'+looselep+'MT2FS'+region] = { }
-        for key in Steps['susyMT2FS']:
-            Steps['susy'+looselep+'MT2FS'+region][key] = Steps['susyMT2FS'][key]
-        Steps['susy'+looselep+'MT2FS'+region]['module'] = 'mt2Producer(analysisRegion="'+region+'", dataType="fastsim", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+'")'
+    for key in Steps['susyMT2recoNomin']:
+        Steps['susyMT2'+region+'Nomin'][key]     = Steps['susyMT2recoNomin'][key]  
+        Steps['susyMT2mlep'+region+'Nomin'][key] = Steps['susyMT2recoNomin'][key]
 
-    for region in [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]: 
-        for metsyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
-            metsystname = '' if metsyst=='nom' else metsyst
-            Steps['susy'+looselep+'MT2'+region+metsystname] = { }
-            for key in Steps['susyMT2']:
-              Steps['susy'+looselep+'MT2'+region+metsystname][key] = Steps['susyMT2'][key]
-            Steps['susy'+looselep+'MT2'+region+metsystname]['do4Data'] = True    
-            Steps['susy'+looselep+'MT2'+region+metsystname]['module'] = 'mt2Producer(analysisRegion="'+region+'", looseEleWP="'+looseele+'", looseMuoWP="'+loosemuo+', metSystematic="'+metsyst+'")' 
-
+    Steps['susyMT2'+region+'Nomin']['module'] = Steps['susyMT2recoNomin']['module'].replace('analysisRegion=""', 'analysisRegion="'+region+'"')
+    Steps['susyMT2mlep'+region+'Nomin']['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('filterRegion="region"', 'filterRegion="multilepton"')
+    
 # JES, JER, MET variations
 
-for treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
+for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
 
   treesystname = treesyst.replace('Total', '').replace('unclustEn', 'MET').upper().replace('UP', 'Up').replace('DOWN', 'Do').replace('NOM', 'Nomin')
+  if treesystname=='JER': treesystname = 'Smear'
+  
+  if treesyst not in [ 'jer', 'unclustEnDown', 'unclustEnUp' ]:
 
-  Steps['PtCorr'+treesystname] = { } 
-  for key in Steps['PtCorrReader']:
-    Steps['PtCorr'+treesystname][key] = Steps['PtCorrReader'][key]
-  Steps['PtCorr'+treesystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', treesyst)
-  Steps['PtCorr'+treesystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', treesyst)
+    Steps['PtCorr'+treesystname] = { } 
+    for key in Steps['PtCorrReader']:
+      Steps['PtCorr'+treesystname][key] = Steps['PtCorrReader'][key]
+    Steps['PtCorr'+treesystname]['declare'] = Steps['PtCorrReader']['declare'].replace('SYSTVAR', treesyst)
+    Steps['PtCorr'+treesystname]['module'] = Steps['PtCorrReader']['module'].replace('SYSTVAR', treesyst)
 
-  for year in [ '2016', '2017', '2018' ]:
-    for datatype in [ 'MC', 'FS' ]:
+    for year in [ '2016', '2017', '2018' ]:
+      for datatype in [ 'MC', 'FS' ]:
       
-      Steps[datatype+'Susy'+treesystname+year+'v6loose'] = { } 
-      for key in Steps[datatype+'SusySyst'+year+'v6loose']:
-        if key!='subTargets':
-          Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
-        else: 
-          Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = [ 'PtCorr'+treesystname if x=='PtCorrReader' else x for x in Steps[datatype+'SusySyst'+year+'v6loose'][key] ]
+        Steps[datatype+'Susy'+treesystname+year+'v6loose'] = { } 
+        for key in Steps[datatype+'SusySyst'+year+'v6loose']:
+          if key!='subTargets':
+            Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = Steps[datatype+'SusySyst'+year+'v6loose'][key]
+          else: 
+            Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = [ 'PtCorr'+treesystname if x=='PtCorrReader' else x for x in Steps[datatype+'SusySyst'+year+'v6loose'][key] ]
+
+  mt2regions = mt2CRs
+  mt2regions.extend([ 'mlep'+x for x in mt2CRs ])
+  mt2regions.extend([ 'reco', 'fast' ])
+                    
+  if treesyst!='nom': 
+
+    for region in mt2regions: 
+    
+      Steps['susyMT2'+region+treesystname] = { }
+      for key in Steps['susyMT2'+region+'Nomin']:
+        Steps['susyMT2'+region+treesystname][key] = Steps['susyMT2'+region+'Nomin'][key] 
+      Steps['susyMT2'+region+treesystname]['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('metSystematic="nom", filterRegion="', 'metSystematic="'+treesyst+'", filterRegion="syst')
+    
+  Steps['susyMT2mlep'+treesystname] = {
+      'isChain'    : True  ,
+      'do4MC'      : True  ,
+      'do4Data'    : False ,
+      'subTargets' : [ 'susyMT2mlep'+x+treesystname for x in mt2CRs ],
+    }
+  if treesyst=='nom': 
+    Steps['susyMT2mlep'+treesystname]['do4Data'] = True
 
 #
 
