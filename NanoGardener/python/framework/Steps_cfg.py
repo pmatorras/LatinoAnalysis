@@ -5834,7 +5834,7 @@ mt2CRs = [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]
 mt2regions = [ x for x in mt2CRs ]
 mt2regions.extend([ 'mlep'+x for x in mt2CRs ])
 mt2regions.extend([ 'reco', 'fast' ])
-print mt2CRs
+
 for region in mt2CRs: 
 
     Steps['susyMT2'+region+'Nomin']     = { }
@@ -5846,8 +5846,7 @@ for region in mt2CRs:
 
     Steps['susyMT2'+region+'Nomin']['module'] = Steps['susyMT2recoNomin']['module'].replace('analysisRegion=""', 'analysisRegion="'+region+'"')
     Steps['susyMT2mlep'+region+'Nomin']['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('filterRegion="region"', 'filterRegion="multilepton"')
-    print '1', Steps['susyMT2'+region+'Nomin']['module']
-    print '2', Steps['susyMT2mlep'+region+'Nomin']['module']    
+   
 # JES, JER, MET variations
 
 for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
@@ -5880,8 +5879,7 @@ for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', '
       Steps['susyMT2'+region+treesystname] = { }
       for key in Steps['susyMT2'+region+'Nomin']:
         Steps['susyMT2'+region+treesystname][key] = Steps['susyMT2'+region+'Nomin'][key] 
-      Steps['susyMT2'+region+treesystname]['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('metSystematic="nom", filterRegion="', 'metSystematic="'+treesyst+'", filterRegion="syst')
-      print 'susyMT2'+region+treesystname, Steps['susyMT2'+region+treesystname]    
+      Steps['susyMT2'+region+treesystname]['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('metSystematic="nom", filterRegion="', 'metSystematic="'+treesyst+'", filterRegion="syst')   
 
   Steps['susyMT2mlep'+treesystname] = {
       'isChain'    : True  ,
@@ -5891,7 +5889,7 @@ for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', '
     }
   if treesyst=='nom': 
     Steps['susyMT2mlep'+treesystname]['do4Data'] = True
-  print '####    susyMT2mlep'+treesystname, Steps['susyMT2mlep'+treesystname]
+
 #
 
 Steps.update(addJESchainMembers())
