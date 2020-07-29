@@ -2693,7 +2693,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.mt2Producer' ,
-                  'module'     : 'mt2Producer(analysisRegion="",  metKind="gen", metSystematic="nom", filterRegion="region")' ,
+                  'module'     : 'mt2Producer(analysisRegion="",  metKind="gen",  metSystematic="nom", filterRegion="region")' ,
                },
 
    'susyMT2puppi': {
@@ -5832,20 +5832,20 @@ for datatype in [ '', 'FS', 'Data' ] :
 mt2CRs = [ 'SameSign', 'Fake', 'WZ', 'WZtoWW', 'ttZ', 'ZZ' ]
 
 mt2regions = [ x for x in mt2CRs ]
-mt2regions.extend([ 'mlep'+x for x in mt2CRs ])
+mt2regions.extend([ 'ctrl'+x for x in mt2CRs ])
 mt2regions.extend([ 'reco', 'fast' ])
 
 for region in mt2CRs: 
 
     Steps['susyMT2'+region+'Nomin']     = { }
-    Steps['susyMT2mlep'+region+'Nomin'] = { }
+    Steps['susyMT2ctrl'+region+'Nomin'] = { }
 
     for key in Steps['susyMT2recoNomin']:
         Steps['susyMT2'+region+'Nomin'][key]     = Steps['susyMT2recoNomin'][key]  
-        Steps['susyMT2mlep'+region+'Nomin'][key] = Steps['susyMT2recoNomin'][key]
+        Steps['susyMT2ctrl'+region+'Nomin'][key] = Steps['susyMT2recoNomin'][key]
 
     Steps['susyMT2'+region+'Nomin']['module'] = Steps['susyMT2recoNomin']['module'].replace('analysisRegion=""', 'analysisRegion="'+region+'"')
-    Steps['susyMT2mlep'+region+'Nomin']['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('filterRegion="region"', 'filterRegion="multilepton"')
+    Steps['susyMT2ctrl'+region+'Nomin']['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('filterRegion="region"', 'filterRegion="control"')
    
 # JES, JER, MET variations
 
@@ -5881,14 +5881,14 @@ for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', '
         Steps['susyMT2'+region+treesystname][key] = Steps['susyMT2'+region+'Nomin'][key] 
       Steps['susyMT2'+region+treesystname]['module'] = Steps['susyMT2'+region+'Nomin']['module'].replace('metSystematic="nom", filterRegion="', 'metSystematic="'+treesyst+'", filterRegion="syst')   
 
-  Steps['susyMT2mlep'+treesystname] = {
+  Steps['susyMT2ctrl'+treesystname] = {
       'isChain'    : True  ,
       'do4MC'      : True  ,
       'do4Data'    : False ,
-      'subTargets' : [ 'susyMT2mlep'+x+treesystname for x in mt2CRs ],
+      'subTargets' : [ 'susyMT2ctrl'+x+treesystname for x in mt2CRs ],
     }
   if treesyst=='nom': 
-    Steps['susyMT2mlep'+treesystname]['do4Data'] = True
+    Steps['susyMT2ctrl'+treesystname]['do4Data'] = True
 
 #
 
