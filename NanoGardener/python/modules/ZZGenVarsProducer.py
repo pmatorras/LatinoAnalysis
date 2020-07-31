@@ -49,7 +49,6 @@ class ZZGenVarsProducer(Module):
 
     ###    
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
-        del self.ggZZ_kf
         pass
 
 
