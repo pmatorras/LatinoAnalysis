@@ -34,9 +34,9 @@ if __name__ == '__main__':
 
     samples = {}
     if os.path.exists(opt.samplesFile) :
-        handle = open(opt.samplesFile,'r')
-        exec(handle)
-        handle.close()
+      handle = open(opt.samplesFile,'r')
+      exec(handle)
+      handle.close()
         
         
     variables = {}

@@ -390,12 +390,7 @@ class PostProcMaker():
        #self._crab._ScriptHeader = self._cmsswBasedir+'/src/LatinoAnalysis/NanoGardener/test/PostProc_CrabScript_Header.sh'
 
      for iSample in self._targetDic :
-       #__i=0
-       print iSample
        for iFile in self._targetDic[iSample] :
-         #__i+=1
-         #print iFile
-         #if __i>1: continue #exit()
          iTarget = os.path.basename(self._targetDic[iSample][iFile]).replace(self._treeFilePrefix,'').replace('.root','')
          if iTarget in targetList :
            # Create python
