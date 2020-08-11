@@ -218,6 +218,28 @@ class PlotFactory:
 
             nexpected = 0
 
+            scaleCR = 1.
+            if self._plotNormalizedCRratio:
+                if 'CRbins' in variable.keys():
+
+                    bNorm, dNorm = 0., 0.
+
+                    CRbins = variable['CRbins']
+                    for sampleName, plotdef in plot.iteritems():
+                        if 'samples' in variable and sampleName not in variable['samples']: continue
+                        shapeName = cutName+"/"+variableName+'/histo_' + sampleName
+                        if type(fileIn) is dict:
+                            temp_histo = fileIn[sampleName].Get(shapeName)
+                        else:
+                            temp_histo = fileIn.Get(shapeName)
+                        tNorm = temp_histo.Integral(CRbins[0], CRbins[1])
+                        if plotdef['isData']==1:
+                            dNorm += tNorm
+                        elif plotdef['isSignal']!=1:
+                            bNorm += tNorm
+
+                    scaleCR = dNorm/bNorm
+
             for sampleName, plotdef in plot.iteritems():
               if 'samples' in variable and sampleName not in variable['samples']:
                 continue
@@ -241,6 +263,9 @@ class PlotFactory:
               if 'scale' in plotdef.keys() : 
                 histos[sampleName].Scale(plotdef['scale'])
                 #print " >> scale ", sampleName, " to ", plotdef['scale']
+              if scaleCR!=1.:
+                if plotdef['isData']==0 and plotdef['isSignal']==0:
+                  histos[sampleName].Scale(scaleCR)
 
               # apply cut dependent scale factors
               # for example when plotting different phase spaces
@@ -457,6 +482,9 @@ class PlotFactory:
                     else:
                       if 'scale' in plotdef:
                         histoVar.Scale(plotdef['scale'])
+                      if scaleCR!=1.:
+                          if plotdef['isData']==0 and plotdef['isSignal']==0:
+                              histoVar.Scale(scaleCR)
                                    
                       # apply cut dependent scale factors
                       # for example when plotting different phase spaces
@@ -1064,6 +1092,8 @@ class PlotFactory:
             print "- draw with ratio"
             
             canvasRatioNameTemplate = 'cratio_' + cutName + "_" + variableName
+            if scaleCR!=1.:
+              canvasRatioNameTemplate = canvasRatioNameTemplate.replace('cratio', 'cratioCR')
 
             tcanvasRatio.cd()
             canvasPad1Name = 'pad1_' + cutName + "_" + variableName
@@ -1273,6 +1303,8 @@ class PlotFactory:
               canvasDifferenceNameTemplate = 'cdifference_relative_' + cutName + "_" + variableName
             else :
               canvasDifferenceNameTemplate = 'cdifference_' + cutName + "_" + variableName
+            if scaleCR!=1.:
+              canvasDifferenceNameTemplate = canvasDifferenceNameTemplate.replace('cdifference', 'cdifferenceCR')
 
             tcanvasDifference.cd()
             canvasPad1differenceName = 'pad1difference_' + cutName + "_" + variableName
