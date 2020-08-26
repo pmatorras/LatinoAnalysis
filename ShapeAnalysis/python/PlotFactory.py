@@ -696,9 +696,10 @@ class PlotFactory:
 
             if variable['divideByBinWidth'] == 1 and histo_total != None:
               histo_total.Scale(1,"width")
-            print ' --> ', histo_total
+            print '--> histo_total = ', histo_total
             
-            if len(mynuisances.keys()) != 0:
+            #                                  if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
               tgrMC = ROOT.TGraphAsymmErrors()  
               for iBin in range(0, len(tgrMC_vx)) :
                 tgrMC.SetPoint     (iBin, tgrMC_vx[iBin], tgrMC_vy[iBin])
@@ -899,7 +900,8 @@ class PlotFactory:
               
             
             # if there is a systematic band draw it
-            if len(mynuisances.keys()) != 0:
+            #                               if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
               tgrMC.SetLineColor(12)
               tgrMC.SetFillColor(12)
               tgrMC.SetLineWidth(2)
@@ -1036,7 +1038,8 @@ class PlotFactory:
                       tlegend.AddEntry(histos[sampleName], sampleName + " [" +  str(round(nevents,1)) + "]", "EPL")
               
               
-            if len(mynuisances.keys()) != 0:
+            #                               if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
                 if self._showIntegralLegend == 0 :
                     tlegend.AddEntry(tgrMC, "All MC", "F")
                 else :
@@ -1174,7 +1177,8 @@ class PlotFactory:
                 for histo in sigSupList_grouped: 
                   histo.Draw("hist same")
            
-            if (len(mynuisances.keys())!=0):
+            #                               if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
               tgrMC.Draw("2")
              
             #     - then the superimposed MC
@@ -1232,7 +1236,8 @@ class PlotFactory:
             frameRatio.GetYaxis().SetRangeUser( 0.0, 2.0 )
             #frameRatio.GetYaxis().SetRangeUser( 0.5, 1.5 )
             self.Pad2TAxis(frameRatio)
-            if (len(mynuisances.keys())!=0):
+            #                               if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
               tgrMCOverMC.Draw("2") 
             
             tgrDataOverMC.Draw("P0")
@@ -1385,7 +1390,8 @@ class PlotFactory:
                 for histo in sigSupList_grouped: 
                   histo.Draw("hist same")
            
-            if (len(mynuisances.keys())!=0):
+            #                               if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
               tgrMC.Draw("2")
              
             #     - then the superimposed MC
@@ -1448,7 +1454,8 @@ class PlotFactory:
               frameDifference.GetYaxis().SetTitle("Data - Expected")
               frameDifference.GetYaxis().SetRangeUser(  int (ROOT.TMath.MinElement(tgrDataMinusMC.GetN(),tgrDataMinusMC.GetY()) - 2 ),  int (ROOT.TMath.MaxElement(tgrDataMinusMC.GetN(),tgrDataMinusMC.GetY()) + 2 ) )
             self.Pad2TAxis(frameDifference)
-            if (len(mynuisances.keys())!=0):
+            #                               if there is "histo_total" there is no need of explicit nuisances
+            if len(mynuisances.keys()) != 0 or histo_total!= None:
               tgrMCMinusMC.SetLineColor(12)
               tgrMCMinusMC.SetFillColor(12)
               tgrMCMinusMC.SetLineWidth(2)
@@ -2004,7 +2011,8 @@ class PlotFactory:
                     if weight_X_thsSignal.GetNhists() != 0:
                       weight_X_thsSignal.Draw("hist same noclear")
                     
-                    if (len(mynuisances.keys())!=0):
+                    #                               if there is "histo_total" there is no need of explicit nuisances
+                    if len(mynuisances.keys()) != 0 or histo_total!= None:
                       weight_X_tgrMC.SetLineColor(12)
                       weight_X_tgrMC.SetFillColor(12)
                       weight_X_tgrMC.SetFillStyle(3004)
@@ -2055,7 +2063,8 @@ class PlotFactory:
                     weight_X_frameRatio.GetYaxis().SetRangeUser( 0.5, 1.5 )
                     self.Pad2TAxis(weight_X_frameRatio)
                     
-                    if (len(mynuisances.keys())!=0):
+                    #                               if there is "histo_total" there is no need of explicit nuisances
+                    if len(mynuisances.keys()) != 0 or histo_total!= None:
                       weight_X_tgrMCOverMC.SetLineColor(12)
                       weight_X_tgrMCOverMC.SetFillColor(12)
                       weight_X_tgrMCOverMC.SetFillStyle(3004)
@@ -2087,7 +2096,8 @@ class PlotFactory:
                     
                     weight_X_tgrMCOverMC.Write()
                     weight_X_tgrDataOverMC.Write()
-                    if (len(mynuisances.keys())!=0):
+                    #                               if there is "histo_total" there is no need of explicit nuisances
+                    if len(mynuisances.keys()) != 0 or histo_total!= None:
                       weight_X_tgrMC.Write("weight_X_tgrMC")
                     if weight_X_tgrData.GetN() != 0:
                       weight_X_tgrData.Write("weight_X_tgrData")
@@ -2146,7 +2156,8 @@ class PlotFactory:
 
                     self.Pad2TAxis(weight_X_frameRatio)
 
-                    if (len(mynuisances.keys())!=0):
+                    #                               if there is "histo_total" there is no need of explicit nuisances
+                    if len(mynuisances.keys()) != 0 or histo_total!= None:
                       weight_X_tgrMCMinusMC.SetLineColor(12)
                       weight_X_tgrMCMinusMC.SetFillColor(12)
                       weight_X_tgrMCMinusMC.SetFillStyle(3004)
