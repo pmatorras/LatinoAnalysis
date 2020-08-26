@@ -1238,6 +1238,13 @@ class ShapeFactory:
                 print 'File '+path+' doesn\'t exists'
                 doesFileExist = False
                 if not skipMissingFiles : raise RuntimeError('File '+path+' doesn\'t exists')
+                # Need this to deal with hadded trees for systematics
+                if '__part0' in path:
+                    if os.path.exists(path.replace('__part0', '')):
+                        tree = ROOT.TChain(treeName)
+                        tree.Add(path.replace('__part0', ''))
+                        listTrees.append(tree)
+                    else: print 'File '+path+' doesn\'t exists either'
             if doesFileExist :
               tree = ROOT.TChain(treeName)
               tree.Add(path)

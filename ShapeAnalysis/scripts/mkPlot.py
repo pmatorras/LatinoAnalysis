@@ -57,6 +57,7 @@ if __name__ == '__main__':
 
     parser.add_option('--fileFormats'    , dest='fileFormats'    , help='Output plot file formats (comma-separated png, pdf, root, C, and/or eps). Default "png,root"', default='png,root')
 
+    parser.add_option('--plotNormalizedCRratio'       , dest='plotNormalizedCRratio'       , help='plot distributions normalized to control region'                  , default=None )
     parser.add_option('--plotNormalizedIncludeData'    , dest='plotNormalizedIncludeData'    , help='plot also normalized distributions for data, for shape comparison purposes', default=None )
     parser.add_option('--plotNormalizedDistributions'         , dest='plotNormalizedDistributions'         , help='plot also normalized distributions for optimization purposes'    ,    action='store_true'     , default=None )
     parser.add_option('--plotNormalizedDistributionsTHstack'  , dest='plotNormalizedDistributionsTHstack'  , help='plot also normalized distributions for optimization purposes, with stacked sig and bkg'  ,    action='store_true'       , default=None )
@@ -85,6 +86,7 @@ if __name__ == '__main__':
     print "                        lumi =", opt.lumi
     print "                   inputFile =", opt.inputFile
     print "              outputDirPlots =", opt.outputDirPlots
+    print "       plotNormalizedCRratio =", opt.plotNormalizedCRratio
     print " plotNormalizedDistributions =", opt.plotNormalizedDistributions
     print "   plotNormalizedIncludeData =", opt.plotNormalizedIncludeData  
     print " plotNormalizedDistributionsTHstack =", opt.plotNormalizedDistributionsTHstack
@@ -122,6 +124,7 @@ if __name__ == '__main__':
     factory._tag       = opt.tag
     factory._energy    = opt.energy
     factory._lumi      = opt.lumi
+    factory._plotNormalizedCRratio = opt.plotNormalizedCRratio
     factory._plotNormalizedDistributions = opt.plotNormalizedDistributions
     factory._plotNormalizedIncludeData = opt.plotNormalizedIncludeData
     factory._plotNormalizedDistributionsTHstack = opt.plotNormalizedDistributionsTHstack
@@ -156,20 +159,22 @@ if __name__ == '__main__':
     
     #samples = {}
     samples = OrderedDict()
-    if os.path.exists(opt.samplesFile) :
+    if opt.samplesFile == None :
+      print " Please provide the samples structure (not strictly needed in mkPlot, since list of samples read from plot.py) "    
+    elif os.path.exists(opt.samplesFile) :
       handle = open(opt.samplesFile,'r')
-      exec(handle)
-      handle.close()
-   
-    cuts = {}
-    if os.path.exists(opt.cutsFile) :
-      handle = open(opt.cutsFile,'r')
       exec(handle)
       handle.close()
 
     variables = {}
     if os.path.exists(opt.variablesFile) :
       handle = open(opt.variablesFile,'r')
+      exec(handle)
+      handle.close()
+   
+    cuts = {}
+    if os.path.exists(opt.cutsFile) :
+      handle = open(opt.cutsFile,'r')
       exec(handle)
       handle.close()
 
