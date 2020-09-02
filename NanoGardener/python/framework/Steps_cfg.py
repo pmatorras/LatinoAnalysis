@@ -5863,12 +5863,13 @@ for region in mt2CRs:
    
 # JES, JER, MET variations
 
-for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp' ]:
+for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp', 'jesTotalSmearDown', 'jesTotalSmearUp', 'unclustEnSmearDown', 'unclustEnSmearUp' ]:
 
   treesystname = treesyst.replace('Total', '').replace('unclustEn', 'MET').upper().replace('UP', 'Up').replace('DOWN', 'Do').replace('NOM', 'Nomin')
+  treesystname = treesystname.replace('JESSMEAR', 'JSR').replace('METSMEAR', 'MTR')
   if treesystname=='JER': treesystname = 'Smear'
   
-  if treesyst not in [ 'jer', 'unclustEnDown', 'unclustEnUp' ]:
+  if treesyst in [ 'nom', 'jesTotalDown', 'jesTotalUp', 'jerDown', 'jerUp' ]:
 
     Steps['PtCorr'+treesystname] = { } 
     for key in Steps['PtCorrReader']:
