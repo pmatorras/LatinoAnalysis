@@ -990,3 +990,16 @@ samples['T2bW']                     .extend(['xsec=1.',     'kfact=1.000',   're
 samples['TChipmSlepSnu']            .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
 samples['TChipmSlepSnu_mC1_825_1500'].extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
 samples['TChipmWW']                 .extend(['xsec=1.',     'kfact=1.000',   'ref=X' ])
+
+# monoH dileptonic for FullRun2 analysis
+# Insert xsec value in pb for each mass point in samples.py
+samples['darkHiggs_ToWWTo2L2Nu']        .extend(['xsec=0.0224333712', 'kfact=1.000', 'ref=??']) # 1*0.2137*0.104976
+samples['pseudoscalar2HDMa_ToWWTo2L2Nu'].extend(['xsec=0.0224333712', 'kfact=1.000', 'ref=??']) # 1*0.2137*0.104976
+
+# Polarized EW WZ
+samples['WZJJ_Inclusive'].extend( ['xsec=0.01612',    'kfact=1.000',   'ref=W' ])
+samples['WZJJ_LT'].extend( ['xsec=0.002796',    'kfact=1.000',   'ref=W' ])
+samples['WZJJ_TL'].extend( ['xsec=0.003156',    'kfact=1.000',   'ref=W' ])
+samples['WZJJ_TT'].extend( ['xsec=0.008765',    'kfact=1.000',   'ref=W' ])
+samples['WZJJ_LL'].extend( ['xsec=0.001368',    'kfact=1.000',   'ref=W' ])
+
