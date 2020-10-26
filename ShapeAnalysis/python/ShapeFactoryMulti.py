@@ -481,6 +481,13 @@ class ShapeFactory:
               else:
                 reweight = None
 
+              if 'weight' in cut: ### SUSY
+                if reweight is None:
+                  reweight = ShapeFactory._make_reweight(cut['weight'])
+                else:
+                  reweightCut = ShapeFactory._make_reweight(cut['weight'])
+                  reweight = ROOT.multidraw.ReweightSource(reweight, reweightCut) 
+
               if 'tree' in variable: # variable is actually a tree definition
                 def setup_filler(drawer, reweight, variation=''):
                   if variation:
@@ -791,6 +798,12 @@ class ShapeFactory:
                     if twosided:
                       self._fixNegativeBin(outputsHistoDo, outputsHisto)
 
+                  if 'kind' in nuisance.keys() and nuisance['kind'].startswith('tree'): ### SUSY
+                    if 'suppressZeroTreeNuisances' in sample.keys() and ( cutName in sample['suppressZeroTreeNuisances'] or 'all' in sample['suppressZeroTreeNuisances']) :        
+                      # fix zero tree nuisances
+                      self._fixZeroTreeNuisances(outputsHistoUp, outputsHisto)
+                      if twosided:
+                        self._fixZeroTreeNuisances(outputsHistoDo, outputsHisto)
 
           # end of one sample
           print ''
@@ -1039,7 +1052,16 @@ class ShapeFactory:
       cont[indices] = 0.
 
       indices = np.nonzero(cont[:] - np.sqrt(sumw2) < 0.)[0]
-      sumw2[indices] = np.square(cont[indices])
+      sumw2[indices] = np.square(cont[indices])   
+
+    # _____________________________________________________________________________
+    @staticmethod
+    def _fixZeroTreeNuisances(histoNew, histoReference):
+
+      if histoNew.Integral()==0. and not histoReference.Integral()==0.:
+        for ibin in range(1, histoNew.GetNbinsX()+1) :
+          if not histoReference.GetBinContent(ibin) == 0 :
+            histoNew.SetBinContent(ibin, histoReference.GetBinContent(ibin) * 0.0001)
 
     # _____________________________________________________________________________
     @staticmethod
@@ -1060,6 +1082,7 @@ class ShapeFactory:
             raise RuntimeError('bin must be an ntuple or an arrays')
 
         l = len(bins)
+        if l==2 and len(bins[1])==1: l = 1 ### SUSY
         # 1D variable binning
         if l == 1 and isinstance(bins[0],list):
             ndim=1
@@ -1257,6 +1280,9 @@ class ShapeFactory:
             if not exists:
               if altDir and testFile(altDir + '/' + os.path.basename(path)):
                 path = altDir + '/' + os.path.basename(path)
+                exists = True
+              elif '__part0' in path and testFile(path.replace('__part0', '')): ### SUSY: hadded systematics
+                path = path.replace('__part0', '')
                 exists = True
 
             if exists:
