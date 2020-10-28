@@ -394,7 +394,7 @@ class ShapeFactory:
                     for it, w in enumerate(treeweights):
                       if existtree[it]:
                         ntreeweights.append(w)
-                    print 'SUSY2', len(treeweights), len(ntreeweights)
+
               for it, w in enumerate(ntreeweights): ### SUSY
                 if w is not None:
                   ndrawer.setTreeReweight(it, False, w)
