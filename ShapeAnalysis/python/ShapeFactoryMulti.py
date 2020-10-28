@@ -378,7 +378,24 @@ class ShapeFactory:
               else:
                 warnIfTreeWeight = False
 
-              for it, w in enumerate(treeweights):
+              ### SUSY
+              ntreeweights = treeweights
+              if 'kind' in nuisances[nuisanceName] and nuisances[nuisanceName]['kind'].startswith('tree'): 
+                if 'folder' + var in nuisances[nuisanceName]:               
+                  if 'synchronized' in nuisances[nuisanceName] and nuisances[nuisanceName]['synchronized']==False:
+                    existtree = [ ] 
+                    for filename in basenames:
+                      fullfilename = nuisances[nuisanceName]['folder'+var] + '/' + filename 
+                      if self._testLocalFile(fullfilename) or self._testLocalFile(fullfilename.replace('__part0', '')):
+                        existtree.append(True)
+                      else:
+                        existtree.append(False)
+                    ntreeweights = [ ]
+                    for it, w in enumerate(treeweights):
+                      if existtree[it]:
+                        ntreeweights.append(w)
+                    print 'SUSY2', len(treeweights), len(ntreeweights)
+              for it, w in enumerate(ntreeweights): ### SUSY
                 if w is not None:
                   ndrawer.setTreeReweight(it, False, w)
                   if warnIfTreeWeight:
