@@ -28,3 +28,7 @@ Samples['TChipmWW']                   = {'srmPrefix': 'srm://srm01.ifca.es:8444/
 Samples['TSlepSlep']                  = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Autumn18FS_102X_nAODv6/TSlepSlep/']}
 Samples['TSlepSlep_mSlep-500to1300']  = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Autumn18FS_102X_nAODv6/TSlepSlep_mSlep-500to1300/']}
 
+### SFs
+
+Samples['TTJetsDilep'] = {'nanoAOD' : '/TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIAutumn18NanoAODv6-PUFall18Fast_Nano25Oct2019_lhe_102X_upgrade2018_realistic_v20-v1/NANOAODSIM' }
+

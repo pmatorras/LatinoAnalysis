@@ -771,6 +771,13 @@ Steps = {
                                   ],
                 },
 
+  'SFSusy2016v6loose' : {
+                 'isChain'    : True  ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'subTargets' : ['leptonMaker','lepSelSusySF','PromptParticlesGenVars','GenLeptonMatch'],
+                },
+
   'MCl1loose2016v7_jetIDtest' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -1049,6 +1056,13 @@ Steps = {
                                   ],
                 },
 
+  'SFSusy2017v6loose' : {
+                 'isChain'    : True  ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'subTargets' : ['leptonMaker','lepSelSusySF','PromptParticlesGenVars','GenLeptonMatch'],
+                },
+
   'MCCorr2017' : {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
@@ -1265,6 +1279,13 @@ Steps = {
                   'subTargets' : ['leptonMaker','lepSelSusy','JMEUncertFS2018',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
+                },
+
+  'SFSusy2018v6loose' : {
+                 'isChain'    : True  ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'subTargets' : ['leptonMaker','lepSelSusySF','PromptParticlesGenVars','GenLeptonMatch'],
                 },
 
   'MCCorr2018' : {
@@ -1758,6 +1779,16 @@ Steps = {
                                   ],
                 },
 
+  'DATALatino2016v6': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelLatino','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2016Data','btagPerEvent2016DataPt25','btagPerEvent2016DataPt30' ###,'formulasDATA'
+                                  ],
+                },
+
   'DATAl1loose2016v7': {
                   'isChain'    : True  ,
                   'do4MC'      : False ,
@@ -1824,6 +1855,16 @@ Steps = {
                   'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData','btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
                                   ],
+                },
+
+  'DATALatino2017v6': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelLatino','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
+                                  ], 
                 },
 
 # 'DATAl1loose2017': {
@@ -1899,6 +1940,16 @@ Steps = {
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData','btagPerEvent2018Data','btagPerEvent2018DataPt25','btagPerEvent2018DataPt30' ###,'formulasDATA'
+                                  ],
+                },
+
+  'DATALatino2018v6': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelLatino','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
                                   'trigData','btagPerEvent2018Data','btagPerEvent2018DataPt25','btagPerEvent2018DataPt30' ###,'formulasDATA'
                                   ],
                 },
@@ -2909,6 +2960,15 @@ Steps = {
                   'module'     : 'leptonSel()' ,
                },
 
+   'lepSelLatino': {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True  ,
+                  'import'     : 'LatinoAnalysis.NanoGardener.modules.LeptonSel' ,
+                  'declare'    : 'leptonSel = lambda : LeptonSel("RPLME_CMSSW", "Loose", 2)' ,
+                  'module'     : 'leptonSel()' ,
+               },
+
    'lepSelSusy': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
@@ -2916,6 +2976,15 @@ Steps = {
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.LeptonSel' ,
                   'declare'    : 'leptonSel = lambda : LeptonSel("RPLME_CMSSW", "Loose", 2, "LatinoAnalysis/NanoGardener/python/data/LeptonSelSUSY_cfg.py")' ,
                   'module'     : 'leptonSel()' ,
+               },
+
+   'lepSelSusySF': {
+                    'isChain'    : False ,
+                    'do4MC'      : True  ,
+                    'do4Data'    : True  ,
+                    'import'     : 'LatinoAnalysis.NanoGardener.modules.LeptonSel' ,
+                    'declare'    : 'leptonSel = lambda : LeptonSel("RPLME_CMSSW", "Loose", 0, "LatinoAnalysis/NanoGardener/python/data/LeptonSelSUSY_cfg.py")' ,
+                    'module'     : 'leptonSel()' ,
                },
 
    'WgSSel' : {
@@ -6267,6 +6336,17 @@ for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
             for subtarget in Steps['DATASusy2017v6']['subTargets']:
                 Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].append(subtarget)
             Steps['DATASusy2017'+dataperiod+'v6']['subTargets'].insert(1, 'METFixEEDATA2017'+dataperiod)
+
+for dataperiod in [ 'B', 'C', 'D', 'E', 'F' ] :
+    Steps['DATALatino2017'+dataperiod+'v6'] = { }
+    for key in Steps['DATALatino2017v6']:
+        if key!='subTargets':
+            Steps['DATALatino2017'+dataperiod+'v6'][key] = Steps['DATALatino2017v6'][key]
+        else:
+            Steps['DATALatino2017'+dataperiod+'v6']['subTargets'] = [ ]
+            for subtarget in Steps['DATALatino2017v6']['subTargets']:
+                Steps['DATALatino2017'+dataperiod+'v6']['subTargets'].append(subtarget)
+            Steps['DATALatino2017'+dataperiod+'v6']['subTargets'].insert(1, 'METFixEEDATA2017'+dataperiod)
 
 # btagPerEvent
 for datatype in [ '', 'FS', 'Data' ] :
