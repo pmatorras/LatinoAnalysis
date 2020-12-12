@@ -31,7 +31,7 @@ Samples['TTTo2L2Nu'] = {'nanoAOD' :'/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-po
 Samples['TTToSemiLeptonic'] = {'nanoAOD' :'/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1/NANOAODSIM'}
 
 ### For SFs
-Samples['TTJetsDilep'] = {'nanoAOD' :'/TTJets_DiLept_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv4-PUMoriond17_Nano14Dec2018_102X_mcRun2_asymptotic_v6_ext1-v1/NANOAODSIM'}
+Samples['TTJetsDilep'] = {'nanoAOD' :'/TTJets_DiLept_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv6-PUMoriond17_Nano14Dec2018_102X_mcRun2_asymptotic_v7_ext1-v1/NANOAODSIM'}
 
 ### Single top
 ##Samples['ST_t-channel_top'] = {'nanoAOD' :'/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/RunIISummer16NanoAODv6-PUMoriond17_Nano25Oct2019_102X_mcRun2_asymptotic_v7-v1/NANOAODSIM'}#
