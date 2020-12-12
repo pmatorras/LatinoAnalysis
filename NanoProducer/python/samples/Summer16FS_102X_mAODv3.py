@@ -21,3 +21,7 @@ Samples['TChipmWW'] = {'miniAOD': '/SMS-TChipmWW_WWTo2LNu_TuneCUETP8M1_13TeV-mad
 Samples['TSlepSlep'] = {'miniAOD': '/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16MiniAODv3-PUSummer16v3Fast_94X_mcRun2_asymptotic_v3-v1/MINIAODSIM', 'customise' : [] }
 Samples['TSlepSlep_mSlep-500to1300'] = {'miniAOD': '/SMS-TSlepSlep_mSlep-500To1300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16MiniAODv3-PUSummer16v3Fast_94X_mcRun2_asymptotic_v3-v1/MINIAODSIM', 'customise' : [] }
 
+# SF
+
+Samples['TTJetsDilep'] = {'miniAOD': '/TTJets_DiLept_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16MiniAODv3-PUSummer16v3Fast_lhe_94X_mcRun2_asymptotic_v3-v1/MINIAODSIM', 'customise' : [] }
+

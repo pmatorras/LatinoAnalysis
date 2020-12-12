@@ -22,3 +22,6 @@ Samples['TChipmWW'] = {'miniAOD': '/SMS-TChipmWW_WWTo2LNu_TuneCP2_13TeV-madgraph
 Samples['TSlepSlep'] = {'miniAOD': '/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17MiniAODv2-PUFall17Fast_94X_mc2017_realistic_v15-v1/MINIAODSIM', 'customise' : [] }
 Samples['TSlepSlep_mSlep-500to1300'] = {'miniAOD': '/SMS-TSlepSlep_mSlep-500To1300_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17MiniAODv2-PUFall17Fast_94X_mc2017_realistic_v15-v1/MINIAODSIM', 'customise' : [] }
 
+# SF
+
+Samples['TTJetsDilep'] = {'miniAOD': '/TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8/RunIIFall17MiniAODv2-PUFall17Fast_lhe_94X_mc2017_realistic_v15-v1/MINIAODSIM', 'customise' : [] }
