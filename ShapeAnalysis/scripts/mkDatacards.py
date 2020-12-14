@@ -146,7 +146,10 @@ class DatacardFactory:
 #                        if not sampleName in killBinSig : killBinSig[sampleName] = []
 #                        killBinSig[sampleName].append(iBin)
 #                        histo.SetBinContent(iBin,0.)
-                    
+
+                  if 'stat' in nuisances and 'removeZeros' in nuisances['stat'] and nuisances['stat']['removeZeros']:
+                      self._removeZeroStatUncertainties (histo)                  
+
                   yields[sampleName] = histo.Integral()
   
                 #
@@ -156,9 +159,6 @@ class DatacardFactory:
                 #
                 if 'removeStatUnc' in structureFile[sampleName] and structureFile[sampleName]['removeStatUnc']:
                   self._removeStatUncertainty (histo)
-                
-                if 'stat' in nuisances and 'removeZeros' in nuisances['stat'] and nuisances['stat']['removeZeros']:
-                    self._removeZeroStatUncertainties (histo)
  
                 self._outFile.cd()
                 histo.Write()
