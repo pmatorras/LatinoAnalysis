@@ -30,6 +30,6 @@ Samples['TSlepSlep_mSlep-500to1300']  = {'srmPrefix': 'srm://srm01.ifca.es:8444/
 
 ### SFs
 
-Samples['TTJetsDilep'] = {'nanoAOD' : '/TTJets_DiLept_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv4-PUSummer16v3Fast_Nano14Dec2018_lhe_102X_mcRun2_asymptotic_v6-v1/NANOAODSIM' }
+Samples['TTJetsDilep'] = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Summer16FS_102X_nAODv6/TTJetsDilep/'] }
 
 
