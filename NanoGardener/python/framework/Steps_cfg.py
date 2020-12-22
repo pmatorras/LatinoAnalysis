@@ -778,6 +778,14 @@ Steps = {
                  'subTargets' : ['leptonMaker','lepSelSusySF','PromptParticlesGenVars','GenLeptonMatch'],
                 },
 
+  'SFSusy2016DYv6loose' : {
+                 'isChain'    : True  ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'selection'  : '"((nElectron>1) || (nMuon>1))"' ,
+                 'subTargets' : ['leptonMaker','lepSelSusySF'],
+                },
+
   'MCl1loose2016v7_jetIDtest' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -1063,6 +1071,14 @@ Steps = {
                  'subTargets' : ['leptonMaker','lepSelSusySF','PromptParticlesGenVars','GenLeptonMatch'],
                 },
 
+  'SFSusy2017DYv6loose' : {
+                 'isChain'    : True  ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'selection'  : '"((nElectron>1) || (nMuon>1))"' ,
+                 'subTargets' : ['leptonMaker','lepSelSusySF'],
+                },
+ 
   'MCCorr2017' : {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
@@ -1286,6 +1302,14 @@ Steps = {
                  'do4MC'      : True  ,
                  'do4Data'    : False ,
                  'subTargets' : ['leptonMaker','lepSelSusySF','PromptParticlesGenVars','GenLeptonMatch'],
+                },
+
+  'SFSusy2018DYv6loose' : {
+                 'isChain'    : True  ,
+                 'do4MC'      : True  ,
+                 'do4Data'    : False ,
+                 'selection'  : '"((nElectron>1) || (nMuon>1))"' ,
+                 'subTargets' : ['leptonMaker','lepSelSusySF'],
                 },
 
   'MCCorr2018' : {
