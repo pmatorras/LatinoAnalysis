@@ -31,4 +31,5 @@ Samples['TSlepSlep_mSlep-500to1300']  = {'srmPrefix': 'srm://srm01.ifca.es:8444/
 ### SFs
 
 Samples['TTJetsDilep'] = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Fall17FS_102X_nAODv6/TTJetsDilep/']}
+Samples['DYJetsToLL_M-50-LO'] = {'srmPrefix': 'srm://srm01.ifca.es:8444/srm/managerv2?SFN=/cms', 'paths' : ['/store/group/phys_higgs/cmshww/amassiro/NanoProd/Fall17FS_102X_nAODv6/DYJetsToLL_M-50-LO/']}
 
