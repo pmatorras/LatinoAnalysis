@@ -500,7 +500,7 @@ if __name__ == '__main__':
 
       nThreads = opt.numThreads
 
-      finalname = "plots_"+opt.tag+".root"
+      finalname = "plots_"+opt.tag+"_"+opt.sigset+".root"
       finalpath = os.path.join(os.getcwd(), opt.outputDir, finalname)
 
       hadd = os.environ['CMSSW_BASE'] + '/src/LatinoAnalysis/Tools/scripts/haddfast'
