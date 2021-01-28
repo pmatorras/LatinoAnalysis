@@ -12,13 +12,13 @@ gardening_directory = 'src/LatinoAnalysis/NanoGardener/python/framework/samples/
 production_directory = 'src/LatinoAnalysis/NanoProducer/python/samples/'
 
 campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAOD'    : '21Feb2020_UL2016-',        'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2' },
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL16RECO', 'MINIAODSIM' : 'RunIISummer19UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer19UL16NanoAODv2' },    
+                          'MC'   : { 'AODSIM' : 'RunIISummer19UL16RECO', 'MINIAODSIM' : 'RunIISummer19UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2' },    
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, },
               'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',     'MINIAOD'    : '09Aug2019_UL2017-',        'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2' },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL17RECO', 'MINIAODSIM' : 'RunIISummer19UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer19UL17NanoAODv2' },
+                          'MC'   : { 'AODSIM' : 'RunIISummer19UL17RECO', 'MINIAODSIM' : 'RunIISummer19UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL17NanoAODv2' },
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, }, 
               'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',     'MINIAOD'    : '12Nov2019_UL2018-',        'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2' },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL18RECO', 'MINIAODSIM' : 'RunIISummer19UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer19UL18NanoAODv2' },
+                          'MC'   : { 'AODSIM' : 'RunIISummer19UL18RECO', 'MINIAODSIM' : 'RunIISummer19UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2' },
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, }, 
             }
 
@@ -46,16 +46,30 @@ if __name__ == '__main__':
     isData=False
 
     if 'run2' in opt.campaign:
-        campaigns_years=campaigns.keys()
+        campaign_years=campaigns.keys()
         run2Samples=True
         if 'data' in opt.campaign: isData=True
     elif opt.campaign not in campaigns:
         print 'Error: missing information for campaign', opt.campaign
         exit()
     else:
-        campaigns_years=[opt.campaign]
+        if   '16' in opt.samplefile: campaign_years=['UL16']
+        elif '17' in opt.samplefile: campaign_years=['UL17']
+        elif '18' in opt.samplefile: campaign_years=['UL18']
+        else:  campaign_years=[opt.campaign]
     
-    for campaign_year in campaigns_years:
+    for campaign_year in campaign_years:
+        if run2Samples:
+            if   '16' in campaign_year: 
+                if isData: opt.samplefile='Run2016_102X_nAODv6'
+                else:      opt.samplefile='Summer16_susy_102X_nAODv6'
+            elif '17' in campaign_year: 
+                if isData: opt.samplefile='Run2017_102X_nAODv6'
+                else:      opt.samplefile='fall17_susy_102X_nAODv6'
+            elif '18' in campaign_year:
+                if isData: opt.samplefile='Run2018_102X_nAODv6'
+                else :     opt.samplefile='Autumn18_susy_102X_nAODv6'
+            print campaign_year
         if 'Run' in opt.samplefile:
             Sim = '' 
             campaign = campaigns[campaign_year]['Data']
@@ -65,17 +79,6 @@ if __name__ == '__main__':
                 campaign = campaigns[campaign_year]['FS']
             else:
                 campaign = campaigns[campaign_year]['MC'] 
-        if run2Samples:
-            if   '16' in campaign_year: 
-                if isData: opt.samplefile='Run2016_102X_nAODv6'
-                else:      opt.samplefile='Summer16_102X_nAODv6'
-            elif '17' in campaign_year: 
-                if isData: opt.samplefile='Run2017_102X_nAODv6'
-                else:      opt.samplefile='fall17_102X_nAODv6'
-            elif '18' in campaign_year:
-                if isData: opt.samplefile='Run2018_102X_nAODv6'
-                else :     opt.samplefile='Autumn18_102X_nAODv6'
-            print campaign_year
         
         tiers = [ ]
         for tier in [ 'NANOAOD', 'MINIAOD', 'AOD' ]:
@@ -86,9 +89,9 @@ if __name__ == '__main__':
         exec(open(opt.directory+sample_directory+opt.samplefile.replace('.py', '')+'.py').read())
 
         OutputSamples = { }
-        print opt.tier
+        print opt.tier, campaign_year
         thistier=opt.tier.upper()+Sim
-        print "CAMPAIGN:", campaign[thistier].upper()
+        print "CAMPAIGN:", campaign[thistier].upper(), thistier
         for sample in Samples:
             process = Samples[sample][opt.tier].split('/')[1]
             period = '' if Sim=='SIM' else Samples[sample][opt.tier].split('/')[2].split('-')[0].split('_')[0]
@@ -118,11 +121,13 @@ if __name__ == '__main__':
 
             if len(datasetsFound)==1:
                 datasetFound = datasetsFound[0]
-                if opt.verbose: 
-                    print 'Dataset found for sample', process+period, 'in campaign', campaign, '-->', datasetFound
+                #print datasetFound
+                if 1==1:#opt.verbose:
+                    1<2
+                    print 'Dataset found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetFound
 
             elif len(datasetsFound)>1:
-                print 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[tier], '-->', datasetsFound
+                print 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound
                 version = 0
                 saveset = ''
                 for dataset in datasetsFound:  
