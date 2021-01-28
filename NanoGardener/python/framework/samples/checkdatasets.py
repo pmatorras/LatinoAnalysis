@@ -30,8 +30,23 @@ campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAO
             }
 
 # Main
-if __name__ == '__main__':
+def readSampleFile(filename):
+    samhere=[]
+    with open("Summer20ULPlanning.csv") as f:
+        for row in f:
+            samhere.append(row.split(",")[0])
+    return samhere
+def substringinlist(sample_list,substring):
+    inlist=[]
+    for item in sample_list:
+        if (substring in item) : 
+            inlist.append(item)
+            #print "satisfies", substring, item
+    return inlist
 
+if __name__ == '__main__':
+    incsv=[]
+    csvsamples = readSampleFile("Summer20ULPlanning.csv")
     # Input parameters
     usage = 'usage: %prog [options]'
     parser = optparse.OptionParser(usage)
@@ -80,7 +95,9 @@ if __name__ == '__main__':
         if 'Run' in opt.samplefile:
             Sim = '' 
             campaign = campaigns[campaign_year]['Data']
+            isData=True
         else:      
+            isData=False
             Sim  = 'SIM'
             if 'FS_' in opt.samplefile:
                 campaign = campaigns[campaign_year]['FS']
@@ -160,7 +177,12 @@ if __name__ == '__main__':
                     print '         available parents are', parentsFound
 
                 else:
- 
+                    if isData: continue
+                    incsv=substringinlist(csvsamples,sample)
+                    if   (len(incsv)==0) : continue
+                    elif (len(incsv)>5)  : print "MULTIPLE OPTIONS AVAILABLE FOR THE CSV FILE",
+                    print "SAMPLES IN CSV:",sample, incsv[:5]
+                    
                     mcm_status = 0
 
                     mcm_query = 'dataset_name='+process+'&prepid=*'+campaign['GEN']+'*'
