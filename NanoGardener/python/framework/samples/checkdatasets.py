@@ -4,19 +4,21 @@ import subprocess
 import math
 from optparse import OptionParser
 import optparse
- 
-cmssw_directory = '/afs/cern.ch/work/s/scodella/SUSY/CMSSW_10_2_14/'
+if 'pmatorra' in os.environ.get('USER'):
+    cmssw_directory= '/afs/cern.ch/work/p/pmatorra/private/CMSSW_10_6_19/'
+else:
+    cmssw_directory = '/afs/cern.ch/work/s/scodella/SUSY/CMSSW_10_2_14/'
 gardening_directory = 'src/LatinoAnalysis/NanoGardener/python/framework/samples/'
 production_directory = 'src/LatinoAnalysis/NanoProducer/python/samples/'
 
 campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAOD'    : '21Feb2020_UL2016-',        'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2' },
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL16RECO', 'MINIAODSIM' : 'RunIISummer19UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer19UL16NanoAODv2' },    
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECO', 'MINIAODSIM' : 'RunIISummer20UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2' },    
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, },
               'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',     'MINIAOD'    : '09Aug2019_UL2017-',        'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2' },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL17RECO', 'MINIAODSIM' : 'RunIISummer19UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer19UL17NanoAODv2' },
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL17RECO', 'MINIAODSIM' : 'RunIISummer20UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL17NanoAODv2' },
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, }, 
               'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',     'MINIAOD'    : '12Nov2019_UL2018-',        'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2' },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL18RECO', 'MINIAODSIM' : 'RunIISummer19UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer19UL18NanoAODv2' },
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL18RECO', 'MINIAODSIM' : 'RunIISummer20UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2' },
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, }, 
             }
 
@@ -40,81 +42,118 @@ if __name__ == '__main__':
         exit()
     else:
         opt.outputfile = opt.outputfile.replace('.py', '')
+    run2Samples=False
+    isData=False
 
-    if opt.campaign not in campaigns:
+    if 'run2' in opt.campaign:
+        campaign_years=campaigns.keys()
+        run2Samples=True
+        if 'data' in opt.campaign: isData=True
+    elif opt.campaign not in campaigns:
         print 'Error: missing information for campaign', opt.campaign
         exit()
- 
-    if 'Run' in opt.samplefile:
-        Sim = '' 
-        campaign = campaigns[opt.campaign]['Data']   
-    else:      
-        Sim  = 'SIM'
-        if 'FS_' in opt.samplefile:
-            campaign = campaigns[opt.campaign]['FS']
-        else:
-            campaign = campaigns[opt.campaign]['MC'] 
+    else:
+        if   '16' in opt.samplefile: campaign_years=['UL16']
+        elif '17' in opt.samplefile: campaign_years=['UL17']
+        elif '18' in opt.samplefile: campaign_years=['UL18']
+        else:  campaign_years=[opt.campaign]
+    
+    for campaign_year in campaign_years:
+        if run2Samples:
+            if   '16' in campaign_year: 
+                if isData: opt.samplefile='Run2016_102X_nAODv6'
+                else:      opt.samplefile='Summer16_susy_102X_nAODv6'
+            elif '17' in campaign_year: 
+                if isData: opt.samplefile='Run2017_102X_nAODv6'
+                else:      opt.samplefile='fall17_susy_102X_nAODv6'
+            elif '18' in campaign_year:
+                if isData: opt.samplefile='Run2018_102X_nAODv6'
+                else :     opt.samplefile='Autumn18_susy_102X_nAODv6'
+            print campaign_year
+        if 'Run' in opt.samplefile:
+            Sim = '' 
+            campaign = campaigns[campaign_year]['Data']
+        else:      
+            Sim  = 'SIM'
+            if 'FS_' in opt.samplefile:
+                campaign = campaigns[campaign_year]['FS']
+            else:
+                campaign = campaigns[campaign_year]['MC'] 
+        
+        tiers = [ ]
+        for tier in [ 'NANOAOD', 'MINIAOD', 'AOD' ]:
+            if opt.tier!='miniAOD' or tier!='NANOAODSIM': 
+                tiers.append(tier+Sim)
+        sample_directory = production_directory if opt.tier=='miniAOD' else gardening_directory 
 
-    tiers = [ ]
-    for tier in [ 'NANOAOD', 'MINIAOD', 'AOD' ]:
-        if opt.tier!='miniAOD' or tier!='NANOAODSIM': 
-            tiers.append(tier+Sim)
+        exec(open(opt.directory+sample_directory+opt.samplefile.replace('.py', '')+'.py').read())
 
-    sample_directory = production_directory if opt.tier=='miniAOD' else gardening_directory 
+        OutputSamples = { }
+        print opt.tier, campaign_year
+        thistier=opt.tier.upper()+Sim
+        print "CAMPAIGN:", campaign[thistier].upper(), thistier
+        for sample in Samples:
+            process = Samples[sample][opt.tier].split('/')[1]
+            period = '' if Sim=='SIM' else Samples[sample][opt.tier].split('/')[2].split('-')[0].split('_')[0]
 
-    exec(open(opt.directory+sample_directory+opt.samplefile.replace('.py', '')+'.py').read())
+            if opt.verbose: print period
 
-    OutputSamples = { }
+            datasetsFound = [ ] 
+            parentsFound = [ ]
 
-    for sample in Samples:
+            for tier in tiers:
 
-        process = Samples[sample][opt.tier].split('/')[1]
-        period = '' if Sim=='SIM' else Samples[sample][opt.tier].split('/')[2].split('-')[0].split('_')[0]
+                if campaign[tier]=='':
+                    print 'Error: missing information for campaign', campaign, 'tier', tier
+                    exit()
 
-        if opt.verbose: print period
+                query = '\"instance=prod/global dataset=/'+process+'/'+period+'*'+campaign[tier]+'*/'+tier+'\"'
+                query_output = subprocess.check_output('dasgoclient -query='+query, shell=True)
+                #print query
+                for line in query_output.split('\n'):
+                    if opt.tier.upper() in line:
+                        datasetsFound.append(line)
+                    elif '/' in line:
+                        parentsFound.append(line)
 
-        datasetsFound = [ ] 
-        parentsFound = [ ]
+            datasetFound = ''
+            datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
 
-        for tier in tiers:
-            
-            if campaign[tier]=='':
-                print 'Error: missing information for campaign', opt.campaign, 'tier', tier
-                exit()
+            if len(datasetsFound)==1:
+                datasetFound = datasetsFound[0]
+                #print datasetFound
+                if 1==1:#opt.verbose:
+                    1<2
+                    print 'Dataset found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetFound
 
-            query = '\"instance=prod/global dataset=/'+process+'/'+period+'*'+campaign[tier]+'*/'+tier+'\"'
-            query_output = subprocess.check_output('dasgoclient -query='+query, shell=True)
+            elif len(datasetsFound)>1:
+                print 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound
+                version = 0
+                saveset = ''
+                for dataset in datasetsFound:  
+                    if len(dataset.split('-v'))>1: 
 
-            for line in query_output.split('\n'):
-                if opt.tier.upper() in line:
-                    datasetsFound.append(line)
-                elif '/' in line:
-                    parentsFound.append(line)
+                        if (version < int(dataset.split('-v')[1].split('/')[0])):
+                            #print "new sample", dataset, version
+                            saveset=dataset
+                        elif (version == int(dataset.split('-v')[1].split('/')[0])):
+                            print "WARNING: "+ dataset+" and "+saveset+" have the same version" 
+                    else: print "TRY DIFFERENT CODING"
+                print 'Dataset picked for sample', process+period, 'in campaign', campaign[thistier], '-->', saveset
+                # Insert code to select the right one
+                #for datasetCandidate in datasetsFound:
+                #    query = '\"instance=prod/global summary dataset='+datasetCandidate+'\"'
+                #    query_output = subprocess.check_output('dasgoclient -query='+query, shell=True)
+                #exit()
+            else:   
+                print 'Warning: no dataset found for sample', process+'_'+period, 'in campaign', campaign[thistier]
+                if len(parentsFound)>0:
+                    print '         available parents are', parentsFound
 
-        datasetFound = ''
-        datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
+            sampleName = process if Sim=='' else sample.replace('_newpmx','').split('_ext')[0]
+            sampleName += datasetFlag
 
-        if len(datasetsFound)==1:
-            datasetFound = datasetsFound[0]
-            if opt.verbose: 
-                print 'Dataset found for sample', process+period, 'in campaign', opt.campaign, '-->', datasetFound
-
-        elif len(datasetsFound)>1:
-            print 'Warning: multiple datasets found for sample', process+period, 'in campaign', opt.campaign, '-->', datasetsFound
-            # Insert code to select the right one
-            #for datasetCandidate in datasetsFound:
-            #    query = '\"instance=prod/global summary dataset='+datasetCandidate+'\"'
-            #    query_output = subprocess.check_output('dasgoclient -query='+query, shell=True)
-
-        else:   
-            print 'Warning: no dataset found for sample', process+'_'+period, 'in campaign', opt.campaign
-            if len(parentsFound)>0:
-                print '         available parents are', parentsFound
-
-        sampleName = process if Sim=='' else sample.replace('_newpmx','').split('_ext')[0]
-        sampleName += datasetFlag
-
-        OutputSamples[sampleName] = { }
-        OutputSamples[sampleName][opt.tier] = datasetFound
+            OutputSamples[sampleName] = { }
+            OutputSamples[sampleName][opt.tier] = datasetFound
 
 
