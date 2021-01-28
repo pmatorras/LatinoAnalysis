@@ -971,15 +971,16 @@ Steps = {
                   'selection'  : '"((nElectron+nMuon)>0)"' ,
                   'subTargets' : ['leptonMaker','lepSel', 'puW2017', 'l2Kin', 'l3Kin', 'l4Kin', 'btagPerJet2017', 'btagPerEvent','PrefCorr2017'],
                 },
-  
+
   'MCCorr2017OLD' : {
-                  'isChain'    : True  ,
+                 'isChain'    : True  ,
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'subTargets' : ['baseW','PrefCorr2017','jetSel','CleanJetCut', 'btagPerJet2017', 'btagPerEvent' ,
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch', 'HiggsGenVars', 'TopGenVars', 'wwNLL',
                                   'ggHTheoryUncertainty', 'DressedLeptons', 'WGammaStar',
-                                  'rochesterMC','trigMC','LeptonSF','puW','l2Kin', 'l3Kin', 'l4Kin','formulasMC'],},
+                                  'rochesterMC','trigMC','LeptonSF','puW','l2Kin', 'l3Kin', 'l4Kin','formulasMC'],
+                    },
 
   'MCCorr2017_SemiLep' : {
                  'isChain'    : True  ,
@@ -3123,6 +3124,7 @@ Steps = {
     #               'module'     : 'fatjetmass_scaler()'
     # },
 
+
    'susyGen': {
                   'isChain'    : False ,
                   'do4MC'      : True  ,
@@ -3946,7 +3948,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.ZZGenVarsProducer' ,
                   'module'     : 'ZZGenVarsProducer()' ,
-                  'onlySample' : ['ggZZ4e', 'ggZZ4m', 'ggZZ4t', 'ggZZ2e2m', 'ggZZ2e2t', 'ggZZ2m2t', 'ggZZ2e2n', 'ggZZ2m2n', 'ZZTo4L_ext1', 'ZZTo4L_ext2', 'ZZTo4L_newpmx', 'ZZTo2L2Nu', 'ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2', 'GluGluHToZZTo4L_M125'],
+                  #'onlySample' : ['ggZZ4e', 'ggZZ4m', 'ggZZ4t', 'ggZZ2e2m', 'ggZZ2e2t', 'ggZZ2m2t', 'ggZZ2e2n', 'ggZZ2m2n', 'ZZTo4L_ext1', 'ZZTo4L_ext2', 'ZZTo4L_newpmx', 'ZZTo2L2Nu', 'ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2', 'GluGluHToZZTo4L_M125'],
                   'onlySample' : ['ZZTo4L_ext1', 'ZZTo4L_ext2', 'ZZTo4L_newpmx', 'ZZTo2L2Nu', 'ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'],
                },
   
@@ -6452,6 +6454,7 @@ for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', '
   if treesyst=='nom': 
     Steps['susyMT2ctrl'+treesystname]['do4Data'] = True
 
+#
 
 Steps.update(addJESchainMembers())
 Steps.update(addMETchainMembers())
