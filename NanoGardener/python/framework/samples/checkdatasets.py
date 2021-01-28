@@ -12,13 +12,13 @@ gardening_directory = 'src/LatinoAnalysis/NanoGardener/python/framework/samples/
 production_directory = 'src/LatinoAnalysis/NanoProducer/python/samples/'
 
 campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAOD'    : '21Feb2020_UL2016-',        'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2' },
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL16RECO', 'MINIAODSIM' : 'RunIISummer19UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2' },    
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECO', 'MINIAODSIM' : 'RunIISummer20UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2' },    
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, },
               'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',     'MINIAOD'    : '09Aug2019_UL2017-',        'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2' },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL17RECO', 'MINIAODSIM' : 'RunIISummer19UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL17NanoAODv2' },
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL17RECO', 'MINIAODSIM' : 'RunIISummer20UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL17NanoAODv2' },
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, }, 
               'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',     'MINIAOD'    : '12Nov2019_UL2018-',        'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2' },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer19UL18RECO', 'MINIAODSIM' : 'RunIISummer19UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2' },
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL18RECO', 'MINIAODSIM' : 'RunIISummer20UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2' },
                           'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                           }, }, 
             }
 
