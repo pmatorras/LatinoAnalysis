@@ -12,25 +12,27 @@ mcm = McM(dev=True)
 
 if 'pmatorra' in os.environ.get('USER'):
     cmssw_directory= '/afs/cern.ch/work/p/pmatorra/private/CMSSW_10_6_19/'
-    errorcolor = '96m'
-    warningcolor = '92m'
+    errorcolor = '93m'
+    warningcolor = '96m'
+    okcolor = '92m'
 else:
     cmssw_directory = '/afs/cern.ch/work/s/scodella/SUSY/CMSSW_10_6_19_patch2/'
-    errorcolor = '96m'
-    warningcolor = '92m'
+    errorcolor = '93m'
+    warningcolor = '96m'
+    okcolor = '92m'
 
 gardening_directory = 'src/LatinoAnalysis/NanoGardener/python/framework/samples/'
 production_directory = 'src/LatinoAnalysis/NanoProducer/python/samples/'
 
-campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAOD'    : '21Feb2020_UL2016-',        'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2'                                     },
-                          'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECO', 'MINIAODSIM' : 'RunIISummer20UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2', 'GEN' : 'RunIISummer20UL16*GEN' },    
-                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                         }, },
-              'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',     'MINIAOD'    : '09Aug2019_UL2017-',        'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2'                                     },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer20UL17RECO', 'MINIAODSIM' : 'RunIISummer20UL17MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL17NanoAODv2', 'GEN' : 'RunIISummer20UL17*GEN' },
-                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                         }, }, 
-              'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',     'MINIAOD'    : '12Nov2019_UL2018-',        'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2'                                     },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer20UL18RECO', 'MINIAODSIM' : 'RunIISummer20UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2', 'GEN' : 'RunIISummer20UL18*GEN' },
-                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                         }, }, 
+campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAOD'    : '21Feb2020_UL2016-',        'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2'                                 },
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECO', 'MINIAODSIM' : 'RunIISummer20UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2', 'GEN' : 'RunIISummer*UL16*GEN' },    
+                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                     }, },
+              'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',     'MINIAOD'    : '09Aug2019_UL2017-',        'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2'                                 },             
+                          'MC'   : { 'AODSIM' : 'RunIISummer*UL17RECO',  'MINIAODSIM' : 'RunIISummer*UL17MiniAOD',  'NANOAODSIM' : 'RunIISummer*UL17NanoAODv2',  'GEN' : 'RunIISummer*UL17*GEN' },
+                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                     }, }, 
+              'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',     'MINIAOD'    : '12Nov2019_UL2018-',        'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2'                                 },             
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL18RECO', 'MINIAODSIM' : 'RunIISummer20UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2', 'GEN' : 'RunIISummer*UL18*GEN' },
+                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                     }, }, 
             }
 
 # Main
@@ -40,6 +42,7 @@ def readSampleFile(filename):
         for row in f:
             samhere.append(row.split(",")[0])
     return samhere
+
 def substringinlist(sample_list,substring):
     inlist=[]
     for item in sample_list:
@@ -61,6 +64,7 @@ if __name__ == '__main__':
     parser.add_option('-t', '--tier'      , dest='tier',       help='Tier'           , default='nanoAOD')
     parser.add_option('-o', '--outputfile', dest='outputfile', help='Output file'    , default='test')
     parser.add_option('-m', '--mute'      , dest='mute'      , help='mute'           , default=False, action='store_true')
+    parser.add_option('-l', '--list'      , dest='list'      , help='List in csv'    , default=False, action='store_true')
     (opt, args) = parser.parse_args()
 
     csvsamples = readSampleFile("Summer20ULPlanning.csv")
@@ -121,7 +125,14 @@ if __name__ == '__main__':
 
         exec(open(opt.directory+sample_directory+opt.samplefile.replace('.py', '')+'.py').read())
 
+        if opt.outputfile=='test' and ('UL' in opt.campaign or 'run2' in opt.campaign):
+            opt.outputfile = opt.samplefile.replace('102X_nAODv6', '106X_nAODv8').replace('.py', '')
+
         OutputSamples = { }
+        print opt.outputfile
+        if opt.list:
+            outList = open(opt.outputfile+'.csv' , 'w')
+
         print opt.tier, campaign_year
         thistier=opt.tier.upper()+Sim
         print "CAMPAIGN:", campaign[thistier].upper(), thistier
@@ -130,12 +141,17 @@ if __name__ == '__main__':
             process = Samples[sample][opt.tier].split('/')[1]
             period = '' if Sim=='SIM' else Samples[sample][opt.tier].split('/')[2].split('-')[0].split('_')[0]
 
+            status = 'Missing'
+
             if not isData:
                 process = process.replace('_PSweights', '')
-                if 'Tune' not in process: process = process.replace('13TeV', 'TuneCP5_13TeV')
+                if 'Tune' not in process: process = process.replace('13TeV', '*13TeV')
+                process = process.replace('pythia8_TuneCP5', 'pythia8*')
+                process = process.replace('13TeV_powheg_pythia', '13TeV*powheg*pythia')
                 process = process.replace('TuneCUETP8M1', 'TuneCP5')
                 process.replace('TuneCUETP8M2', 'TuneCP5')         
                 process = process.replace('_ttHtranche3', '')
+                process = process.replace('DYJetsToLL_M-5to50', 'DYJetsToLL_M-4to50')
  
             if verbose: print '\n', process, period
 
@@ -160,17 +176,17 @@ if __name__ == '__main__':
             datasetFound = ''
             datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
 
-            if period!='': period = '_'+period
-            
+            if period!='': period = '_'+period 
 
             if len(datasetsFound)==1:
                 datasetFound = datasetsFound[0]
+                status = 'NanoAODv2 ready:, ' + datasetFound
                 if verbose:
-                    print 'Dataset found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetFound
+                    print '\033['+okcolor + 'Dataset found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetFound + '\033[0m'
 
             elif len(datasetsFound)>1:
                 if verbose: 
-                    print 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound
+                    print '\033['+okcolor + 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound + '\033[0m'
                 version = 0
                 saveset = ''
                 for dataset in datasetsFound:  
@@ -182,36 +198,49 @@ if __name__ == '__main__':
                         elif (version == int(dataset.split('-v')[1].split('/')[0])):
                             print "WARNING: "+ dataset+" and "+saveset+" have the same version" 
                     else: print "TRY DIFFERENT CODING"
-                print 'Dataset picked for sample', process+period, 'in campaign', campaign[thistier], '-->', saveset
+                if verbose: print 'Dataset picked for sample', process+period, 'in campaign', campaign[thistier], '-->', saveset
                 # Insert code to select the right one
                 #for datasetCandidate in datasetsFound:
                 #    query = '\"instance=prod/global summary dataset='+datasetCandidate+'\"'
                 #    query_output = subprocess.check_output('dasgoclient -query='+query, shell=True)
                 #exit()
+                status = 'NanoAODv2 ready:, ' + saveset
             else:   
                 if verbose: 
                     print 'Warning: no dataset found for sample', process+period, 'in tier', opt.tier, 'for campaign', campaign[thistier] 
                 if len(parentsFound)>0:
+                    for parent in parentsFound:
+                        if 'MINIAOD' in parent: 
+                            status = 'MiniAOD ready:, ' + parent
+                        elif 'MINIAOD' not in status:
+                            status = 'AOD ready:, ' + parent
                     if verbose:
-                        print '         available parents are', parentsFound
+                        print '\033['+okcolor + '        available parents are', parentsFound, '' + '\033[0m'
 
                 elif not isData:
                     
                     mcm_status = 0
 
                     mcm_query = 'dataset_name='+process+'&prepid=*'+campaign['GEN']+'*'
+                    #print mcm_query
                     requests = mcm.get('requests', None, mcm_query)
-
+                    #print requests
                     if len(requests)>0:
+                        status = 'McM:, '
                         for request in requests:
-                            if verbose:
-                                print 'Request', request['prepid'], 'in status', request['status']
+
                             if request['status']=='new': mcm_status = 1
                             elif request['status']=='validation': mcm_status = 2
                             elif request['status']=='defined': mcm_status = 3
 		            elif request['status']=='approved': mcm_status = 4
                             elif request['status']=='submitted': mcm_status = 5                         
-   
+
+                            status += request['prepid'] + ' in status ' + request['status'] + ' - '
+
+                            if verbose:   
+                                textcolor = okcolor if mcm_status==5 else warningcolor
+                                print '\033['+textcolor + 'Request', request['prepid'], 'for sample', process, 'in status', request['status'] + '\033[0m'
+
                     if mcm_status<1:
 
                         if verbose:
@@ -223,16 +252,23 @@ if __name__ == '__main__':
                             if len(incsvsample)==0: 
                                 print '\033['+errorcolor + 'Warning: sample', process, 'not in the planned production campaign' + '\033[0m'
                             else:
-                                print '\033['+warningcolor + 'Warning: sample', process, 'not in the planned production campaign' + '\033[0m'
-                                print '         but alternative samples are there:', incsvsample
+                                status = 'Planned alternative: '
+                                for alt_sample in incsvsample:
+                                    status += alt_sample + ' - '
+                                print '\033['+warningcolor + 'Warning: sample', process, 'not in the planned production campaign, but alternative samples are there:', incsvsample, '' + '\033[0m'
                         elif (len(incsv)>5)  : 
+                            status = 'Planned'
                             if verbose: print "MULTIPLE OPTIONS AVAILABLE FOR THE CSV FILE"
-                        elif verbose:  print "SAMPLES IN CSV:",sample, incsv[:5]
+                        elif verbose: 
+                            status = 'Planned'
+                            print '\033['+warningcolor + 'SAMPLES IN CSV:', process, incsv, '' + '\033[0m'
  
+            if opt.list:
+                outList.write(process + ',' + status + '\n')
+
             sampleName = process if Sim=='' else sample.replace('_newpmx','').split('_ext')[0]
             sampleName += datasetFlag # -> to be refined
 
             OutputSamples[sampleName] = { }
             OutputSamples[sampleName][opt.tier] = datasetFound
-
 
