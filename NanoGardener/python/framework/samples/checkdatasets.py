@@ -24,15 +24,17 @@ else:
 gardening_directory = 'src/LatinoAnalysis/NanoGardener/python/framework/samples/'
 production_directory = 'src/LatinoAnalysis/NanoProducer/python/samples/'
 
-campaigns = { 'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',     'MINIAOD'    : '21Feb2020_UL2016-',        'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2'                                 },
-                          'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECO', 'MINIAODSIM' : 'RunIISummer20UL16MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2', 'GEN' : 'RunIISummer*UL16*GEN' },    
-                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                     }, },
-              'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',     'MINIAOD'    : '09Aug2019_UL2017-',        'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2'                                 },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer*UL17RECO',  'MINIAODSIM' : 'RunIISummer*UL17MiniAOD',  'NANOAODSIM' : 'RunIISummer*UL17NanoAODv2',  'GEN' : 'RunIISummer*UL17*GEN' },
-                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                     }, }, 
-              'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',     'MINIAOD'    : '12Nov2019_UL2018-',        'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2'                                 },             
-                          'MC'   : { 'AODSIM' : 'RunIISummer20UL18RECO', 'MINIAODSIM' : 'RunIISummer20UL18MiniAOD', 'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2', 'GEN' : 'RunIISummer*UL18*GEN' },
-                          'FS'   : { 'AODSIM' : '',                      'MINIAODSIM' : '',                         'NANOAODSIM' : ''                          , 'GEN' : ''                     }, }, 
+campaigns = { 'UL16APV' : { 'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECOAPV', 'MINIAODSIM' : 'RunIISummer20UL16MiniAODAPV', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODAPVv2', 'GEN' : 'RunIISummer*UL16*GENAPV-' },
+                            'FS'   : { 'AODSIM' : '',                         'MINIAODSIM' : '',                            'NANOAODSIM' : ''                             , 'GEN' : ''                         }, },
+              'UL16'  : { 'Data' : { 'AOD'    : '21Feb2020_UL2016-',      'MINIAOD'    : '21Feb2020_UL2016-',         'NANOAOD'    : 'UL2016_MiniAODv1_NanoAODv2'                                  },
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL16RECO-', 'MINIAODSIM' : 'RunIISummer20UL16MiniAOD-', 'NANOAODSIM' : 'RunIISummer20UL16NanoAODv2', 'GEN' : 'RunIISummer*UL16*GEN-' },    
+                          'FS'   : { 'AODSIM' : '',                       'MINIAODSIM' : '',                          'NANOAODSIM' : ''                          , 'GEN' : ''                      }, },
+              'UL17'  : { 'Data' : { 'AOD'    : '09Aug2019_UL2017-',      'MINIAOD'    : '09Aug2019_UL2017-',         'NANOAOD'    : 'UL2017_MiniAODv1_NanoAODv2'                                  },             
+                          'MC'   : { 'AODSIM' : 'RunIISummer*UL17RECO',   'MINIAODSIM' : 'RunIISummer*UL17MiniAOD',   'NANOAODSIM' : 'RunIISummer*UL17NanoAODv2',  'GEN' : 'RunIISummer*UL17*GEN'  },
+                          'FS'   : { 'AODSIM' : '',                       'MINIAODSIM' : '',                          'NANOAODSIM' : ''                          , 'GEN' : ''                      }, }, 
+              'UL18'  : { 'Data' : { 'AOD'    : '12Nov2019_UL2018-',      'MINIAOD'    : '12Nov2019_UL2018-',         'NANOAOD'    : 'UL2018_MiniAODv1_NanoAODv2'                                  },             
+                          'MC'   : { 'AODSIM' : 'RunIISummer20UL18RECO',  'MINIAODSIM' : 'RunIISummer20UL18MiniAOD',  'NANOAODSIM' : 'RunIISummer20UL18NanoAODv2', 'GEN' : 'RunIISummer*UL18*GEN'  },
+                          'FS'   : { 'AODSIM' : '',                       'MINIAODSIM' : '',                          'NANOAODSIM' : ''                          , 'GEN' : ''                      }, }, 
             }
 
 # Main
@@ -83,14 +85,11 @@ if __name__ == '__main__':
         campaign_years=campaigns.keys()
         run2Samples=True
         if 'data' in opt.campaign: isData=True
-    elif opt.campaign not in campaigns:
+    elif opt.campaign in campaigns:
+        campaign_years=[opt.campaign]
+    else:
         print 'Error: missing information for campaign', opt.campaign
         exit()
-    else:
-        if   '16' in opt.samplefile: campaign_years=['UL16']
-        elif '17' in opt.samplefile: campaign_years=['UL17']
-        elif '18' in opt.samplefile: campaign_years=['UL18']
-        else:  campaign_years=[opt.campaign]
     
     for campaign_year in campaign_years:
         if run2Samples:
@@ -127,7 +126,9 @@ if __name__ == '__main__':
 
         if opt.outputfile=='test' and ('UL' in opt.campaign or 'run2' in opt.campaign):
             opt.outputfile = opt.samplefile.replace('102X_nAODv6', '106X_nAODv8').replace('.py', '')
-
+            if 'APV' in opt.campaign:
+                opt.outputfile = opt.outputfile.replace('16', '16APV')
+            print opt.samplefile
         OutputSamples = { }
         print opt.outputfile
         if opt.list:
@@ -149,9 +150,10 @@ if __name__ == '__main__':
                 process = process.replace('pythia8_TuneCP5', 'pythia8*')
                 process = process.replace('13TeV_powheg_pythia', '13TeV*powheg*pythia')
                 process = process.replace('TuneCUETP8M1', 'TuneCP5')
-                process.replace('TuneCUETP8M2', 'TuneCP5')         
+                process = process.replace('TuneCUETP8M2', 'TuneCP5')         
                 process = process.replace('_ttHtranche3', '')
                 process = process.replace('DYJetsToLL_M-5to50', 'DYJetsToLL_M-4to50')
+                process = process.replace('_ext1', '')
  
             if verbose: print '\n', process, period
 
