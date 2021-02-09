@@ -3442,6 +3442,8 @@ Steps = {
                   'module'     : 'jetRecalib2017MC()',
                  }, 
  
+  # Old style, to be deleted when UL is fully done
+
   'JMEUncertMC2016' : {
                   'isChain'    : False ,
                   'do4MC'      : True ,
@@ -3496,6 +3498,26 @@ Steps = {
                   'module'     : 'jetmetCorrectorFS2018()',
                  }, 
 
+  # End old style
+
+  'JMEUncertMC' : {
+                   'isChain'    : False ,
+                   'do4MC'      : True ,
+                   'do4Data'    : False ,
+                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=False)',
+                   'module'     : 'jetmetCorrectorMC',
+                 },
+
+  'JMEUncertFS' : {
+                   'isChain'    : False , 
+                   'do4MC'      : True ,
+                   'do4Data'    : False ,
+                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                   'declare'    : 'jetmetCorrectorFS = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=True)',
+                   'module'     : 'jetmetCorrectorFS',
+                  },
+
   'PtCorrReader' : {
                   'isChain'    : False ,
                   'do4MC'      : True ,
@@ -3504,6 +3526,8 @@ Steps = {
                   'declare'    : 'ptcorr_SYSTVAR = lambda : PtCorrReader(Coll="CleanJet", CorrSrc="SYSTVAR")', 
                   'module'     : 'ptcorr_SYSTVAR()',
                  }, 
+
+  # Old style, to be deleted when UL is fully done
 
   #'METFixEEDATA2017' : {
   #                'isChain'    : False ,
@@ -3558,6 +3582,8 @@ Steps = {
                   'declare'    : 'jetmetCorrectorEEDATA2017F = createJMECorrector(isMC=False, dataYear=2017, runPeriod="F", metBranchName="METFixEE2017")',
                   'module'     : 'jetmetCorrectorEEDATA2017F()',
                  },  
+
+  # End old style
 
   'JECupdateDATA2017': {
                   'isChain'    : False ,
@@ -3831,8 +3857,8 @@ Steps = {
 
   'btagPerEventDeepCSVWPs': {
                   'isChain'    : False ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
                   'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="RPLME_YEAR", bTagWP=["L", "M", "T"], bTagMethod="1c", bTagPtCut=["20", "25", "30"], dataType="mc")',
@@ -6471,9 +6497,11 @@ for datatype in [ 'FS', 'Data' ] :
     for key in Steps['btagPerEventDeepCSVWPs']:
         Steps['btagPerEventDeepCSVWPs'+datatype][key] = Steps['btagPerEventDeepCSVWPs'][key]
     if datatype=='FS':
-        Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'].replace('dataType="mc"', 'dataType="fastsim"')
+        Steps['btagPerEventDeepCSVWPs'+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+datatype]['module'].replace('dataType="mc"', 'dataType="fastsim"')
     elif datatype=='Data':
-        Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'].replace('dataType="mc"', 'dataType="data"')
+        Steps['btagPerEventDeepCSVWPs'+datatype]['do4MC'] = False
+        Steps['btagPerEventDeepCSVWPs'+datatype]['do4Data'] = True
+        Steps['btagPerEventDeepCSVWPs'+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+datatype]['module'].replace('dataType="mc"', 'dataType="data"')
 
     if datatype=='FS':
 
