@@ -3321,6 +3321,24 @@ Steps = {
                  'module'     : 'prefCorr2017()',
                },
 
+  'PrefCorrUL16' : {
+                 'isChain'    : False ,
+                 'do4MC'      : True ,
+                 'do4Data'    : False  ,
+                 'import'     : 'LatinoAnalysis.NanoGardener.modules.PrefireCorr' ,
+                 'declare'    : 'prefCorrUL16 = lambda : PrefCorr(jetroot="L1PrefiringMaps_WithUL17.root", jetmapname="L1prefiring_jetptvseta_2016BtoH", photonroot="L1PrefiringMaps_WithUL17.root", photonmapname="L1prefiring_photonptvseta_2016BtoH", UseEMpT=0)',
+                 'module'     : 'prefCorrUL16()',
+               },
+
+  'PrefCorrUL17' : {
+                 'isChain'    : False ,
+                 'do4MC'      : True ,
+                 'do4Data'    : False  ,
+                 'import'     : 'LatinoAnalysis.NanoGardener.modules.PrefireCorr' ,
+                 'declare'    : 'prefCorrUL17 = lambda : PrefCorr(jetroot="L1PrefiringMaps_WithUL17.root", jetmapname="L1prefiring_jetptvseta_UL2017BtoF", photonroot="L1PrefiringMaps_WithUL17.root", photonmapname="L1prefiring_photonptvseta_UL2017BtoF", UseEMpT=0)',
+                 'module'     : 'prefCorrUL17()',
+               },
+
   'trigData' : { 'isChain'    : False ,
                  'do4MC'      : False ,
                  'do4Data'    : True  ,
