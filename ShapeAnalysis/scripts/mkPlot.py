@@ -65,6 +65,7 @@ if __name__ == '__main__':
     parser.add_option('--showIntegralLegend'           , dest='showIntegralLegend'           , help='show the integral, the yields, in the legend'                         , default=0,    type=float )
           
     parser.add_option('--showRelativeRatio'   , dest='showRelativeRatio'   , help='draw instead of data-expected, (data-expected) / expected' ,    action='store_true', default=False)
+    parser.add_option('--showDataVsBkgOnly', dest='showDataVsBkgOnly', help='draw instead of data/expected, data/expected background only (for exclusion searches)' , action='store_true', default=False)
     parser.add_option('--showDataMinusBkgOnly', dest='showDataMinusBkgOnly', help='draw instead of data-expected, data-expected background only' , action='store_true', default=False)
          
     parser.add_option('--removeWeight', dest='removeWeight', help='Remove weight S/B for PR plots, just do the sum' , action='store_true', default=False)
@@ -74,6 +75,8 @@ if __name__ == '__main__':
     parser.add_option('--postFit', dest='postFit', help='Plot sum of post-fit backgrounds, and the data/post-fit ratio.' , default='n') 
 
     parser.add_option('--removeMCStat', dest='removeMCStat', help='Do not plot the MC statistics contribution in the uncertainty band', action='store_true', default=False)
+
+    parser.add_option('--plotFancy', dest='plotFancy', help='Plot fancy data - bkg plot' , action='store_true', default=False) 
 
 
     # read default parsing options as well
@@ -100,11 +103,13 @@ if __name__ == '__main__':
     print "                minLogCratio =", opt.minLogCratio
     print "                maxLogCratio =", opt.maxLogCratio
     print "           showRelativeRatio =", opt.showRelativeRatio
-    print "        showDataMinusBkgOnly =", opt.showDataMinusBkgOnly
+    print "           showDataVsBkgOnly =", opt.showDataVsBkgOnly
+    print "        showDataMinusBkgOnly =", opt.showDataMinusBkgOnly 
     print "                removeWeight =", opt.removeWeight
     print "                    invertXY =", opt.invertXY    
     print "                    postFit  =", opt.postFit
     print "               removeMCStat  =", opt.removeMCStat
+    print "                  plotFancy  =", opt.plotFancy
     print ""
 
     opt.scaleToPlot = float(opt.scaleToPlot)
@@ -150,6 +155,7 @@ if __name__ == '__main__':
     factory._maxLogCdifference = opt.maxLogCratio
 
     factory._showRelativeRatio = opt.showRelativeRatio
+    factory._showDataVsBkgOnly = opt.showDataVsBkgOnly
     factory._showDataMinusBkgOnly = opt.showDataMinusBkgOnly
 
     factory._removeWeight = opt.removeWeight
@@ -161,7 +167,10 @@ if __name__ == '__main__':
     factory._postFit = opt.postFit
 
     factory._removeMCStat = opt.removeMCStat
-    
+
+    factory._plotFancy = opt.plotFancy
+
+
     #samples = {}
     samples = OrderedDict()
     if opt.samplesFile == None :
