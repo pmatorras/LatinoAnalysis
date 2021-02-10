@@ -131,9 +131,13 @@ if __name__ == '__main__':
                 opt.outputfile = opt.outputfile.replace('16', '16APV')
             print opt.samplefile
         OutputSamples = { }
-        print opt.outputfile
+        print "OUTPUT FILE",opt.outputfile
+        #testout=opt.outputfile+'.py'
         if opt.list:
             outList = open(opt.outputfile+'.csv' , 'w')
+        else: 
+            writeList = open(opt.outputfile+'.py','w')
+            writeList.write("Samples = {} \n\n")
 
         print opt.tier, campaign_year
         thistier=opt.tier.upper()+Sim
@@ -178,15 +182,12 @@ if __name__ == '__main__':
                         parentsFound.append(line)
 
             datasetFound = ''
-            datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
-
             if period!='': period = '_'+period 
             if len(datasetsFound)==1:
                 datasetFound = datasetsFound[0]
                 status = 'NanoAODv2 ready:, ' + datasetFound
                 if verbose:
                     print '\033['+okcolor + 'Dataset found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetFound + '\033[0m'
-
             elif len(datasetsFound)>1:
                 if verbose: 
                     print '\033['+okcolor + 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound + '\033[0m'
@@ -200,7 +201,7 @@ if __name__ == '__main__':
                             saveset=dataset
                         elif (version == int(dataset.split('-v')[1].split('/')[0])):
                             print "WARNING: "+ dataset+" and "+saveset+" have the same version" 
-                    else: print "TRY DIFFERENT CODING"
+                    else: print "TRY DIFFERENT CODING" #May have to be updated in the future
                 if verbose: print 'Dataset picked for sample', process+period, 'in campaign', campaign[thistier], '-->', saveset
                 
                 status = 'NanoAODv2 ready:, ' + saveset
@@ -322,13 +323,22 @@ if __name__ == '__main__':
                             status = 'Planned'
                             print '\033['+warningcolor + 'SAMPLES IN CSV:', process, incsv, ' \033[0m'
                             #exit()
- 
+                            
+            line='\n'
+            if len(datasetFound) == 0 : 
+                datasetFlag = ''
+                line+='#'
+            elif isData: datasetFlag = '_'+datasetFound.split('/')[2]
+            else: datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
+
             if opt.list:
                 outList.write(process + ',' + status + '\n')
-
             sampleName = process if Sim=='' else sample.replace('_newpmx','').split('_ext')[0]
             sampleName += datasetFlag # -> to be refined
-
+            #print "Samplename", sampleName
             OutputSamples[sampleName] = { }
             OutputSamples[sampleName][opt.tier] = datasetFound
-
+            line+="Samples[\'"+sampleName+"\']{\'"+datasetFound+"\'}"
+            print line
+            writeList.write(line)
+            
