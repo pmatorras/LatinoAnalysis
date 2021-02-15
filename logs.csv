@@ -1,0 +1,19 @@
+--2021-01-28 19:50:05--  https://docs.google.com/spreadsheets/d/1ABl2p2uwr2EfEbolBEVNcKb_fIXigYY9sqCRT8XIi1Q/export?format=csv&gid=1318927481
+Resolving docs.google.com (docs.google.com)... 2a00:1450:400a:800::200e, 216.58.215.238
+Connecting to docs.google.com (docs.google.com)|2a00:1450:400a:800::200e|:443... connected.
+HTTP request sent, awaiting response... 307 Temporary Redirect
+Location: https://doc-04-8c-sheets.googleusercontent.com/export/l5l039s6ni5uumqbsj9o11lmdc/bvq7ug978ogt8jfgs3qr478m1o/1611859805000/117233812091325637315/*/1ABl2p2uwr2EfEbolBEVNcKb_fIXigYY9sqCRT8XIi1Q?format=csv&gid=1318927481 [following]
+Warning: wildcards not supported in HTTP.
+--2021-01-28 19:50:05--  https://doc-04-8c-sheets.googleusercontent.com/export/l5l039s6ni5uumqbsj9o11lmdc/bvq7ug978ogt8jfgs3qr478m1o/1611859805000/117233812091325637315/*/1ABl2p2uwr2EfEbolBEVNcKb_fIXigYY9sqCRT8XIi1Q?format=csv&gid=1318927481
+Resolving doc-04-8c-sheets.googleusercontent.com (doc-04-8c-sheets.googleusercontent.com)... 2a00:1450:400a:803::2001, 172.217.168.65
+Connecting to doc-04-8c-sheets.googleusercontent.com (doc-04-8c-sheets.googleusercontent.com)|2a00:1450:400a:803::2001|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: ‘downloaded_content.csv’
+
+     0K .......... .......... .......... .......... .......... 1,73M
+    50K .......... .......... .......... .......... .......... 6,34M
+   100K .....                                                  6,02M=0,04s
+
+2021-01-28 19:50:06 (2,80 MB/s) - ‘downloaded_content.csv’ saved [108263]
+
