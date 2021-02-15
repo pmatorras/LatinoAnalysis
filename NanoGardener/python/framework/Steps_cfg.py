@@ -3321,6 +3321,24 @@ Steps = {
                  'module'     : 'prefCorr2017()',
                },
 
+  'PrefCorrUL16' : {
+                 'isChain'    : False ,
+                 'do4MC'      : True ,
+                 'do4Data'    : False  ,
+                 'import'     : 'LatinoAnalysis.NanoGardener.modules.PrefireCorr' ,
+                 'declare'    : 'prefCorrUL16 = lambda : PrefCorr(jetroot="L1PrefiringMaps_WithUL17.root", jetmapname="L1prefiring_jetptvseta_2016BtoH", photonroot="L1PrefiringMaps_WithUL17.root", photonmapname="L1prefiring_photonptvseta_2016BtoH", UseEMpT=0)',
+                 'module'     : 'prefCorrUL16()',
+               },
+
+  'PrefCorrUL17' : {
+                 'isChain'    : False ,
+                 'do4MC'      : True ,
+                 'do4Data'    : False  ,
+                 'import'     : 'LatinoAnalysis.NanoGardener.modules.PrefireCorr' ,
+                 'declare'    : 'prefCorrUL17 = lambda : PrefCorr(jetroot="L1PrefiringMaps_WithUL17.root", jetmapname="L1prefiring_jetptvseta_UL2017BtoF", photonroot="L1PrefiringMaps_WithUL17.root", photonmapname="L1prefiring_photonptvseta_UL2017BtoF", UseEMpT=0)',
+                 'module'     : 'prefCorrUL17()',
+               },
+
   'trigData' : { 'isChain'    : False ,
                  'do4MC'      : False ,
                  'do4Data'    : True  ,
@@ -3424,6 +3442,8 @@ Steps = {
                   'module'     : 'jetRecalib2017MC()',
                  }, 
  
+  # Old style, to be deleted when UL is fully done
+
   'JMEUncertMC2016' : {
                   'isChain'    : False ,
                   'do4MC'      : True ,
@@ -3478,6 +3498,26 @@ Steps = {
                   'module'     : 'jetmetCorrectorFS2018()',
                  }, 
 
+  # End old style
+
+  'JMEUncertMC' : {
+                   'isChain'    : False ,
+                   'do4MC'      : True ,
+                   'do4Data'    : False ,
+                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=False)',
+                   'module'     : 'jetmetCorrectorMC',
+                 },
+
+  'JMEUncertFS' : {
+                   'isChain'    : False , 
+                   'do4MC'      : True ,
+                   'do4Data'    : False ,
+                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
+                   'declare'    : 'jetmetCorrectorFS = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=True)',
+                   'module'     : 'jetmetCorrectorFS',
+                  },
+
   'PtCorrReader' : {
                   'isChain'    : False ,
                   'do4MC'      : True ,
@@ -3486,6 +3526,8 @@ Steps = {
                   'declare'    : 'ptcorr_SYSTVAR = lambda : PtCorrReader(Coll="CleanJet", CorrSrc="SYSTVAR")', 
                   'module'     : 'ptcorr_SYSTVAR()',
                  }, 
+
+  # Old style, to be deleted when UL is fully done
 
   #'METFixEEDATA2017' : {
   #                'isChain'    : False ,
@@ -3540,6 +3582,8 @@ Steps = {
                   'declare'    : 'jetmetCorrectorEEDATA2017F = createJMECorrector(isMC=False, dataYear=2017, runPeriod="F", metBranchName="METFixEE2017")',
                   'module'     : 'jetmetCorrectorEEDATA2017F()',
                  },  
+
+  # End old style
 
   'JECupdateDATA2017': {
                   'isChain'    : False ,
@@ -3723,7 +3767,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False  ,
                   'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.btv.btagSFProducer' ,
-                  'declare'    : 'btagSFProducerWPs = lambda : btagSFProducer(era="ERA", algo="deepcsv", doFastSim=False, selectedWPs=["L", "M", "T"])',
+                  'declare'    : 'btagSFProducerWPs = lambda : btagSFProducer(era="RPLME_YEAR", algo="deepcsv", doFastSim=False, selectedWPs=["L", "M", "T"])',
                   'module'     : 'btagSFProducerWPs()',
                  },
 
@@ -3813,11 +3857,11 @@ Steps = {
 
   'btagPerEventDeepCSVWPs': {
                   'isChain'    : False ,
-                  'do4MC'      : False ,
-                  'do4Data'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="ERA", bTagWP=["L", "M", "T"], bTagMethod="1c", bTagPtCut=["20", "25", "30"], dataType="mc")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="RPLME_YEAR", bTagWP=["L", "M", "T"], bTagMethod="1c", bTagPtCut=["20", "25", "30"], dataType="mc")',
                 },
 
   'LeptonSF' : {
@@ -6447,28 +6491,26 @@ for datatype in [ '', 'FS', 'Data' ] :
             Steps['btagPerEvent'+year+datatype+'Pt'+ptcut]['module'] = Steps['btagPerEvent'+year+datatype]['module'].replace('bTagPtCut="20"', 'bTagPtCut="'+ptcut+'"') 
 # end old style to be removed
 
-for year in [ 'UL16', 'UL17', 'UL18' ] :
-    for datatype in [ '', 'FS', 'Data' ] :
+for datatype in [ 'FS', 'Data' ] :
     
-        Steps['btagPerEventDeepCSVWPs'+year+datatype] = { }
-        for key in Steps['btagPerEventDeepCSVWPs']:
-            Steps['btagPerEventDeepCSVWPs'+year+datatype][key] = Steps['btagPerEventDeepCSVWPs'][key]
-        Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'].replace('bTagEra="ERA"', 'bTagEra="'+year+'"')
-        if datatype=='FS':
-            Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'].replace('dataType="mc"', 'dataType="fastsim"')
-        elif datatype=='Data':
-            Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+year+datatype]['module'].replace('dataType="mc"', 'dataType="data"')
+    Steps['btagPerEventDeepCSVWPs'+datatype] = { }
+    for key in Steps['btagPerEventDeepCSVWPs']:
+        Steps['btagPerEventDeepCSVWPs'+datatype][key] = Steps['btagPerEventDeepCSVWPs'][key]
+    if datatype=='FS':
+        Steps['btagPerEventDeepCSVWPs'+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+datatype]['module'].replace('dataType="mc"', 'dataType="fastsim"')
+    elif datatype=='Data':
+        Steps['btagPerEventDeepCSVWPs'+datatype]['do4MC'] = False
+        Steps['btagPerEventDeepCSVWPs'+datatype]['do4Data'] = True
+        Steps['btagPerEventDeepCSVWPs'+datatype]['module'] = Steps['btagPerEventDeepCSVWPs'+datatype]['module'].replace('dataType="mc"', 'dataType="data"')
 
-        if datatype!='Data':
+    if datatype=='FS':
 
-            Steps['btagPerJetDeepCSVWPs'+year+datatype] = { }
-            for key in Steps['btagPerJetDeepCSVWPs']:
-                Steps['btagPerJetDeepCSVWPs'+year+datatype][key] = Steps['btagPerJetDeepCSVWPs'][key]
-            Steps['btagPerJetDeepCSVWPs'+year+datatype]['declare'] = Steps['btagPerJetDeepCSVWPs'+year+datatype]['declare'].replace('btagSFProducerWPs =', 'btagSFProducerWPs'+year+datatype+' =') 
-            Steps['btagPerJetDeepCSVWPs'+year+datatype]['declare'] = Steps['btagPerJetDeepCSVWPs'+year+datatype]['declare'].replace('era="ERA"', 'era="'+year+'"')
-            if datatype=='FS':
-                Steps['btagPerJetDeepCSVWPs'+year+datatype]['declare'] = Steps['btagPerJetDeepCSVWPs'+year+datatype]['declare'].replace('doFastSim=False', 'doFastSim=True')
-            Steps['btagPerJetDeepCSVWPs'+year+datatype]['module'] = Steps['btagPerJetDeepCSVWPs'+year+datatype]['module'].replace('btagSFProducerWPs()', 'btagSFProducerWPs'+year+datatype+'()')
+        Steps['btagPerJetDeepCSVWPs'+datatype] = { }
+        for key in Steps['btagPerJetDeepCSVWPs']:
+            Steps['btagPerJetDeepCSVWPs'+datatype][key] = Steps['btagPerJetDeepCSVWPs'][key]
+        Steps['btagPerJetDeepCSVWPs'+datatype]['declare'] = Steps['btagPerJetDeepCSVWPs'+datatype]['declare'].replace('btagSFProducerWPs =', 'btagSFProducerWPs'+datatype+' =') 
+        Steps['btagPerJetDeepCSVWPs'+datatype]['declare'] = Steps['btagPerJetDeepCSVWPs'+datatype]['declare'].replace('doFastSim=False', 'doFastSim=True')
+        Steps['btagPerJetDeepCSVWPs'+datatype]['module'] = Steps['btagPerJetDeepCSVWPs'+datatype]['module'].replace('btagSFProducerWPs()', 'btagSFProducerWPs'+datatype+'()')
 
 # mt2Producer regions
 
