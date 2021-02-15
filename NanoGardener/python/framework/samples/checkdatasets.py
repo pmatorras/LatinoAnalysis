@@ -190,7 +190,7 @@ if __name__ == '__main__':
                     print '\033['+okcolor + 'Dataset found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetFound + '\033[0m'
             elif len(datasetsFound)>1:
                 if verbose: 
-                    print '\033['+okcolor + 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound + '\033[0m'
+                    print '\033['+okcolor + 'Warning: multiple datasets found for sample', process+period, 'in campaign', campaign[thistier], '-->', datasetsFound, '\033[0m'
                 version = 0
                 saveset = ''
                 for dataset in datasetsFound:  
@@ -338,7 +338,7 @@ if __name__ == '__main__':
             #print "Samplename", sampleName
             OutputSamples[sampleName] = { }
             OutputSamples[sampleName][opt.tier] = datasetFound
-            line+="Samples[\'"+sampleName+"\']{\'"+datasetFound+"\'}"
+            line+="Samples[\'"+sampleName+"\'] \t = {\'"+opt.tier+"\': \'"+datasetFound+"\'}"
             print line
             writeList.write(line)
             
