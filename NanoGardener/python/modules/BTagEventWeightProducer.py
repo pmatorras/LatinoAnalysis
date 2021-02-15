@@ -8,18 +8,18 @@ import math
 from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collection 
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 
-bTagWorkingPointCut = { 'btagDeepB'     : { '2016' : { 'L' : '0.2217', 'M' : '0.6321', 'T' : '0.8953' },
-                                            '2017' : { 'L' : '0.1522', 'M' : '0.4941', 'T' : '0.8001' },
-                                            '2018' : { 'L' : '0.1241', 'M' : '0.4184', 'T' : '0.7527' },
-                                            'UL16' : { 'L' : '', 'M' : '', 'T' : '' }, # TO BE UPDATED
-                                            'UL17' : { 'L' : '0.1355', 'M' : '0.4506', 'T' : '0.7738' }, 
-                                            'UL18' : { 'L' : '0.1208', 'M' : '0.4168', 'T' : '0.7665' }, },
-                        'btagDeepFlavB' : { '2016' : { 'L' : '0.0614', 'M' : '0.3093', 'T' : '0.7221' },
-                                            '2017' : { 'L' : '0.0521', 'M' : '0.3033', 'T' : '0.7489' },
-                                            '2018' : { 'L' : '0.0494', 'M' : '0.2770', 'T' : '0.7264' },
-                                            'UL16' : { 'L' : '', 'M' : '', 'T' : '' }, # TO BE UPDATED 
-                                            'UL17' : { 'L' : '0.0532', 'M' : '0.3040', 'T' : '0.7476' },
-                                            'UL18' : { 'L' : '0.0490', 'M' : '0.2783', 'T' : '0.7100' }, }, }
+bTagWorkingPointCut = { 'btagDeepB'     : { '2016'   : { 'L' : '0.2217', 'M' : '0.6321', 'T' : '0.8953' },
+                                            '2017'   : { 'L' : '0.1522', 'M' : '0.4941', 'T' : '0.8001' },
+                                            '2018'   : { 'L' : '0.1241', 'M' : '0.4184', 'T' : '0.7527' },
+                                            'UL2016' : { 'L' : '', 'M' : '', 'T' : '' }, # TO BE UPDATED
+                                            'UL2017' : { 'L' : '0.1355', 'M' : '0.4506', 'T' : '0.7738' }, 
+                                            'UL2018' : { 'L' : '0.1208', 'M' : '0.4168', 'T' : '0.7665' }, },
+                        'btagDeepFlavB' : { '2016'   : { 'L' : '0.0614', 'M' : '0.3093', 'T' : '0.7221' },
+                                            '2017'   : { 'L' : '0.0521', 'M' : '0.3033', 'T' : '0.7489' },
+                                            '2018'   : { 'L' : '0.0494', 'M' : '0.2770', 'T' : '0.7264' },
+                                            'UL2016' : { 'L' : '', 'M' : '', 'T' : '' }, # TO BE UPDATED 
+                                            'UL2017' : { 'L' : '0.0532', 'M' : '0.3040', 'T' : '0.7476' },
+                                            'UL2018' : { 'L' : '0.0490', 'M' : '0.2783', 'T' : '0.7100' }, }, }
 
 class BTagEventWeightProducer(Module):
     def __init__(self, collection="Lepton", bTagEra = "", bTagAlgo="", bTagWPs=['shape'], dataType='mc', bTagMethod = '1d', bTagPtCuts = ['20'], bTagEff_path=''):
@@ -38,7 +38,7 @@ class BTagEventWeightProducer(Module):
         self.bTagMethod = bTagMethod
         self.bTagPtCuts = bTagPtCuts
         self.bTagEff_path = bTagEff_path
-        self.bTagEtaMax = 2.4 if (bTagEra=='2016' or bTagEra=='UL16') else 2.5
+        self.bTagEtaMax = 2.4 if (bTagEra=='2016' or bTagEra=='UL2016') else 2.5
         self.bTagWPs = bTagWPs
         self.bTagCuts = [ ]
         for bTagWP in bTagWPs:

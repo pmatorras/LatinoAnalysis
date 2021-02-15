@@ -30,6 +30,10 @@ class rochester_corr(Module):
         if year == 2016 : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2016.txt"
         if year == 2017 : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2017.txt"        
         if year == 2018 : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2018.txt"        
+        if year == 'UL2016APV' : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2016aUL.txt"
+        if year == 'UL2016'    : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2016bUL.txt" 
+        if year == 'UL2017'    : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2017UL.txt"
+        if year == 'UL2018'    : rochester_path=cmssw_base+"/src/LatinoAnalysis/NanoGardener/python/data/RoccoR2018UL.txt"
         print "scale factors from", rochester_path
         rc=ROOT.RoccoR_NG(rochester_path)
         self.rc= rc        
