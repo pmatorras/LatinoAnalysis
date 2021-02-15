@@ -9,7 +9,7 @@ sys.path.append('/afs/cern.ch/cms/PPD/PdmV/tools/McM/')
 from rest import McM
 
 mcm = McM(dev=True)
-
+testcolor='95m'
 if 'pmatorra' in os.environ.get('USER'):
     cmssw_directory= '/afs/cern.ch/work/p/pmatorra/private/CMSSW_10_6_19/'
     errorcolor = '93m'
@@ -46,12 +46,13 @@ def readSampleFile(filename):
     return samhere
 
 def substringinlist(sample_list,substring):
-    inlist=[]
+    inlist=set() #defined so that duplicates are removed
+    #loop to find samples with the substring
     for item in sample_list:
         if (substring in item) : 
-            inlist.append(item)
+            inlist.add(item)
             #print "satisfies", substring, item
-    return inlist
+    return list(inlist)
 
 if __name__ == '__main__':
 
@@ -138,7 +139,8 @@ if __name__ == '__main__':
         thistier=opt.tier.upper()+Sim
         print "CAMPAIGN:", campaign[thistier].upper(), thistier
         for sample in Samples:
-
+            #print sample
+            #if ("WWTo2L" not in sample): continue
             process = Samples[sample][opt.tier].split('/')[1]
             period = '' if Sim=='SIM' else Samples[sample][opt.tier].split('/')[2].split('-')[0].split('_')[0]
 
@@ -179,7 +181,6 @@ if __name__ == '__main__':
             datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
 
             if period!='': period = '_'+period 
-
             if len(datasetsFound)==1:
                 datasetFound = datasetsFound[0]
                 status = 'NanoAODv2 ready:, ' + datasetFound
@@ -201,11 +202,7 @@ if __name__ == '__main__':
                             print "WARNING: "+ dataset+" and "+saveset+" have the same version" 
                     else: print "TRY DIFFERENT CODING"
                 if verbose: print 'Dataset picked for sample', process+period, 'in campaign', campaign[thistier], '-->', saveset
-                # Insert code to select the right one
-                #for datasetCandidate in datasetsFound:
-                #    query = '\"instance=prod/global summary dataset='+datasetCandidate+'\"'
-                #    query_output = subprocess.check_output('dasgoclient -query='+query, shell=True)
-                #exit()
+                
                 status = 'NanoAODv2 ready:, ' + saveset
             else:   
                 if verbose: 
@@ -251,19 +248,80 @@ if __name__ == '__main__':
                         incsv=substringinlist(csvsamples,process)
                         if   (len(incsv)==0) :
                             incsvsample = substringinlist(csvsamples,sample)
+                            print "---------->", process, sample, "\n", incsvsample
+                            
                             if len(incsvsample)==0: 
                                 print '\033['+errorcolor + 'Warning: sample', process, 'not in the planned production campaign' + '\033[0m'
                             else:
                                 status = 'Planned alternative: '
-                                for alt_sample in incsvsample:
-                                    status += alt_sample + ' - '
-                                print '\033['+warningcolor + 'Warning: sample', process, 'not in the planned production campaign, but alternative samples are there:', incsvsample, '' + '\033[0m'
-                        elif (len(incsv)>5)  : 
+                                sample_options = ['-powheg','-pythia8', '_TuneCP5']
+                                skim_process = process
+                                in_skim_proc = []
+                                best_altern  = ''
+                                notincommon  = 2*len(sample_options)
+                                print "sample and process", sample, process
+                                
+                                #Cover from cases from TTSemilepton->Semileptonic or incorrectly read *
+                                if sample not in process or "*" in process: 
+                                    maxopts = 0
+                                    if len(incsvsample)==1: bestcandidate=incsvsample[0]
+                                    else: bestcandidate=''
+                                    for alt_sample in incsvsample:
+                                        #print sample, alt_sample, process, bool(sample in alt_sample), bool(process in alt_sample)
+
+                                        if sample  not in alt_sample: continue
+                                        nopts = 0
+                                        for sample_option in sample_options:
+                                            #print sample_option, incsvbool(sample_option in incsvsample)
+                                            if sample_option in alt_sample: nopts+=1
+                                        if nopts> maxopts:
+                                            maxopts       = nopts
+                                            bestcandidate = alt_sample
+                                    print alt_sample, maxopts, len(sample_options)
+
+                                    print '\033['+warningcolor + 'Warning: sample', process, 'not in the planned production campaign,',
+                                    if maxopts==len(sample_options): print '\033['+testcolor +"but the sample ", bestcandidate, "should be equivalent"
+                                    else: print "with the sample being the closest", bestcandidate
+                                    print "\033[0m"
+                                
+                                #If many, check which one resembles closer to the input parametre
+                                else:
+                                    for sample_option in sample_options:
+                                        if(sample_option in skim_process): 
+                                            skim_process = skim_process.replace(sample_option,'')
+                                            in_skim_proc.append(sample_option)
+                                    for alt_sample in incsvsample:
+                                        status     += alt_sample + ' - '
+                                        skim_alt    = alt_sample
+                                        in_skim_alt = []
+                                        for sample_option in sample_options:
+                                            if sample_option in skim_alt:
+                                                skim_alt = skim_alt.replace(sample_option,'')
+                                                in_skim_alt.append(sample_option)
+                                        not_inproc=[x for x in in_skim_proc+in_skim_alt if x not in in_skim_proc]
+                                        not_inalt =[x for x in in_skim_proc+in_skim_alt if x not in in_skim_alt] #Both could be combined
+
+                                        if skim_process in skim_alt:
+                                            if notincommon> len(not_inproc)+len(not_inalt):
+                                                notincommon = len(not_inproc)+len(not_inalt)
+                                                best_altern = alt_sample
+                                            elif notincommon == len(not_inproc)+len(not_inalt): best_altern+= alt_sample
+
+                                    print '\033['+warningcolor + 'Warning: sample', process, 'not in the planned production campaign,',
+                                    if notincommon<2*len(sample_options):
+                                        if notincommon==0: print '\033['+testcolor +"but the sample "+ best_altern+ " should be equivalent"
+                                        else: print"should be similar with the exception of "+ not_inproc+ "not in the process name, and "+ not_inalt+ " not in the CSV"
+                                    else: print 'but alternative samples are there:', incsvsample
+                                    print '\033[0m',
+                                    #if len(incsvsample)>1:exit()
+                        elif (len(incsv)>1)  : 
                             status = 'Planned'
-                            if verbose: print "MULTIPLE OPTIONS AVAILABLE FOR THE CSV FILE"
+                            if verbose: print '\033['+testcolor+"MULTIPLE OPTIONS AVAILABLE FOR THE CSV FILE", ' \033[0m', incsv, set(incsv), len(set(incsv))
+                            exit()
                         elif verbose: 
                             status = 'Planned'
-                            print '\033['+warningcolor + 'SAMPLES IN CSV:', process, incsv, '' + '\033[0m'
+                            print '\033['+warningcolor + 'SAMPLES IN CSV:', process, incsv, ' \033[0m'
+                            #exit()
  
             if opt.list:
                 outList.write(process + ',' + status + '\n')
