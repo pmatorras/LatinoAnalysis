@@ -325,20 +325,35 @@ if __name__ == '__main__':
                             #exit()
                             
             line='\n'
+            for data in datasetFound.split('/'):
+                if 'ext' in data:
+                    datasetFlag='_extN'
+                    print "................................\n", datasetFound
+                    exit()
+            
+
             if len(datasetFound) == 0 : 
                 datasetFlag = ''
                 line+='#'
             elif isData: datasetFlag = '_'+datasetFound.split('/')[2]
-            else: datasetFlag = '_'+Samples[sample][opt.tier].split('/')[2]
+            elif "_ext" in Samples[sample][opt.tier]: 
+                datasetFlag = "_ext"+Samples[sample][opt.tier].split("_ext")[1].split("-")[0]
+                #print '\033['+testcolor+ " REEEMOVING THE _EXT", datasetFlag, "\033[0m"
+            else: 
+                datasetFlag = ''#'_'+Samples[sample][opt.tier].split('/')[2]
+                #print "##############\nDATASET FLAG\n", datasetFlag,"\nsamples[sample]",  Samples[sample][opt.tier], "\nprocess", process, "\nsample", sample, "\n##############"
 
+                #if 'TTTo2L2Nu' in sample : 
+                #    print "#################################\nFLAG#####", Samples[sample][opt.tier], process, sample
+                    #exit()
             if opt.list:
                 outList.write(process + ',' + status + '\n')
-            sampleName = process if Sim=='' else sample.replace('_newpmx','').split('_ext')[0]
+            sampleName = process if Sim=='' else sample.replace('_newpmx','').replace('_PSWeights', '').split('_ext')[0]
             sampleName += datasetFlag # -> to be refined
             #print "Samplename", sampleName
             OutputSamples[sampleName] = { }
             OutputSamples[sampleName][opt.tier] = datasetFound
             line+="Samples[\'"+sampleName+"\'] \t = {\'"+opt.tier+"\': \'"+datasetFound+"\'}"
-            print line
+            if "#" not in line: print line
             writeList.write(line)
             
