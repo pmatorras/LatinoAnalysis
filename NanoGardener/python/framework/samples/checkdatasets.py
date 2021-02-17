@@ -336,9 +336,10 @@ if __name__ == '__main__':
                 datasetFlag = ''
                 line+='#'
             elif isData: datasetFlag = '_'+datasetFound.split('/')[2]
-            elif "_ext" in Samples[sample][opt.tier]: 
-                datasetFlag = "_ext"+Samples[sample][opt.tier].split("_ext")[1].split("-")[0]
-                #print '\033['+testcolor+ " REEEMOVING THE _EXT", datasetFlag, "\033[0m"
+            elif "_ext" in datasetFound:#.split('/')[2]: 
+                datasetFlag = "_ext"+datasetFound.split('/')[2].split("_ext")[1].split('-')[0]#+Samples[sample][opt.tier].split("_ext")[1].split("-")[0]
+                print '\033['+testcolor+ " REEEMOVING THE _EXT", datasetFlag, "\033[0m"
+                exit()
             else: 
                 datasetFlag = ''#'_'+Samples[sample][opt.tier].split('/')[2]
                 #print "##############\nDATASET FLAG\n", datasetFlag,"\nsamples[sample]",  Samples[sample][opt.tier], "\nprocess", process, "\nsample", sample, "\n##############"
