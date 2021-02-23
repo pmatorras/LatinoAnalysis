@@ -2946,7 +2946,8 @@ MuonWP = {
                     } ,
                 'tkSFerror': 0.01,
                 'susySF':  {
-                    '1-7' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root#NUM_MediumID_DEN_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
+                    '1-4' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root#NUM_MediumID_DEN_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
+                    '5-7' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root#NUM_MediumID_DEN_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
                      } ,
                 'fsSF': {
                     '1-7' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/detailed_mu_full_fast_sf_17.root#miniIso01_MediumId_sf' , 
@@ -2973,7 +2974,8 @@ MuonWP = {
                     } ,
                 'tkSFerror': 0.01,
                 'susySF':  {
-                    '1-7' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root#NUM_MediumID_DEN_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
+                    '1-4' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root#NUM_MediumID_DEN_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
+                    '5-7' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ID.root#NUM_MediumID_DEN_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v8/Efficiencies_muon_generalTracks_Z_Run2016_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
                      } ,
                 'fsSF': {
                     '1-7' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v2/detailed_mu_full_fast_sf_17.root#miniIso01_MediumId_sf' , 
@@ -3113,7 +3115,7 @@ MuonWP = {
                         ] ,
                     } ,
                 'susySF':  {
-                    '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root#NUM_MediumID_DEN_TrackerMuons_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ID.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
+                    '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ID.root#NUM_MediumID_DEN_TrackerMuons_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
                      } ,
                 'fsSF': {
                     '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/detailed_mu_full_fast_sf_18.root#miniIso01_MediumId_sf' , 
@@ -3134,7 +3136,7 @@ MuonWP = {
                         ] ,
                     } ,
                 'susySF':  {
-                    '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root#NUM_MediumID_DEN_TrackerMuons_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ID.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
+                    '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ID.root#NUM_MediumID_DEN_TrackerMuons_abseta_pt&LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v8/Efficiencies_muon_generalTracks_Z_Run2018_UL_ISO.root#NUM_TightRelIso_DEN_MediumID_abseta_pt' ,
                      } ,
                 'fsSF': {
                     '1-1' : 'LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018/detailed_mu_full_fast_sf_18.root#miniIso01_MediumId_sf' , 
@@ -3163,9 +3165,6 @@ MuonWP['Full2016v4']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2016v4']['Ve
 MuonWP['Full2017v4']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2017v4']['VetoObjWP']['looseRelIsoLoose']
 MuonWP['Full2018v4']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2018v4']['VetoObjWP']['looseRelIsoLoose']
 
-MuonWP['Full2016v8']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2016v8']['VetoObjWP']['looseRelIsoLoose']
-MuonWP['Full2017v8']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2017v8']['VetoObjWP']['looseRelIsoLoose']
-MuonWP['Full2018v8']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2018v8']['VetoObjWP']['looseRelIsoLoose']
 
 MuonWP['Full2016v6'] = MuonWP['Full2016v4']
 MuonWP['Full2017v6'] = MuonWP['Full2017v4']
@@ -3177,6 +3176,10 @@ MuonWP['Full2017v7']['VetoObjWP']['basemuo'] = MuonWP['Full2017v7']['TightObjWP'
 MuonWP['Full2017v7']['FakeObjWP']['basemuo'] = MuonWP['Full2017v7']['TightObjWP']['looseMiniIsoLoose']
 MuonWP['Full2018v7']['VetoObjWP']['basemuo'] = MuonWP['Full2018v7']['TightObjWP']['looseMiniIsoLoose']
 MuonWP['Full2018v7']['FakeObjWP']['basemuo'] = MuonWP['Full2018v7']['TightObjWP']['looseMiniIsoLoose']
+
+MuonWP['Full2016v8']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2016v8']['VetoObjWP']['looseRelIsoLoose']
+MuonWP['Full2017v8']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2017v8']['VetoObjWP']['looseRelIsoLoose']
+MuonWP['Full2018v8']['FakeObjWP']['looseRelIsoLoose'] = MuonWP['Full2018v8']['VetoObjWP']['looseRelIsoLoose']
 
 if __name__ == '__main__':
     print('_______________LepFilter_dict___________')
