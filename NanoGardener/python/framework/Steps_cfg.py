@@ -1050,7 +1050,7 @@ Steps = {
                                   ],
                 },
 
-  'MCSusy2017v8loose' :  {
+  'MCSusy2017v8' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
