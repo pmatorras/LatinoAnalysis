@@ -762,11 +762,11 @@ Productions = {
                        'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2018.py' ,
                        'YRver'   : ['YR4','13TeV'] ,
                    },
- 'fall17_susy_106X_Full2017v8': {
+ 'Fall17_106X_Full2017v8': {
                        'isData'  : False ,
                        'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/fall17_susy_106X_nAODv8.py' ,
                        'cmssw'   : 'Full2017v8' ,
-                       'year'    : 'UL2017' ,
+                       'year'    : '2017',#'UL2017' ,
                        #'JESGT'   : 'Summer16_07Aug2017_V11_MC' ,
                        'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2018.py' ,
                        'YRver'   : ['YR4','13TeV'] ,

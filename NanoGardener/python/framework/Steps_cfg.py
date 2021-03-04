@@ -1050,6 +1050,16 @@ Steps = {
                                   ],
                 },
 
+  'MCSusy2017v8' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker', 'lepSelSusy', # 'JMEUncertMC' #,
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
   'MCSusy2017FS' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -1897,6 +1907,17 @@ Steps = {
                                   'trigData','btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
                                   ], 
                 },
+
+  'DATASusy2017v8': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEventDeepCSVWPsData'# old btagging,'btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
+                                  ],
+                },
+
 
 # 'DATAl1loose2017': {
 #                 'isChain'    : True  ,
@@ -3505,7 +3526,7 @@ Steps = {
                    'do4MC'      : True ,
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=False)',
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", isFastSim=False)',# ,redojec=True)',
                    'module'     : 'jetmetCorrectorMC',
                  },
 
