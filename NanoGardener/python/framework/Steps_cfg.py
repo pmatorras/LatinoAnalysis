@@ -1056,6 +1056,7 @@ Steps = {
                   'do4Data'    : False ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : ['leptonMaker', 'lepSelSusy', # 'JMEUncertMC' #,
+                  'subTargets' : ['leptonMaker','lepSelSusy',  'JMEUncertMC',
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
                 },
