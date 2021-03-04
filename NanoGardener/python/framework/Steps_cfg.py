@@ -1189,7 +1189,7 @@ Steps = {
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
                 },
 
-  'MCSusyCorr2017v6loose' : {
+  'MCSusyCorr2017v8' : {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
