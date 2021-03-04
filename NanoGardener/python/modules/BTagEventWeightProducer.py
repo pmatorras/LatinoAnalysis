@@ -23,7 +23,6 @@ bTagWorkingPointCut = { 'btagDeepB'     : { '2016'   : { 'L' : '0.2217', 'M' : '
 
 class BTagEventWeightProducer(Module):
     def __init__(self, collection="Lepton", bTagEra = "", bTagAlgo="", bTagWPs=['shape'], dataType='mc', bTagMethod = '1d', bTagPtCuts = ['20'], bTagSyst = [ '' ], bTagEff_path=''):
-        print bTagWPs, bTagMethod 
         if (bTagMethod=='1d' and ('L' in bTagWPs or 'M' in bTagWPs or 'T' in bTagWPs)) or (bTagMethod != '1d' and 'shape' in bTagWPs):
             raise Exception('BTagEventWeightProducer ERROR: working point list', bTagWPs, 'is meaningless for method', bTagMethod)
 

@@ -92,9 +92,6 @@ class TrigMaker(Module):
         self.TM_GlEff = {}
         #self.TM_trkSFMu = {}
         self.TM_runInt  = {}
-        print self.Trigger
-        print self.cmssw
-        print self.Trigger[self.cmssw], self.cmssw
         for RunP in self.Trigger[self.cmssw]:
            #self.TM_trkSFMu[RunP] = deepcopy(self.Trigger[self.cmssw][RunP]['trkSFMu'])
            self.TM_trig[RunP]    = {}
