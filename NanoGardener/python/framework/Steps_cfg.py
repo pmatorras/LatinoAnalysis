@@ -1055,8 +1055,7 @@ Steps = {
                   'do4MC'      : True  ,
                   'do4Data'    : False ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
-                  'subTargets' : ['leptonMaker', 'lepSelSusy', # 'JMEUncertMC' #,
-                  'subTargets' : ['leptonMaker','lepSelSusy',  'JMEUncertMC',
+                  'subTargets' : ['leptonMaker', 'lepSelSusy',  'JMEUncertMC' ,
                                   'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
                                   ],
                 },
@@ -3527,8 +3526,8 @@ Steps = {
                    'do4MC'      : True ,
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", isFastSim=False)',# ,redojec=True)',
-                   'module'     : 'jetmetCorrectorMC',
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear=2017, jesUncert="Total", isFastSim=False)',#"RPLME_YEAR" ,redojec=True)',
+                   'module'     : 'jetmetCorrectorMC()',
                  },
 
   'JMEUncertFS' : {
@@ -3537,7 +3536,7 @@ Steps = {
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
                    'declare'    : 'jetmetCorrectorFS = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=True)',
-                   'module'     : 'jetmetCorrectorFS',
+                   'module'     : 'jetmetCorrectorFS()',
                   },
 
   'PtCorrReader' : {
@@ -3883,7 +3882,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="RPLME_YEAR", bTagWP=["L", "M", "T"], bTagMethod="1c", bTagPtCut=["20", "25", "30"], dataType="mc")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="RPLME_YEAR", bTagWPs=["L", "M", "T"], bTagMethod="1c", bTagPtCuts=["20", "25", "30"], dataType="mc")',
                 },
 
   'LeptonSF' : {
