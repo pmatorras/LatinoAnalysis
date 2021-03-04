@@ -1172,6 +1172,15 @@ Steps = {
                 },
 
 
+  'MCSusyCorr2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2017','btagPerJet2017',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
+                },
+
   'MCSusySyst2017v6loose' : {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
@@ -1180,20 +1189,11 @@ Steps = {
                                    ],
                 },
 
-  'MCSusyCorr2017v6loose' : {
-                     'isChain'    : True  ,
-                     'do4MC'      : True  ,
-                     'do4Data'    : False ,
-                     'subTargets' : ['baseW','PrefCorrUL17','btagPerJet2017',
-                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
-                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
-                },
-
   'MCSusyCorr2017v8' : {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
                      'do4Data'    : False ,
-                     'subTargets' : ['baseW','PrefCorr2017','btagPerJetCSVWPs',
+                     'subTargets' : ['baseW','PrefCorrUL17','btagPerJetCSVWPs',
                                      'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
                 },
@@ -1925,7 +1925,7 @@ Steps = {
                   'do4Data'    : True  ,
                   'selection'  : '"((nElectron+nMuon)>1)"' ,
                   'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
-                                  'trigData', 'btagPerEventDeepCSVWPsData'# old btagging,'btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
+                                  'trigData', 'btagPerEventDeepCSVWPsData'
                                   ],
                 },
 
@@ -3537,7 +3537,7 @@ Steps = {
                    'do4MC'      : True ,
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear=2017, jesUncert="Total", isFastSim=False)',#"RPLME_YEAR" ,redojec=True)',
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear=RPLME_YEAR, jesUncert="Total", isFastSim=False)',#"RPLME_YEAR" ,redojec=True)',
                    'module'     : 'jetmetCorrectorMC()',
                  },
 
