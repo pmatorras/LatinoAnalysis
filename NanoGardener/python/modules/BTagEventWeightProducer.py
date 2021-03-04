@@ -101,7 +101,7 @@ class BTagEventWeightProducer(Module):
             self.central_and_systs_shape_corr.extend(self.systs_shape_corr)
             self.branchNames_central_and_systs_shape_corr={}
 
-        for wp in range(self.bTagWPs):
+        for wp in range(len(self.bTagWPs)):
 
             bTagWP = self.bTagWPs[wp]
             bTagCut = self.bTagCuts[wp] 
@@ -220,7 +220,7 @@ class BTagEventWeightProducer(Module):
     def analyze(self, event):
         """process event, return True (go to next module) or False (fail, go to next event)"""
 
-        for wp in range(self.bTagWPs):
+        for wp in range(len(self.bTagWPs)):
 
             bTagWP = self.bTagWPs[wp]
             bTagCut = self.bTagCuts[wp]
