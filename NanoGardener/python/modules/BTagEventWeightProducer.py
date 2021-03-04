@@ -22,7 +22,7 @@ bTagWorkingPointCut = { 'btagDeepB'     : { '2016'   : { 'L' : '0.2217', 'M' : '
                                             'UL2018' : { 'L' : '0.0490', 'M' : '0.2783', 'T' : '0.7100' }, }, }
 
 class BTagEventWeightProducer(Module):
-    def __init__(self, collection="Lepton", bTagEra = "", bTagAlgo="", bTagWPs=['shape'], dataType='mc', bTagMethod = '1d', bTagPtCuts = ['20'], bTagEff_path=''):
+    def __init__(self, collection="Lepton", bTagEra = "", bTagAlgo="", bTagWPs=['shape'], dataType='mc', bTagMethod = '1d', bTagPtCuts = ['20'], bTagSyst = [ '' ], bTagEff_path=''):
 
         if (self.bTagMethod=='1d' and ('L' in bTagWPs or 'M' in bTagWPs or 'T' in bTagWPs)) or (self.bTagMethod!='1d' and 'shape' in bTagWPs):
             raise Exception('BTagEventWeightProducer ERROR: working point list', bTagWPs, 'is meaningless for method', bTagMethod)
@@ -37,6 +37,7 @@ class BTagEventWeightProducer(Module):
         self.dataType = dataType
         self.bTagMethod = bTagMethod
         self.bTagPtCuts = bTagPtCuts
+        self.bTagSyst = bTagSyst
         self.bTagEff_path = bTagEff_path
         self.bTagEtaMax = 2.4 if (bTagEra=='2016' or bTagEra=='UL2016') else 2.5
         self.bTagWPs = bTagWPs
@@ -85,8 +86,9 @@ class BTagEventWeightProducer(Module):
                     self.systs_shape_corr.append("up_%s" % syst)
                     self.systs_shape_corr.append("down_%s" % syst)
             else :
-                self.systs_shape_corr.append("b_up")
-                self.systs_shape_corr.append("b_down")
+                for syst in self.bTagSyst: 
+                    self.systs_shape_corr.append("b_up"+syst)
+                    self.systs_shape_corr.append("b_down"+syst)
                 self.systs_shape_corr.append("l_up")
                 self.systs_shape_corr.append("l_down")
                 if self.dataType=='fastsim':
@@ -195,7 +197,7 @@ class BTagEventWeightProducer(Module):
         jfl = event.Jet_hadronFlavour[idx]
 
         central_or_syst_flag = ""
-        if (central_or_syst=="b_up" or central_or_syst=="b_down") and (abs(jfl)==5 or abs(jfl)==4):
+        if "fastsim" not in central_or_syst and ("b_up" in central_or_syst or "b_down" in central_or_syst) and (abs(jfl)==5 or abs(jfl)==4):
             central_or_syst_flag = central_or_syst.replace("b", "")
         if (central_or_syst=="l_up" or central_or_syst=="l_down") and abs(jfl)<4:
             central_or_syst_flag = central_or_syst.replace("l", "")
