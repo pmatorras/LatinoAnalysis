@@ -1171,14 +1171,6 @@ Steps = {
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
                 },
 
-  'MCSusyCorr2017v6loose' : {
-                     'isChain'    : True  ,
-                     'do4MC'      : True  ,
-                     'do4Data'    : False ,
-                     'subTargets' : ['baseW','PrefCorr2017','btagPerJet2017',
-                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
-                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
-                },
 
   'MCSusySyst2017v6loose' : {
                      'isChain'    : True  ,
@@ -1187,6 +1179,25 @@ Steps = {
                      'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30'
                                    ],
                 },
+
+  'MCSusyCorr2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorrUL17','btagPerJet2017',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
+                },
+
+  'MCSusyCorr2017v6loose' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorr2017','btagPerJetCSVWPs',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
+                },
+
 
   'FSSusyCorr2017v6loose' : {
                      'isChain'    : True  ,
