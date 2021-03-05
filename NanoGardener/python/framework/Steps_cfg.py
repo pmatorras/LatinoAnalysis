@@ -1050,6 +1050,16 @@ Steps = {
                                   ],
                 },
 
+  'MCSusy2017v8' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : False ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker', 'lepSelSusy',  'JMEUncertMC' ,
+                                  'PromptParticlesGenVars','GenVar','GenLeptonMatch','TopGenVars'
+                                  ],
+                },
+
   'MCSusy2017FS' :  {
                   'isChain'    : True  ,
                   'do4MC'      : True  ,
@@ -1161,6 +1171,7 @@ Steps = {
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK' ],
                 },
 
+
   'MCSusyCorr2017v6loose' : {
                      'isChain'    : True  ,
                      'do4MC'      : True  ,
@@ -1177,6 +1188,16 @@ Steps = {
                      'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30'
                                    ],
                 },
+
+  'MCSusyCorr2017v8' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['baseW','PrefCorrUL17','btagPerJetCSVWPs',
+                                     'rochesterMC','trigMC','trigMC_Cut','LeptonSFSusy','puW','EmbeddingVeto',
+                                     'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
+                },
+
 
   'FSSusyCorr2017v6loose' : {
                      'isChain'    : True  ,
@@ -1897,6 +1918,17 @@ Steps = {
                                   'trigData','btagPerEvent2017Data','btagPerEvent2017DataPt25','btagPerEvent2017DataPt30' ###,'formulasDATA'
                                   ], 
                 },
+
+  'DATASusy2017v8': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>1)"' ,
+                  'subTargets' : ['leptonMaker','lepSelSusy','jetSelSusy','rochesterDATA' , ###'l2Kin', 'l3Kin', 'l4Kin',
+                                  'trigData', 'btagPerEventDeepCSVWPsData'
+                                  ],
+                },
+
 
 # 'DATAl1loose2017': {
 #                 'isChain'    : True  ,
@@ -3505,8 +3537,8 @@ Steps = {
                    'do4MC'      : True ,
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=False)',
-                   'module'     : 'jetmetCorrectorMC',
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", isFastSim=False)',
+                   'module'     : 'jetmetCorrectorMC()',
                  },
 
   'JMEUncertFS' : {
@@ -3515,7 +3547,7 @@ Steps = {
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
                    'declare'    : 'jetmetCorrectorFS = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", redojec=True, isFastSim=True)',
-                   'module'     : 'jetmetCorrectorFS',
+                   'module'     : 'jetmetCorrectorFS()',
                   },
 
   'PtCorrReader' : {
@@ -3861,7 +3893,7 @@ Steps = {
                   'do4Data'    : False ,
                   'import'     : 'LatinoAnalysis.NanoGardener.modules.BTagEventWeightProducer' ,
                   'declare'    : '',
-                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="RPLME_YEAR", bTagWP=["L", "M", "T"], bTagMethod="1c", bTagPtCut=["20", "25", "30"], dataType="mc")',
+                  'module'     : 'BTagEventWeightProducer(bTagAlgo="btagDeepB", bTagEra="RPLME_YEAR", bTagWPs=["L", "M", "T"], bTagMethod="1c", bTagPtCuts=["20", "25", "30"], dataType="mc")',
                 },
 
   'LeptonSF' : {
