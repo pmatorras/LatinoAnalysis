@@ -1198,6 +1198,13 @@ Steps = {
                                      'wwNLOEWK','wzNLOEWK','zzNLOEWK','zNLOEWK','wNLOEWK','ZZGen' ],
                 },
 
+  'MCSusySyst2017v8' : {
+                     'isChain'    : True  ,
+                     'do4MC'      : True  ,
+                     'do4Data'    : False ,
+                     'subTargets' : ['PtCorrReader','jetSelSusy','btagPerEventDeepCSVWPsMC',#'btagPerEvent2017','btagPerEvent2017Pt25','btagPerEvent2017Pt30'
+                                   ],
+                },
 
   'FSSusyCorr2017v6loose' : {
                      'isChain'    : True  ,
@@ -6566,9 +6573,9 @@ for region in mt2CRs:
    
 # JES, JER, MET variations
 
-for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp', 'jesTotalSmearDown', 'jesTotalSmearUp', 'unclustEnSmearDown', 'unclustEnSmearUp' ]:
+for treesyst in [ 'nom','T1', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', 'unclustEnUp', 'jerDown', 'jerUp', 'jesTotalSmearDown', 'jesTotalSmearUp', 'unclustEnSmearDown', 'unclustEnSmearUp' ]:
 
-  treesystname = treesyst.replace('Total', '').replace('unclustEn', 'MET').upper().replace('UP', 'Up').replace('DOWN', 'Do').replace('NOM', 'Nomin')
+  treesystname = treesyst.replace('Total', '').replace('unclustEn', 'MET').upper().replace('UP', 'Up').replace('DOWN', 'Do').replace('NOM', 'Nomin').replace('T1','nomin')
   treesystname = treesystname.replace('JESSMEAR', 'SJS').replace('METSMEAR', 'SMT')
   if treesystname=='JER': treesystname = 'Smear'
   
@@ -6590,7 +6597,7 @@ for treesyst in [ 'nom', 'jer', 'jesTotalDown', 'jesTotalUp', 'unclustEnDown', '
           else: 
             Steps[datatype+'Susy'+treesystname+year+'v6loose'][key] = [ 'PtCorr'+treesystname if x=='PtCorrReader' else x for x in Steps[datatype+'SusySyst'+year+'v6loose'][key] ]
                   
-  if treesyst!='nom': 
+  if treesyst!='nom' or treesyst!='T1': #TO BE COMPLETED WHEN MT2 PRODUCER IS UPDATED 
 
     for region in mt2regions: 
 

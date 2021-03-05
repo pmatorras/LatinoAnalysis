@@ -19,7 +19,8 @@ Sites = {
               'xrootdPath'  : 'root://eoscms.cern.ch/' ,
               #'treeBaseDir' : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/' 
               #'treeBaseDir' : '/eos/cms/store/user/scodella/SUSY/Nano/' ,
-              'treeBaseDir' : '/eos/home-p/pmatorra/Work/Nano' ,
+              'treeBaseDir' : '/eos/user/p/pmatorra/Work/Nano' ,
+              #      'treeBaseDir' : '/eos/home-p/pmatorra/Work/Nano' ,
               #'treeBaseDir' : '/eos/cms/store/caf/user/scodella/BTV/Nano/' ,
               #'sourceDir'   : '/eos/user/s/scodella/SUSY/Nano/' ,
               #'sourceDir'   : '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/' ,
