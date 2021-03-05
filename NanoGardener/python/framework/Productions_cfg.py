@@ -771,7 +771,7 @@ Productions = {
                        'xsFile'  : 'LatinoAnalysis/NanoGardener/python/framework/samples/samplesCrossSections2018.py' ,
                        'YRver'   : ['YR4','13TeV'] ,
                    },
- 'Autumn18_nAODv8_Full2018v8': {
+ 'Autumn18_106X_nAODv8_Full2018v8': {
                        'isData'  : False ,
                        'samples' : 'LatinoAnalysis/NanoGardener/python/framework/samples/Autumn18_susy_106X_nAODv8.py' ,
                        'cmssw'   : 'Full2018v8' ,
