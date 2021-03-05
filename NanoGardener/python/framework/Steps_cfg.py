@@ -3537,7 +3537,7 @@ Steps = {
                    'do4MC'      : True ,
                    'do4Data'    : False ,
                    'import'     : 'PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetHelperRun2' ,
-                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear=RPLME_YEAR, jesUncert="Total", isFastSim=False)',#"RPLME_YEAR" ,redojec=True)',
+                   'declare'    : 'jetmetCorrectorMC = createJMECorrector(isMC=True, dataYear="RPLME_YEAR", jesUncert="Total", isFastSim=False)',
                    'module'     : 'jetmetCorrectorMC()',
                  },
 

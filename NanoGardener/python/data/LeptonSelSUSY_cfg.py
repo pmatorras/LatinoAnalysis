@@ -1778,7 +1778,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  3' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -1805,7 +1805,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  4' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -1869,7 +1869,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  3' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -1893,7 +1893,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  3' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -1918,7 +1918,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  4' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -1980,7 +1980,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  3' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -2004,7 +2004,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  3' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
@@ -2029,7 +2029,7 @@ ElectronWP = {
                 'cuts' : { 
                     'True' :
                         [
-                        'electron_col[LF_idx]["pt"]             >  15.' ,
+                        'electron_col[LF_idx]["pt"]             >  20.' ,
                         'abs(electron_col[LF_idx]["eta"])       <  2.4' ,
                         'electron_col[LF_idx]["cutBased"]       >=  4' ,
                         'abs(electron_col[LF_idx]["sip3d"])     <   4.' ,
