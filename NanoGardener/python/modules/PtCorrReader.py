@@ -36,7 +36,8 @@ class PtCorrReader(Module):
                 if btype not in self.CollBr: self.CollBr[btype] = []
                 self.CollBr[btype].append(bname)
                 self.out.branch(bname+self._suffix, btype, lenVar='n'+self.CollTC)
-
+        
+        #print inputFile, outputFile, inputTree
         if len(self.CollBr) < 1: raise IOError('PtCorrReader: no branches with ' + self.CollTC+'_' +  ' found in inputTree or outputTree.')
  
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):

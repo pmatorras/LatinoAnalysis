@@ -8,13 +8,13 @@ import math
 from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collection 
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 
-bTagWorkingPointCut = { 'btagDeepB'     : { '2016'   : { 'L' : '0.2217', 'M' : '0.6321', 'T' : '0.8953' },
+bTagWorkingPointCut = { 'deepcsv'       : { '2016'   : { 'L' : '0.2217', 'M' : '0.6321', 'T' : '0.8953' },
                                             '2017'   : { 'L' : '0.1522', 'M' : '0.4941', 'T' : '0.8001' },
                                             '2018'   : { 'L' : '0.1241', 'M' : '0.4184', 'T' : '0.7527' },
                                             'UL2016' : { 'L' : '', 'M' : '', 'T' : '' }, # TO BE UPDATED
                                             'UL2017' : { 'L' : '0.1355', 'M' : '0.4506', 'T' : '0.7738' }, 
                                             'UL2018' : { 'L' : '0.1208', 'M' : '0.4168', 'T' : '0.7665' }, },
-                        'btagDeepFlavB' : { '2016'   : { 'L' : '0.0614', 'M' : '0.3093', 'T' : '0.7221' },
+                        'deepjet'       : { '2016'   : { 'L' : '0.0614', 'M' : '0.3093', 'T' : '0.7221' },
                                             '2017'   : { 'L' : '0.0521', 'M' : '0.3033', 'T' : '0.7489' },
                                             '2018'   : { 'L' : '0.0494', 'M' : '0.2770', 'T' : '0.7264' },
                                             'UL2016' : { 'L' : '', 'M' : '', 'T' : '' }, # TO BE UPDATED 
@@ -32,6 +32,7 @@ class BTagEventWeightProducer(Module):
         self.collection = collection
         self.bTagEra = bTagEra
         self.bTagAlgo = bTagAlgo
+        self.bTagDiscriminant = bTagAlgo.replace('deepcsv', 'btagDeepB').replace('deepjet', 'btagDeepFlavB')
         self.random = ROOT.TRandom3(0)
         self.dataType = dataType
         self.bTagMethod = bTagMethod
@@ -192,7 +193,7 @@ class BTagEventWeightProducer(Module):
         return njets_tagged/njets_taggable
 
     def getbTagSF(self, event, idx, bTagAlgoWP, central_or_syst):
-
+        
         jfl = event.Jet_hadronFlavour[idx]
 
         central_or_syst_flag = ""
@@ -220,10 +221,8 @@ class BTagEventWeightProducer(Module):
         """process event, return True (go to next module) or False (fail, go to next event)"""
 
         for wp in range(len(self.bTagWPs)):
-
             bTagWP = self.bTagWPs[wp]
             bTagCut = self.bTagCuts[wp]
-
             for bTagPtCut in self.bTagPtCuts:
 
                 bTagFlag = ''
@@ -244,7 +243,7 @@ class BTagEventWeightProducer(Module):
                     if abs(event.CleanJet_eta[i])<self.bTagEtaMax and event.CleanJet_pt[i]>=float(bTagPtCut):
 
                         idx = event.CleanJet_jetIdx[i]
-                        jet_discriminant = getattr(event, "Jet_%s" % self.bTagAlgo)[idx]
+                        jet_discriminant = getattr(event, "Jet_%s" % self.bTagDiscriminant)[idx]
 
                         bTagPass = jet_discriminant>=bTagCut
 
@@ -315,7 +314,7 @@ class BTagEventWeightProducer(Module):
     		            weightjjet = [ ]
                             for j in range(event.nCleanJet):	
                                 if event.CleanJet_pt[j]>=float(bTagPtCut) and abs(event.CleanJet_eta[j])<self.bTagEtaMax:
-                                    if getattr(event, "Jet_%s" % self.bTagAlgo)[event.CleanJet_jetIdx[j]]>=bTagCut:
+                                    if getattr(event, "Jet_%s" % self.bTagDiscriminant)[event.CleanJet_jetIdx[j]]>=bTagCut:
                                         weight1idx.append(j)
                                         weight1jet.append(1.)
                                         weightjjet.append(self.getbTagSF(event, event.CleanJet_jetIdx[j], self.bTagAlgo+'_'+bTagWP, central_or_syst))
@@ -323,7 +322,7 @@ class BTagEventWeightProducer(Module):
                             if event.CleanJet_pt[i]>=float(bTagPtCut) and abs(event.CleanJet_eta[i])<self.bTagEtaMax:
                                 idx = event.CleanJet_jetIdx[i]
                                 jfl = event.Jet_hadronFlavour[idx]
-                                jet_discriminant = getattr(event, "Jet_%s" % self.bTagAlgo)[idx]
+                                jet_discriminant = getattr(event, "Jet_%s" % self.bTagDiscriminant)[idx]
                                 jet_weight = self.getbTagSF(event, idx, self.bTagAlgo+'_'+bTagWP, central_or_syst)
                                 if self.bTagMethod=='1a':
                                     if jet_discriminant>=bTagCut:
@@ -334,7 +333,7 @@ class BTagEventWeightProducer(Module):
                                 elif self.bTagMethod=='1b': # To be completed
                                     pass
                                 elif self.bTagMethod=='1c':
-                                    if jet_discriminant>=self.bTagCut:
+                                    if jet_discriminant>=bTagCut:
                                         weight *= (1. - jet_weight)
                                         if central_or_syst=='central':       
                                             for j in range(len(weight1jet)):

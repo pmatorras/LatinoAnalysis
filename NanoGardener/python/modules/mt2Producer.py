@@ -178,11 +178,12 @@ class mt2Producer(Module):
  
         ptmissvec3 = ROOT.TVector3()
 
-        metBranch = 'MET' 
+        metBranch = 'MET_T1' 
         if hasattr(event, 'METFixEE2017_pt_nom'): metBranch = 'METFixEE2017' 
         if self.metType=='puppi':  metBranch = 'PuppiMET' 
-
         metSystem = '_'+self.metSystematic.replace('Smear', '') 
+        #print metBranch, metSystem
+        
         if not hasattr(event, metBranch+'_pt'+metSystem):
             if self.metSystematic=='nom':
                 metSystem = ''

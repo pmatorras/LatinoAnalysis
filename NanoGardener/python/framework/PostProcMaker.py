@@ -779,7 +779,7 @@ class PostProcMaker():
 
      def addCommands(s):
        global preBash
-
+       #print self._Steps[s]
        step = self._Steps[s]
        if step['isChain']:
          for subtarget in step['subTargets']:
